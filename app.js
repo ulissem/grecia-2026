@@ -161,7 +161,7 @@
     } else if (t > G.trip.end) {
       hero.innerHTML = `<div class="hero" data-wiki="${esc(G.trip.heroAfter)}"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.done_title}</h2><p>${U.done_sub}</p></div></div>`;
       body.innerHTML = '';
-    } else if (t === G.trip.returnDate) {
+    } else if (t === G.trip.returnDate && !day) {
       hero.innerHTML = `<div class="hero" data-wiki="${esc(G.trip.heroReturn)}"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.fly_title}</h2><p>${U.fly_sub}</p></div></div>`;
       body.innerHTML = `<div class="card"><div class="btns">${(G.trip.returnLinks || []).map(([t, u]) => `<a class="btn" target="_blank" rel="noopener" href="${u}">${t}</a>`).join('')}</div></div>`;
     } else if (day) {

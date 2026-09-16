@@ -14,11 +14,11 @@ window.GUIDE = {
     wx_off: "Meteo non disponibile senza connessione. Metà ottobre: 22–25 °C di giorno, 13–16 di notte, qualche rovescio possibile.",
     wx_far: (last, date, place) => `Previsioni disponibili fino al ${last}; quelle per il ${date} compaiono circa due settimane prima. Media di metà ottobre a ${place}: 22–25 °C di giorno, 13–16 di notte.`,
     q_sos: "Emergenze 112", q_fuel: "Benzina", q_tickets: "Biglietti",
-    countdown: d => `Mancano ${d} giorni`, countdown_sub: "Volo Francoforte → Atene mercoledì 7 ottobre alle 13:50. Le ferie iniziano lunedì 12 a Itea.",
+    countdown: d => `Mancano ${d} giorni`, countdown_sub: "Volo Francoforte → Atene mercoledì 7 ottobre alle 13:50, rientro venerdì 16 alle 14:15. Le ferie iniziano lunedì 12 a Itea.",
     todo_title: "Cose da chiudere prima di partire", todo_more: "La lista completa con le spunte è nella sezione Valigia.", open: "apri", wx_itea: "Meteo a Itea, prossimi giorni", flights: "I voli",
-    done_title: "Viaggio concluso", done_sub: "La guida resta qui per i ricordi e per la prossima volta.", fly_title: "Volo alle 6:25", fly_sub: "Check-in alle 4:30. Buon rientro.", fly_status: "Stato voli AIA",
+    done_title: "Viaggio concluso", done_sub: "La guida resta qui per i ricordi e per la prossima volta.", fly_title: "Volo alle 14:15", fly_sub: "Mattina all'Agorà, alle 11 verso l'aeroporto. Buon rientro.", fly_status: "Stato voli AIA",
     next: "Prossima tappa", full_prog: "Programma completo", now_in: "Adesso a", the_day: "La giornata", nav_all: "Naviga l'intera giornata", max: "Max", rain: "pioggia", sunrise: "Alba", wx_off_short: "Meteo non disponibile senza rete.",
-    dist_h: ["Tratta", "km", "tempo"], site_h: ["Sito", "Intero", "Note"], total: "Totale indicativo", total_v: "€950–1.200", d0_suffix: " – domenica 11"
+    dist_h: ["Tratta", "km", "tempo"], site_h: ["Sito", "Intero", "Note"], total: "Totale indicativo", total_v: "€800–1.000", d0_suffix: " – domenica 11"
   },
   text: {
     sitesIntro: `Siti del Ministero della Cultura: <b>8:00–18:30 fino al 15 ottobre</b>, <b>8:00–18:00 dal 16</b>, ultimo ingresso 20 minuti prima. Tariffa estiva fino al 31 ottobre. Biglietti ufficiali online su <a target="_blank" rel="noopener" href="https://tickets.hh.gr/en">tickets.hh.gr</a> (Hellenic Heritage, senza commissioni): obbligatorio prenotare solo per l'Acropoli, per gli altri si compra in loco.`,
@@ -53,11 +53,11 @@ window.GUIDE = {
       <dt>1204–1715</dt><dd><b>Franchi e Veneziani</b>: Nafplio, Palamidi, Bourtzi, Nafpaktos.</dd>
       <dt>1453–1821</dt><dd><b>Ottomani</b>: quattro secoli, le moschee di Nafplio.</dd>
       <dt>1821–1834</dt><dd><b>Indipendenza</b>: Kolokotronis, Kapodistrias, Nafplio capitale, poi Atene.</dd></dl></div>
-    <div class="card"><h3>Notte del 16 e volo delle 6:25</h3><ul class="small">
-      <li><b>Piano A</b>: auto riconsegnata la sera, notte al Sofitel Athens Airport, collegato al terminal. Alle 4:15 sei al check-in.</li>
-      <li><b>Piano B</b>: hotel a Spata o Markopoulo con navetta, metà prezzo, 10 minuti; conferma che la navetta giri alle 4.</li>
-      <li><b>Piano C</b>: dormi ad Atene e taxi alle 3:45, tariffa notturna fissa ~€60, 35 minuti. Prenota con Uber o FreeNow la sera prima.</li>
-      <li>Check-in online la sera del 16; terminal unico, controlli Schengen, 45 minuti sono abbondanti.</li></ul></div>`
+    <div class="card"><h3>Venerdì 16: mattina ad Atene e volo delle 14:15</h3><ul class="small">
+      <li>In aeroporto alle 12:15: check-in online la sera prima, terminal unico, controlli Schengen, 45 minuti bastano.</li>
+      <li>Dal centro all'aeroporto in auto: 35–45 minuti via Attiki Odos fuori dall'ora di punta; partenza dall'hotel alle 11:00, riconsegna entro le 11:50.</li>
+      <li>Alternativa senza guidare: metro linea 3 da Syntagma, 40 minuti, €9, ogni 36 minuti; ma l'auto va riconsegnata giovedì sera.</li>
+      <li>Hotel con parcheggio e check-out tardivo se possibile: chiedi di lasciare il bagaglio fino alle 10:45.</li></ul></div>`
   },
   ui_food: { n_title: "Le mie note", n_sub: "Restano solo su questo telefono (memoria locale del browser): niente account, niente cloud. Con \"Copia tutto\" le porti dove vuoi.", n_general: "Note generali", n_copy: "Copia tutto", n_copied: "copiato", n_fields: [["rental","Noleggio auto: riferimento, compagnia, targa"],["hotels","Conferme hotel"],["flight","Codice prenotazione volo"],["other","Altro (assicurazione, contatti…)"]], nav_bag: "Mio", f_menu: "Il menu, in figure", f_menu_sub: "Per riconoscere quello che vedi nelle teglie e in vetrina. Foto da Wikipedia.", g_phr: "Frasario", nav_food: "Cibo", f_title: "Dove mangiano loro", f_intro: "Niente ristoranti eleganti: taverne, mageirio (i posti da pranzo con le teglie dietro al banco), souvlaki e pasticcerie. Fascia di prezzo: € sotto i 12 a testa, €€ 15–25. Le spunte segnano dove sei stato.", f_all: "Tutto", f_sweet: "Dolci", f_eat: "Da mangiare", f_map: "Cibo sulla mappa", f_price: "prezzo", f_visited: "visitato" },
   food_places: [
@@ -103,8 +103,6 @@ window.GUIDE = {
       { cat: "sweet", name: "Stani", city: "Omonia", what: "Latteria dal 1931: yogurt di pecora con miele e noci, rizogalo. Colazione o merenda.", price: "€", lat: 37.9838, lng: 23.7282 },
       { cat: "sweet", name: "Kokkion", city: "Psyrri", what: "Gelato artigianale, gusti greci: mastice, fico, yogurt. Se fa ancora caldo.", price: "€", lat: 37.9787, lng: 23.7245 },
       { cat: "sweet", name: "Ariston", city: "Voulis 10, Syntagma", what: "Dal 1910, la tiropita kourou più famosa di Atene: il salato che fa da colazione.", price: "€", lat: 37.9752, lng: 23.7328 } ] },
-    { area: "Sounion", items: [
-      { cat: "eat", name: "Syrtaki", city: "Sounion", what: "Taverna con vista sul tempio, 500 m prima del sito: pesce, mezedes, tramonto. Turistica ma corretta, e l'unica con quella vista.", price: "€€", lat: 37.6558, lng: 24.0170 } ] }
   ],
   menu: [
     { group: "Dolci", items: [
@@ -182,10 +180,10 @@ window.GUIDE = {
   signs: [["ΕΙΣΟΔΟΣ", "ísodos", "entrata"], ["ΕΞΟΔΟΣ", "éxodos", "uscita"], ["ΑΝΟΙΚΤΟ / ΚΛΕΙΣΤΟ", "anichtó / klistó", "aperto / chiuso"], ["ΚΕΝΤΡΟ", "kéndro", "centro"], ["ΠΑΡΑΛΙΑ", "paralía", "spiaggia"], ["ΛΙΜΑΝΙ", "limáni", "porto"], ["ΑΕΡΟΔΡΟΜΙΟ", "aerodrómio", "aeroporto"], ["ΔΙΟΔΙΑ", "diódia", "pedaggio"], ["ΒΕΝΖΙΝΑΔΙΚΟ", "venzinádiko", "distributore"], ["ΑΜΟΛΥΒΔΗ", "amólivdi", "senza piombo"], ["ΠΑΡΚΙΝΓΚ", "párking", "parcheggio"], ["ΑΠΑΓΟΡΕΥΕΤΑΙ", "apagorévete", "vietato"], ["ΠΡΟΣΟΧΗ", "prosochí", "attenzione"], ["ΦΑΡΜΑΚΕΙΟ", "farmakío", "farmacia"], ["ΝΟΣΟΚΟΜΕΙΟ", "nosokomío", "ospedale"], ["ΑΣΤΥΝΟΜΙΑ", "astinomía", "polizia"], ["ΤΟΥΑΛΕΤΕΣ", "tualétes", "bagni"], ["ΑΝΔΡΩΝ / ΓΥΝΑΙΚΩΝ", "andrón / yinekón", "uomini / donne"], ["ΑΡΧΑΙΟΛΟΓΙΚΟΣ ΧΩΡΟΣ", "archeologikós chóros", "sito archeologico"], ["ΜΟΥΣΕΙΟ", "musío", "museo"], ["ΤΑΒΕΡΝΑ / ΨΗΣΤΑΡΙΑ", "tavérna / psistariá", "taverna / griglieria"], ["ΖΑΧΑΡΟΠΛΑΣΤΕΙΟ", "zacharoplastío", "pasticceria"], ["ΦΟΥΡΝΟΣ", "fúrnos", "forno, panetteria"], ["ΠΕΡΙΠΤΕΡΟ", "períptero", "chiosco"]],
   alphabet: "Α α a · Β β v · Γ γ gh/y · Δ δ dh · Ε ε e · Ζ ζ z · Η η i · Θ θ th · Ι ι i · Κ κ k · Λ λ l · Μ μ m · Ν ν n · Ξ ξ x · Ο ο o · Π π p · Ρ ρ r · Σ σ/ς s · Τ τ t · Υ υ i · Φ φ f · Χ χ ch · Ψ ψ ps · Ω ω o. Combinazioni: ΟΥ = u, ΑΙ = e, ΕΙ/ΟΙ = i, ΜΠ = b, ΝΤ = d, ΓΚ = g, ΤΣ = ts.",
   ui_ess: { e_title: "Il paese in breve", e_signs: "I cartelli che vedrai", e_alpha: "L'alfabeto, per leggere le insegne", e_fuel: "Calcolo carburante", e_km: "km", e_cons: "l/100 km", e_price: "€/l", e_res: "costo stimato" },
-  trip: { start: "2026-10-07", end: "2026-10-17", ferieStart: "2026-10-12", title: "Grecia 2026 — Peloponneso classico", short: "Grecia 2026", basePlace: "itea", endPlace: "atene", returnDate: "2026-10-17", defaultDay: "d1", heroBefore: "Nafplio", heroAfter: "Cape Sounion", heroReturn: "Athens International Airport", returnLinks: [["Stato voli AIA", "https://www.aia.gr/traveler/flight-info/"], ["Lufthansa", "https://www.lufthansa.com/"]], fullRouteUrl: "https://www.google.com/maps/dir/?api=1&origin=Itea,Greece&destination=Athens+International+Airport&waypoints=Nafpaktos,Greece%7CArchaeological+Site+of+Olympia%7CNafplio,Greece%7CCorinth+Canal%7CCape+Sounion&travelmode=driving", routeWaypoints: [[38.4336, 22.4247], [38.3919, 21.8296], [37.6384, 21.6300], [37.6839, 22.0339], [37.5676, 22.8016], [37.7308, 22.7564], [37.5960, 23.0793], [37.6376, 23.1573], [37.5676, 22.8016], [37.9349, 22.9843], [37.9715, 23.7257], [37.6502, 24.0246], [37.9364, 23.9445]] },
+  trip: { start: "2026-10-07", end: "2026-10-16", ferieStart: "2026-10-12", title: "Grecia 2026 — Peloponneso classico", short: "Grecia 2026", basePlace: "itea", endPlace: "atene", returnDate: "2026-10-16", defaultDay: "d1", heroBefore: "Nafplio", heroAfter: "Acropolis of Athens", heroReturn: "Ancient Agora of Athens", returnLinks: [["Stato voli AIA", "https://www.aia.gr/traveler/flight-info/"], ["Lufthansa", "https://www.lufthansa.com/"]], fullRouteUrl: "https://www.google.com/maps/dir/?api=1&origin=Itea,Greece&destination=Athens+International+Airport&waypoints=Nafpaktos,Greece%7CArchaeological+Site+of+Olympia%7CNafplio,Greece%7CCorinth+Canal&travelmode=driving", routeWaypoints: [[38.4336, 22.4247], [38.3919, 21.8296], [37.6384, 21.6300], [37.6839, 22.0339], [37.5676, 22.8016], [37.7308, 22.7564], [37.5960, 23.0793], [37.6376, 23.1573], [37.5676, 22.8016], [37.9349, 22.9843], [37.9715, 23.7257], [37.9364, 23.9445]] },
   flights: [
     { d: "2026-10-07", t: "13:50 → 17:40", from: "FRA", to: "ATH", n: "Lufthansa, 2 h 50" },
-    { d: "2026-10-17", t: "06:25 → 08:35", from: "ATH", to: "FRA", n: "Lufthansa, 3 h 10 · in aeroporto alle 04:30" }
+    { d: "2026-10-16", t: "14:15 → 16:20", from: "ATH", to: "FRA", n: "Lufthansa, 3 h 05 · in aeroporto alle 12:15" }
   ],
   places: {
     itea:    { name: "Itea",    lat: 38.4336, lng: 22.4247 },
@@ -197,7 +195,7 @@ window.GUIDE = {
     airport: { name: "Aeroporto di Atene", lat: 37.9364, lng: 23.9445 }
   },
   dayPlace: { "2026-10-07": "itea", "2026-10-08": "delfi", "2026-10-09": "itea", "2026-10-10": "itea", "2026-10-11": "itea",
-              "2026-10-12": "olimpia", "2026-10-13": "nafplio", "2026-10-14": "nafplio", "2026-10-15": "atene", "2026-10-16": "sounion", "2026-10-17": "airport" },
+              "2026-10-12": "olimpia", "2026-10-13": "nafplio", "2026-10-14": "nafplio", "2026-10-15": "atene", "2026-10-16": "atene" },
   colors: { d0: "#8A8F93", d1: "#1F8F6B", d2: "#7A5CC2", d3: "#D1602B", d4: "#1F4E79", d5: "#D9A441" },
 
   days: [
@@ -317,7 +315,7 @@ window.GUIDE = {
   { id: "d4", date: "2026-10-15", chip: ["Gio 15", "→ Atene"], title: "Nafplio → Corinto → Atene", place: "atene", night: "Atene", hero: "Acropolis of Athens",
     intro: "Il canale di Corinto e poi l'Acropoli nel pomeriggio, quando i gruppi delle crociere sono già scesi.",
     legs: [["Nafplio", "Canale di Corinto", 65, "55 min"], ["Canale di Corinto", "Atene, Koukaki", 85, "1 h 15"]],
-    routeNote: "Partenza alle 9:30. A7 fino a Corinto, sosta al canale, poi A8 Olympia Odos e Attiki Odos in città. Pedaggi ~€10. Ad Atene per le 12:30: auto in hotel e non la tocchi più fino a domani pomeriggio.",
+    routeNote: "Partenza alle 9:30. A7 fino a Corinto, sosta al canale, poi A8 Olympia Odos e Attiki Odos in città. Pedaggi ~€10. Ad Atene per le 12:30: auto in hotel e non la tocchi più fino a domani alle 11.",
     origin: "Nafplio,Greece", dest: "Acropolis Museum", way: ["Corinth Canal"],
     stops: [
       { name: "Canale di Corinto", time: "10:30", dur: "20 min", lat: 37.9349, lng: 22.9843, wiki: "Corinth Canal", wit: "Canale di Corinto", nav: "Corinth Canal",
@@ -325,6 +323,11 @@ window.GUIDE = {
         hist: "Nerone lo iniziò nel 67 d.C. con una zappa d'oro e 6.000 prigionieri ebrei; lo finirono gli ungheresi 1.800 anni dopo. Le navi moderne sono troppo larghe: oggi ci passano yacht e bungee jumper.",
         see: [["Ponte di Isthmia", "il punto panoramico classico, caffè lato Peloponneso"], ["Ponte sommergibile", "a Isthmia sul mare: si abbassa per far passare le barche"]],
         tip: "Corinto antica e il tempio di Apollo sono a 15 minuti (€8), ma con l'Acropoli nel pomeriggio io li salterei." },
+      { name: "Museo Archeologico Nazionale (facoltativo)", time: "13:00", dur: "2 ore, se rinunci al pranzo lungo", lat: 37.9890, lng: 23.7326, wiki: "National Archaeological Museum, Athens", wit: "Museo archeologico nazionale di Atene", nav: "National Archaeological Museum Athens",
+        desc: "Il più grande museo di antichità greche del mondo. Tre cose valgono la deviazione: la maschera d'oro di Micene, il Poseidone di bronzo di capo Artemisio e il meccanismo di Antikythera. Taxi 10 minuti dall'hotel, poi taxi all'Acropoli.",
+        info: [["Orario", "8:00–20:00 (verifica)"], ["Biglietto", "€12"]],
+        tip: "Se lo fai, pranzo veloce da Kostas o un koulouri: l'Acropoli alle 16 non aspetta.",
+        links: [["Sito ufficiale", "https://www.namuseum.gr/en/"]] },
       { name: "Acropoli", time: "15:00", dur: "2 ore", lat: 37.9715, lng: 23.7257, wiki: "Acropolis of Athens", wit: "Acropoli di Atene", nav: "Acropolis of Athens",
         desc: "Salita a piedi dall'hotel per Dionysiou Areopagitou. Il pomeriggio è il momento buono: luce laterale e metà dei visitatori del mattino.",
         hist: "Pericle la ricostruì in quarant'anni dopo che i persiani l'avevano rasa al suolo nel 480 a.C. Il Partenone fu tempio, chiesa, moschea e polveriera: esplose nel 1687 sotto le bombe veneziane. Lord Elgin portò via i marmi nel 1801; la disputa continua.",
@@ -341,47 +344,36 @@ window.GUIDE = {
     sleep: { city: "Athens", ci: "2026-10-15", co: "2026-10-16", txt: "Koukaki o Makrygianni, sotto il museo: filtra per 'parcheggio', ad Atene è indispensabile. Herodion e Acropolis Hill sono le scelte classiche, Coco-Mat Athens BC ha il rooftop sul Partenone." },
     alt: "Piano pioggia: l'Acropoli con la pioggia è marmo bagnato e pericoloso. Inverti: museo dell'Acropoli alle 15, e se spiove alle 17 sali (ultimo ingresso 18:00), altrimenti recuperi domani mattina alle 8." },
 
-  { id: "d5", date: "2026-10-16", chip: ["Ven 16", "→ aeroporto"], title: "Atene → Sounion → aeroporto", place: "sounion", night: "Hotel aeroporto", hero: "Cape Sounion",
-    intro: "Mattina a piedi nel centro antico, poi la costa di Apollo fino al tempio di Poseidone per il tramonto, e da lì 45 minuti all'aeroporto.",
-    legs: [["Atene, Koukaki", "Capo Sounion", 70, "1 h 15"], ["Capo Sounion", "Aeroporto", 45, "45 min"]],
-    routeNote: "Alle 15:30 si prende l'auto: Leoforos Poseidonos lungo la costa (Glyfada, Vouliagmeni, Varkiza) fino al capo. Dopo il tramonto strada interna via Lavrio e Markopoulo fino all'aeroporto. Pieno a Markopoulo.",
-    origin: "Acropolis Museum", dest: "Athens International Airport", way: ["Temple of Poseidon, Sounion"],
+  { id: "d5", date: "2026-10-16", chip: ["Ven 16", "Atene → volo"], title: "Atene la mattina, volo alle 14:15", place: "atene", night: "—", hero: "Ancient Agora of Athens",
+    intro: "Due ore nel centro antico prima dei turisti, colazione greca, e alle 11 si parte per l'aeroporto.",
+    legs: [["Atene, Koukaki", "Aeroporto", 35, "40 min"]],
+    routeNote: "Check-in online la sera prima. Partenza dall'hotel alle 11:00: Attiki Odos, pedaggio €2,80, riconsegna auto seguendo 'Car rental return' entro le 11:50, banco Lufthansa alle 12:15. Pieno di benzina a Koropi o Markopoulo, sulla strada.",
+    origin: "Acropolis Museum", dest: "Athens International Airport", way: [],
     stops: [
-      { name: "Agorà antica e Plaka", time: "9:00", dur: "3 ore", lat: 37.9748, lng: 23.7222, wiki: "Ancient Agora of Athens", wit: "Agorà di Atene", nav: "Ancient Agora of Athens",
-        desc: "Il centro civile dell'Atene classica: il tempio di Efesto è il meglio conservato di tutta la Grecia, la Stoà di Attalo ricostruita ospita il museo. Poi su per Anafiotika, il villaggio cicladico nascosto sotto la roccia.",
+      { name: "Bougatsa a Psyrri", time: "7:45", dur: "20 min", lat: 37.9794, lng: 23.7252, wiki: "Bougatsa", wit: "Bougatsa", nav: "Bougatsadiko Thessaloniki Athens",
+        desc: "Colazione in piedi al Bougatsadiko di piazza Iroon: bougatsa alla crema calda e un freddo espresso, poi cinque minuti a piedi fino all'Agorà.",
+        tip: "Se preferisci il forno: Kora a Kolonaki apre alle 7:30 ma è dall'altra parte del centro; lascialo per un'altra volta." },
+      { name: "Agorà antica e Anafiotika", time: "8:00", dur: "2 ore", lat: 37.9748, lng: 23.7222, wiki: "Ancient Agora of Athens", wit: "Agorà di Atene", nav: "Ancient Agora of Athens",
+        desc: "All'apertura sei quasi solo. Il tempio di Efesto, la Stoà di Attalo con il museo, poi risali per Anafiotika e Plaka fino a Syntagma per il cambio della guardia delle 10.",
         hist: "Qui Socrate interrogava i passanti e qui fu processato. Il kleroterion nel museo è la macchina con cui si sorteggiavano i giudici: la democrazia funzionava a estrazione.",
-        info: [["Orario", "8:00–18:00"], ["Biglietto", "€10 (il combinato è stato abolito)"]],
-        see: [["Tempio di Efesto", "intatto perché fu chiesa per 1.300 anni"], ["Stoà di Attalo", "il museo dell'Agorà"], ["Anafiotika", "casette bianche dei muratori di Anafi"], ["Cambio della guardia", "a Syntagma allo scoccare di ogni ora"]],
-        eat: "Pranzo veloce: Kostas in piazza Agia Irini per il souvlaki (finisce verso le 14), o Ta Karamanlidika tou Fani vicino al mercato per salumi e mezedes.",
+        info: [["Orario", "8:00–18:00"], ["Biglietto", "€10"], ["Uscita", "dal lato di Adrianou verso Monastiraki"]],
+        see: [["Tempio di Efesto", "intatto perché fu chiesa per 1.300 anni"], ["Stoà di Attalo", "il museo dell'Agorà, il kleroterion"], ["Anafiotika", "le casette bianche dei muratori di Anafi"], ["Cambio della guardia", "a Syntagma alle 10 in punto"]],
+        tip: "Alle 10:30 sei in hotel per il check-out. Un koulouri dal carretto per la strada, per il viaggio.",
         links: [["Sito ufficiale", "http://odysseus.culture.gr/h/3/eh351.jsp?obj_id=2485"], ["Biglietti online", "https://tickets.hh.gr/en"]] },
-      { name: "Museo Archeologico Nazionale", time: "12:30", dur: "2 ore, facoltativo", lat: 37.9890, lng: 23.7326, wiki: "National Archaeological Museum, Athens", wit: "Museo archeologico nazionale di Atene", nav: "National Archaeological Museum Athens",
-        desc: "Il più grande museo di antichità greche del mondo. Tre cose valgono il viaggio: la maschera d'oro di Micene, il Poseidone di bronzo di capo Artemisio e il meccanismo di Antikythera.",
-        info: [["Orario", "8:00–20:00 (verifica)"], ["Biglietto", "€12"], ["Come", "metro linea 1 fino a Victoria, o taxi 10 minuti"]],
-        tip: "Se sei stanco di pietre, saltalo e sali al Licabetto in funicolare. Ma la maschera chiude il cerchio aperto mercoledì a Micene.",
-        links: [["Sito ufficiale", "https://www.namuseum.gr/en/"]] },
-      { name: "Capo Sounion", time: "17:00", dur: "fino al tramonto", lat: 37.6502, lng: 24.0246, wiki: "Cape Sounion", wit: "Capo Sunio", nav: "Temple of Poseidon Sounion",
-        desc: "Il tempio di Poseidone sull'ultima punta dell'Attica. Il 16 ottobre il sole tramonta alle 18:43 e scende in mare tra le colonne.",
-        hist: "Qui Egeo si gettò in mare vedendo le vele nere della nave di Teseo, che aveva dimenticato di cambiarle: da lui il nome dell'Egeo. Byron incise il suo nome su una colonna nel 1810.",
-        info: [["Orario", "9:30 fino al tramonto (dal 16/10 alcune fonti dicono 18:00: verifica)"], ["Biglietto", "€10"]],
-        see: [["Il tempio", "la firma di Byron sulla colonna lato nord"], ["La scogliera", "i punti migliori per la foto sono fuori dal recinto, a ovest, gratis e sempre aperti"], ["Spiaggia sotto il capo", "un ultimo bagno alle 16:30 se il mare è calmo"]],
-        tip: "Se il sito chiude alle 18 entra alle 17 e guarda il tramonto dal promontorio accanto, che è libero.",
-        eat: "Cena veloce alla taverna Syrtaki, sulla strada 500 m prima del tempio, con vista; poi in aeroporto.",
-        links: [["Sito ufficiale", "http://odysseus.culture.gr/h/3/eh351.jsp?obj_id=2390"]] },
-      { name: "Aeroporto e notte", time: "20:30", dur: "riconsegna auto, hotel", lat: 37.9364, lng: 23.9445, wiki: "Athens International Airport", wit: "Aeroporto di Atene-Eleftherios Venizelos", nav: "Athens International Airport car rental return",
-        desc: "Segui i cartelli 'Car rental return', 5 minuti a piedi dal terminal. Notte in hotel, sveglia alle 4:00, check-in alle 4:30, volo alle 6:25.",
+      { name: "Aeroporto", time: "11:50", dur: "riconsegna auto e volo", lat: 37.9364, lng: 23.9445, wiki: "Athens International Airport", wit: "Aeroporto di Atene-Eleftherios Venizelos", nav: "Athens International Airport car rental return",
+        desc: "Riconsegna, 5 minuti a piedi dal terminal, controlli Schengen. Se avanza tempo, il piccolo museo archeologico dell'aeroporto al livello partenze è gratuito e vale dieci minuti.",
         tip: "Fotografa l'auto e il contachilometri alla riconsegna e conserva la ricevuta del pieno.",
         links: [["Aeroporto di Atene", "https://www.aia.gr/traveler/"], ["Stato voli", "https://www.aia.gr/traveler/flight-info/"]] }
     ],
-    sleep: { city: "Athens Airport", ci: "2026-10-16", co: "2026-10-17", txt: "Sofitel Athens Airport, di fronte al terminal: la scelta senza pensieri. Alternative a metà prezzo con navetta a Spata e Markopoulo, 10 minuti: chiedi conferma che la navetta giri alle 4." },
-    alt: "Piano pioggia: Sounion con il maltempo non ha senso. Museo Archeologico Nazionale con calma, poi Museo Benaki o Museo Cicladico, e all'aeroporto per le 19 via Attiki Odos." }
+    alt: "Se piove: salta l'Agorà e fai il Museo Archeologico Nazionale dalle 8 alle 10 (taxi 10 minuti da Koukaki): la maschera di Micene chiude il cerchio aperto mercoledì. Se il traffico ti preoccupa: metro linea 3 da Syntagma all'aeroporto, 40 minuti, €9, ma allora l'auto va riconsegnata giovedì sera." }
   ],
 
   sites: [
     ["Delfi, sito + museo", "€20", "biglietto unico"], ["Olimpia, sito + museo", "€20", "biglietto unico"], ["Micene, sito + Tesoro di Atreo + museo", "€12–20", "fonti discordanti, verifica"],
     ["Epidauro, teatro + santuario + museo", "€12–20", "fonti discordanti, verifica"], ["Palamidi", "€8", "strada fino in cima"], ["Acropoli", "€30", "fascia oraria, prenota"],
-    ["Museo dell'Acropoli", "€20", "biglietto separato"], ["Agorà antica", "€10", "combinato abolito"], ["Museo Archeologico Nazionale", "€12", ""], ["Sounion", "€10", "apre alle 9:30"]
+    ["Museo dell'Acropoli", "€20", "biglietto separato"], ["Agorà antica", "€10", "combinato abolito"], ["Museo Archeologico Nazionale", "€12", ""]
   ],
-  budget: [["Benzina, ~750 km × 7 l/100 × €2,15", "≈ €115"], ["Pedaggi (ponte €15,90 + autostrade)", "≈ €35"], ["Ingressi a siti e musei", "≈ €150"], ["Hotel, 5 notti, fascia media", "€450–650"], ["Pasti e caffè", "≈ €40/giorno"]],
+  budget: [["Benzina, ~650 km × 7 l/100 × €2,15", "≈ €100"], ["Pedaggi (ponte €15,90 + autostrade)", "≈ €35"], ["Ingressi a siti e musei", "≈ €150"], ["Hotel, 4 notti, fascia media", "€360–520"], ["Pasti e caffè", "≈ €40/giorno"]],
 
   hub: [
     ["tickets.hh.gr", "Biglietti ufficiali del Ministero per Acropoli e siti archeologici, senza commissioni", "https://tickets.hh.gr/en"],
@@ -407,20 +399,19 @@ window.GUIDE = {
   food: [["Gemistá", "pomodori e peperoni ripieni di riso, al forno"], ["Kókoras me hilopítes", "gallo in umido con pasta fresca, il piatto dell'Arcadia"], ["Saganáki", "formaggio fritto, con limone"], ["Horiátiki", "l'insalata greca vera, con feta intera sopra"], ["Tsipoúra / lavráki", "orata e branzino alla griglia, si pagano a peso"], ["Kolokythokeftédes", "polpette di zucchine"], ["Souvláki / gyros", "il pranzo veloce, in pita"], ["Loukoumádes", "frittelle con miele e cannella, per finire"], ["Ellinikós kafés", "caffè greco: sketos, metrios o glykos secondo lo zucchero"], ["Tsípouro", "la grappa locale, spesso offerta a fine pasto"]],
 
   todo: [
-    ["Biglietto Acropoli per giovedì 15, fascia 15:00", "tickets.hh.gr", "https://tickets.hh.gr/en/venues/acropolis-of-athens-tickets"],
+    ["Biglietto Acropoli per giovedì 15, fascia 15:00 (16:00 se fai il Museo Nazionale)", "tickets.hh.gr", "https://tickets.hh.gr/en/venues/acropolis-of-athens-tickets"],
     ["Hotel Nafplio, 13–15 ottobre", "prima di tutti gli altri", "https://www.booking.com/searchresults.html?ss=Nafplio&checkin=2026-10-13&checkout=2026-10-15&group_adults=1&no_rooms=1"],
     ["Hotel Olimpia, 12 ottobre", "", "https://www.booking.com/searchresults.html?ss=Olympia+Greece&checkin=2026-10-12&checkout=2026-10-13&group_adults=1&no_rooms=1"],
     ["Hotel Atene con parcheggio, 15 ottobre", "Koukaki / Makrygianni", "https://www.booking.com/searchresults.html?ss=Koukaki+Athens&checkin=2026-10-15&checkout=2026-10-16&group_adults=1&no_rooms=1"],
-    ["Hotel aeroporto, 16 ottobre", "Sofitel o navetta notturna", "https://www.booking.com/searchresults.html?ss=Athens+International+Airport&checkin=2026-10-16&checkout=2026-10-17&group_adults=1&no_rooms=1"],
-    ["Verifica riconsegna auto 16/10 sera in aeroporto e km illimitati", "contratto noleggio", ""],
+    ["Verifica riconsegna auto 16/10 ore 11:50 in aeroporto e km illimitati", "contratto noleggio", ""],
     ["Mappe offline: Peloponneso e Attica", "Google Maps → profilo → Mappe offline", "https://support.google.com/maps/answer/6291838"],
-    ["Check-in online volo del 17", "la sera del 16", "https://www.lufthansa.com/"]
+    ["Check-in online volo del 16", "la sera del 15", "https://www.lufthansa.com/"]
   ],
 
   packing: {
     "Documenti e soldi": [["Carta d'identità o passaporto"], ["Patente e carta di credito intestata al conducente", "la cauzione dell'auto va sulla stessa carta"], ["Voucher noleggio e numero assistenza"], ["Tessera sanitaria europea"], ["€100–150 in contanti, banconote piccole", "caselli e taverne di paese"]],
     "Tecnologia": [["Power bank e cavi"], ["Supporto telefono per auto", "le auto a noleggio raramente hanno CarPlay"], ["Cavo USB per l'autoradio"], ["Cuffie"], ["Caricatore attrezzatura di lavoro"]],
-    "Abbigliamento": [["Scarpe da camminata con suola che tiene", "Micene, Palamidi e Acropoli sono marmo e ghiaia lucidi"], ["Sandali o scarpe leggere per la sera"], ["Costume e telo leggero", "Arvanitia, Palaia Epidavros, Sounion"], ["Giacca leggera o pile", "Delfi e le sere"], ["Antipioggia compatto"], ["Cappello e occhiali da sole"], ["Una camicia decente", "Nafplio e Atene"]],
+    "Abbigliamento": [["Scarpe da camminata con suola che tiene", "Micene, Palamidi e Acropoli sono marmo e ghiaia lucidi"], ["Sandali o scarpe leggere per la sera"], ["Costume e telo leggero", "Arvanitia, Palaia Epidavros"], ["Giacca leggera o pile", "Delfi e le sere"], ["Antipioggia compatto"], ["Cappello e occhiali da sole"], ["Una camicia decente", "Nafplio e Atene"]],
     "Varie": [["Crema solare 30+", "a ottobre brucia ancora"], ["Borraccia", "fontanelle nei siti"], ["Zainetto piccolo per i siti"], ["Farmaci personali, cerotti, antinfiammatorio"], ["Tappi per le orecchie", "hotel in centro a Nafplio"], ["Maschera da snorkel", "città sommersa di Epidauro"], ["Sacchetto per i panni da lavare"]]
   }
 };
