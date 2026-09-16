@@ -205,10 +205,17 @@ footer{padding:20px 0 10px;color:var(--ink-3);font-size:13px;line-height:1.5}
 .mi .tx{padding:8px 10px 10px}
 .mi .tx b{display:block;font-size:14px}
 .mi .tx span{font-size:12px;color:var(--ink-2);line-height:1.4;display:block;margin-top:2px}
+
 /* phrasebook */
-.pb h4{margin:14px 0 6px}
-.pb table{font-size:14px}
-.pb td{padding:6px 4px}
-.pb td.gr{font-size:16px;white-space:nowrap}
-.pb td.tr{color:var(--sea);font-weight:600;white-space:nowrap}
-.pb td.me{color:var(--ink-2)}
+.pb h4{margin:16px 0 6px}
+.pb .pr{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 4px;border-bottom:1px solid var(--line);align-items:start}
+.pb .pr:last-child{border-bottom:0}
+.pb .gr{font-size:17px;line-height:1.35}
+.pb .sub{grid-column:1;font-size:14px;line-height:1.45}
+.pb .sub .tr{color:var(--sea);font-weight:600}
+.pb .sub .me{color:var(--ink-2)}
+.pb .sub .me::before{content:" · ";color:var(--ink-3)}
+.pb .say{grid-column:2;grid-row:1 / span 2;align-self:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--sea);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.pb .say svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pb .say:active{background:var(--sea-2)}
+.pb.nospeech .say{display:none}

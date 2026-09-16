@@ -250,7 +250,20 @@
     try { localStorage.setItem('lang', nl); } catch (e) {}
     location.href = location.pathname + '?lang=' + nl + '&v=' + Date.now();
   });
-  $('#phr').innerHTML = `<div class="pb">${G.phrasebook.map(g => `<h4>${g.group}</h4><table>${g.items.map(p => `<tr><td class="gr">${p[0]}</td><td class="tr">${p[1]}</td><td class="me">${p[2]}</td></tr>`).join('')}</table>`).join('')}</div>`;
+  const SPK = '<svg viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg>';
+  $('#phr').innerHTML = `<div class="pb" id="pb">${G.phrasebook.map(g => `<h4>${g.group}</h4>${g.items.map(p => `<div class="pr"><div class="gr">${p[0]}</div><div class="sub"><span class="tr">${p[1]}</span>${p[2] ? `<span class="me">${p[2]}</span>` : ''}</div><button class="say" type="button" aria-label="${esc(p[1])}" data-say="${esc(p[0])}">${SPK}</button></div>`).join('')}`).join('')}</div>`;
+  (function () {
+    const pb = $('#pb');
+    if (!('speechSynthesis' in window)) { pb.classList.add('nospeech'); return; }
+    let voice = null;
+    const pick = () => { const vs = speechSynthesis.getVoices(); voice = vs.find(v => /^el/i.test(v.lang)) || null; if (!vs.length) return; if (!voice) pb.classList.add('nospeech'); };
+    pick(); speechSynthesis.onvoiceschanged = pick;
+    pb.addEventListener('click', e => {
+      const b = e.target.closest('.say'); if (!b) return;
+      const u = new SpeechSynthesisUtterance(b.dataset.say.replace(/\s*\/\s*/g, ', ')); u.lang = 'el-GR'; if (voice) u.voice = voice; u.rate = 0.85;
+      speechSynthesis.cancel(); speechSynthesis.speak(u);
+    });
+  })();
 
   /* ---------- Checklist ---------- */
   function checklist(items, key, progEl, withLinks) {
