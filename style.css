@@ -193,3 +193,22 @@ footer{padding:20px 0 10px;color:var(--ink-3);font-size:13px;line-height:1.5}
 .fp input{width:20px;height:20px;accent-color:var(--olive);margin:2px 0 0}
 .fp.done{opacity:.55}
 .chip.mini{padding:5px 12px}
+
+/* menu */
+.mgrp h4{margin:14px 0 8px}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.mi{background:var(--bg);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.mi .ph{aspect-ratio:4/3;background:var(--sea-2);position:relative}
+.mi .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.mi .ph .cap{position:absolute;right:4px;bottom:3px;font-size:10px;color:#fff;text-shadow:0 0 3px #000}
+.mi .ph .cap a{color:#fff}
+.mi .tx{padding:8px 10px 10px}
+.mi .tx b{display:block;font-size:14px}
+.mi .tx span{font-size:12px;color:var(--ink-2);line-height:1.4;display:block;margin-top:2px}
+/* phrasebook */
+.pb h4{margin:14px 0 6px}
+.pb table{font-size:14px}
+.pb td{padding:6px 4px}
+.pb td.gr{font-size:16px;white-space:nowrap}
+.pb td.tr{color:var(--sea);font-weight:600;white-space:nowrap}
+.pb td.me{color:var(--ink-2)}

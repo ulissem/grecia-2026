@@ -59,7 +59,7 @@ window.GUIDE = {
       <li><b>Piano C</b>: dormi ad Atene e taxi alle 3:45, tariffa notturna fissa ~€60, 35 minuti. Prenota con Uber o FreeNow la sera prima.</li>
       <li>Check-in online la sera del 16; terminal unico, controlli Schengen, 45 minuti sono abbondanti.</li></ul></div>`
   },
-  ui_food: { nav_food: "Cibo", f_title: "Dove mangiano loro", f_intro: "Niente ristoranti eleganti: taverne, mageirio (i posti da pranzo con le teglie dietro al banco), souvlaki e pasticcerie. Fascia di prezzo: € sotto i 12 a testa, €€ 15–25. Le spunte segnano dove sei stato.", f_all: "Tutto", f_sweet: "Dolci", f_eat: "Da mangiare", f_map: "Cibo sulla mappa", f_price: "prezzo", f_visited: "visitato" },
+  ui_food: { f_menu: "Il menu, in figure", f_menu_sub: "Per riconoscere quello che vedi nelle teglie e in vetrina. Foto da Wikipedia.", g_phr: "Frasario", nav_food: "Cibo", f_title: "Dove mangiano loro", f_intro: "Niente ristoranti eleganti: taverne, mageirio (i posti da pranzo con le teglie dietro al banco), souvlaki e pasticcerie. Fascia di prezzo: € sotto i 12 a testa, €€ 15–25. Le spunte segnano dove sei stato.", f_all: "Tutto", f_sweet: "Dolci", f_eat: "Da mangiare", f_map: "Cibo sulla mappa", f_price: "prezzo", f_visited: "visitato" },
   food_places: [
     { area: "Itea · Delfi · Galaxidi", items: [
       { cat: "eat", name: "O Bebelis", city: "Galaxidi", what: "Cucina casalinga in un cortile: gemista, coniglio stifado, la moussaka. Il posto dove va il paese.", price: "€", lat: 38.3803, lng: 22.3838 },
@@ -105,6 +105,60 @@ window.GUIDE = {
       { cat: "sweet", name: "Ariston", city: "Voulis 10, Syntagma", what: "Dal 1910, la tiropita kourou più famosa di Atene: il salato che fa da colazione.", price: "€", lat: 37.9752, lng: 23.7328 } ] },
     { area: "Sounion", items: [
       { cat: "eat", name: "Syrtaki", city: "Sounion", what: "Taverna con vista sul tempio, 500 m prima del sito: pesce, mezedes, tramonto. Turistica ma corretta, e l'unica con quella vista.", price: "€€", lat: 37.6558, lng: 24.0170 } ] }
+  ],
+  menu: [
+    { group: "Dolci", items: [
+      { name: "Bougatsa", wiki: "Bougatsa", desc: "Sfoglia sottile con crema di semolino calda, zucchero a velo e cannella. Si mangia a colazione, in piedi." },
+      { name: "Galaktoboureko", wiki: "Galaktoboureko", desc: "Crema cotta nella sfoglia e bagnata di sciroppo. Il metro di ogni pasticceria." },
+      { name: "Loukoumades", wiki: "Loukoumades", desc: "Frittelle calde con miele, cannella e noci." },
+      { name: "Kataifi", wiki: "Kadaif", desc: "Nido di pasta sfilata con noci e sciroppo; nella versione ekmek con crema e panna sopra." },
+      { name: "Karydopita", wiki: "Karydopita", desc: "Torta di noci allo sciroppo, la specialità delle montagne." },
+      { name: "Revani", wiki: "Revani", desc: "Torta di semolino inzuppata, spesso al limone o all'arancia (portokalopita è la cugina con la sfoglia)." },
+      { name: "Baklava", wiki: "Baklava", desc: "Strati di sfoglia e noci con sciroppo: qui più burroso e meno dolce che in Turchia." },
+      { name: "Dolci al cucchiaio", wiki: "Spoon sweets", desc: "Frutta intera in sciroppo servita con acqua ghiacciata: arancia amara, cotogna, noce acerba." },
+      { name: "Rizogalo", wiki: "Rice pudding", desc: "Riso al latte con cannella, il conforto delle latterie." },
+      { name: "Tsoureki", wiki: "Tsoureki", desc: "Pan brioche intrecciato al mahlepi e mastice, ottimo tostato a colazione." } ] },
+    { group: "Colazione e street food", items: [
+      { name: "Koulouri", wiki: "Koulouri", desc: "Anello di pane al sesamo venduto dai carretti dalle 7 del mattino. La colazione di Atene." },
+      { name: "Tiropita", wiki: "Tiropita", desc: "Sfoglia al formaggio; la kourou ha la pasta frolla salata." },
+      { name: "Spanakopita", wiki: "Spanakopita", desc: "Sfoglia con spinaci e feta." },
+      { name: "Souvlaki", wiki: "Souvlaki", desc: "Spiedino di maiale o pollo, da solo o nella pita con pomodoro, cipolla, tzatziki e patatine." },
+      { name: "Gyros", wiki: "Gyros", desc: "Carne dal girarrosto nella pita. Chiedi 'ap'ola' per averlo con tutto." },
+      { name: "Freddo espresso", wiki: "Freddo espresso", desc: "Espresso doppio shakerato con ghiaccio: il caffè nazionale da maggio a ottobre." } ] },
+    { group: "Mezedes, da condividere", items: [
+      { name: "Saganaki", wiki: "Saganaki", desc: "Formaggio fritto in padella, con limone." },
+      { name: "Tzatziki", wiki: "Tzatziki", desc: "Yogurt, cetriolo, aglio e olio. Va con tutto." },
+      { name: "Taramosalata", wiki: "Taramasalata", desc: "Crema di uova di pesce: quella vera è beige, non rosa." },
+      { name: "Dolmades", wiki: "Dolma", desc: "Foglie di vite ripiene di riso ed erbe, fredde con limone." },
+      { name: "Gigantes", wiki: "Gigantes plaki", desc: "Fagioli giganti al forno con pomodoro e aneto." },
+      { name: "Kolokythokeftedes", wiki: "Kolokithokeftedes", desc: "Polpette di zucchine, feta e menta." },
+      { name: "Horiatiki", wiki: "Greek salad", desc: "L'insalata greca vera: pomodoro, cetriolo, cipolla, olive, origano e la feta intera sopra. Niente lattuga." },
+      { name: "Kokoretsi", wiki: "Kokoretsi", desc: "Interiora d'agnello avvolte nel budello e arrostite allo spiedo. Per chi osa, ad Arachova." } ] },
+    { group: "Piatti", items: [
+      { name: "Gemista", wiki: "Gemista", desc: "Pomodori e peperoni ripieni di riso ed erbe, al forno con patate." },
+      { name: "Moussaka", wiki: "Moussaka", desc: "Melanzane, ragù e besciamella. Nei mageirio la fanno la mattina e la servono tiepida." },
+      { name: "Pastitsio", wiki: "Pastitsio", desc: "Pasta lunga bucata con ragù alla cannella e besciamella." },
+      { name: "Kokoras me hilopites", wiki: "Hilopites", desc: "Gallo in umido con pasta fresca quadrata: il piatto dell'Arcadia." },
+      { name: "Stifado", wiki: "Stifado", desc: "Spezzatino di manzo o coniglio con cipolline e vino, profumo di cannella." },
+      { name: "Kleftiko", wiki: "Kleftiko", desc: "Agnello cotto lentamente al cartoccio con patate e formaggio." },
+      { name: "Youvetsi", wiki: "Giouvetsi", desc: "Carne al forno con orzo (kritharaki) e pomodoro in teglia di coccio." },
+      { name: "Fasolada", wiki: "Fasolada", desc: "Zuppa di fagioli con sedano e carote: il piatto nazionale dei giorni feriali." },
+      { name: "Patsas", wiki: "Tripe soup", desc: "Zuppa di trippa con aglio e aceto, quella del mercato di Atene alle 6 del mattino." },
+      { name: "Pesce alla griglia", wiki: "Gilt-head bream", desc: "Tsipoura (orata) e lavraki (branzino) si pagano a peso: chiedi il prezzo al chilo, un pesce da porzione è 350–400 g." } ] },
+    { group: "Da bere", items: [
+      { name: "Caffè greco", wiki: "Greek coffee", desc: "Bollito nel briki, con la polvere sul fondo: sketos (amaro), metrios (medio), glykos (dolce)." },
+      { name: "Ouzo", wiki: "Ouzo", desc: "All'anice, con ghiaccio e acqua diventa bianco. Con i mezedes, mai da solo." },
+      { name: "Tsipouro", wiki: "Tsipouro", desc: "La grappa di vinaccia, con o senza anice; offerta spesso a fine pasto." },
+      { name: "Vino sfuso", wiki: "Retsina", desc: "In taverna si ordina a caraffa (misò kiló = mezzo litro). La retsina resinata è un gusto da provare una volta." },
+      { name: "Birra", wiki: "Fix Hellas", desc: "Fix, Mythos, Alfa, Mamos: leggere e fredde, mezzo litro a 4 euro." } ] }
+  ],
+  phrasebook: [
+    { group: "Saluti e cortesia", items: [["Καλημέρα", "kaliméra", "buongiorno (fino a metà pomeriggio)"], ["Καλησπέρα", "kalispéra", "buonasera"], ["Καληνύχτα", "kaliníchta", "buonanotte"], ["Γεια σας / Γεια σου", "ya sas / ya su", "salve (formale) / ciao"], ["Ευχαριστώ (πολύ)", "efcharistó (polí)", "grazie (mille)"], ["Παρακαλώ", "parakaló", "prego / per favore"], ["Ναι / Όχι", "ne / óchi", "sì / no ('ne' è sì!)"], ["Συγγνώμη", "signómi", "scusi"], ["Δεν καταλαβαίνω", "den katalavéno", "non capisco"], ["Μιλάτε αγγλικά;", "miláte angliká?", "parla inglese?"], ["Είμαι Ιταλός", "íme Italós", "sono italiano"]] },
+    { group: "Al ristorante", items: [["Ένα τραπέζι για έναν", "éna trapézi ya énan", "un tavolo per uno"], ["Τον κατάλογο, παρακαλώ", "ton katálogo, parakaló", "il menu, per favore"], ["Τι προτείνετε;", "ti protínete?", "cosa consiglia?"], ["Τι έχετε σήμερα;", "ti échete símera?", "cosa avete oggi? (nei mageirio)"], ["Θα ήθελα…", "tha íthela…", "vorrei…"], ["Μισό κιλό κρασί", "misó kiló krasí", "mezzo litro di vino (sfuso)"], ["Ένα νερό, παρακαλώ", "éna neró, parakaló", "un'acqua, per favore"], ["Χωρίς…", "chorís…", "senza…"], ["Πόσο κάνει το κιλό;", "póso káni to kiló?", "quanto costa al chilo? (pesce)"], ["Ήταν πολύ νόστιμο", "ítan polí nóstimo", "era buonissimo"], ["Τον λογαριασμό, παρακαλώ", "ton logariasmó, parakaló", "il conto, per favore"], ["Με κάρτα;", "me kárta?", "con la carta?"], ["Στην υγειά μας!", "stin iyá mas! (yámas)", "alla nostra salute!"], ["Καλή όρεξη", "kalí órexi", "buon appetito"]] },
+    { group: "Al caffè e in pasticceria", items: [["Έναν ελληνικό, μέτριο", "énan ellinikó, métrio", "un caffè greco, medio zucchero"], ["Ένα φρέντο εσπρέσο, σκέτο", "éna fréddo esprésso, skéto", "un freddo espresso, amaro"], ["Ένα κουλούρι", "éna kulúri", "un koulouri"], ["Μία μπουγάτσα με κρέμα", "mía bugátsa me kréma", "una bougatsa alla crema"], ["Ένα κομμάτι γαλακτομπούρεκο", "éna kommáti galaktobúreko", "una fetta di galaktoboureko"], ["Για εδώ / Για έξω", "ya edó / ya éxo", "per qui / da portare via"]] },
+    { group: "In viaggio e in auto", items: [["Πού είναι…;", "pu íne…?", "dov'è…?"], ["Γεμίστε το, παρακαλώ", "yemíste to, parakaló", "il pieno, per favore"], ["Αμόλυβδη 95", "amólivdi eneninda pénde", "benzina senza piombo 95"], ["Πού μπορώ να παρκάρω;", "pu boró na parkáro?", "dove posso parcheggiare?"], ["Διόδια", "diódia", "pedaggio"], ["Έξοδος", "éxodos", "uscita"], ["Κέντρο", "kéndro", "centro"], ["Πόσο μακριά είναι;", "póso makriá íne?", "quanto è lontano?"], ["Δεξιά / Αριστερά / Ευθεία", "dexiá / aristerá / efthía", "destra / sinistra / dritto"], ["Ανοιχτό / Κλειστό", "anichtó / klistó", "aperto / chiuso"], ["Τι ώρα κλείνει;", "ti óra klíni?", "a che ora chiude?"], ["Ένα εισιτήριο, παρακαλώ", "éna isitírio, parakaló", "un biglietto, per favore"]] },
+    { group: "In hotel", items: [["Έχω κράτηση", "écho krátisi", "ho una prenotazione"], ["Έχετε πάρκινγκ;", "échete párking?", "avete un parcheggio?"], ["Ο κωδικός του Wi-Fi;", "o kodikós tu wi-fi?", "la password del Wi-Fi?"], ["Τι ώρα είναι το πρωινό;", "ti óra íne to proinó?", "a che ora è la colazione?"], ["Μπορώ να πληρώσω τώρα;", "boró na pliróso tóra?", "posso pagare adesso?"], ["Ένα ταξί για τις 4, παρακαλώ", "éna taxí ya tis tésseris, parakaló", "un taxi per le 4, per favore"]] },
+    { group: "Numeri e urgenze", items: [["1 2 3 4 5", "éna, dío, tría, téssera, pénde", ""], ["6 7 8 9 10", "éxi, eftá, ochtó, enniá, déka", ""], ["20 / 50 / 100", "íkosi / penínda / ekató", ""], ["Βοήθεια!", "voíthia!", "aiuto!"], ["Χρειάζομαι γιατρό", "chriázome yatró", "ho bisogno di un medico"], ["Φαρμακείο", "farmakío", "farmacia"], ["Πού είναι η τουαλέτα;", "pu íne i tualéta?", "dov'è il bagno?"]] }
   ],
   trip: { start: "2026-10-07", end: "2026-10-17", ferieStart: "2026-10-12" },
   flights: [

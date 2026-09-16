@@ -47,7 +47,7 @@
         const w = await wiki(el.dataset.wiki);
         const img = $('img', el), cap = $('.cap', el);
         if (w.img) { img.src = w.img; if (cap) cap.innerHTML = `${U.photo}: <a target="_blank" rel="noopener" href="${w.url || '#'}">Wikipedia</a>`; }
-        else el.classList.add('nophoto');
+        else el.style.display = 'none';
       } catch (e) { const ph = el.classList.contains('ph') ? el : $('.ph', el); if (ph) ph.style.display = 'none'; }
     }
   }
@@ -241,7 +241,6 @@
   $('#hub').innerHTML = G.hub.map(([t, d, u]) => `<a target="_blank" rel="noopener" href="${u}"><b>${t}</b><span>${d}</span></a>`).join('');
   $('#siteTable').innerHTML = `<tr><th>${U.site_h[0]}</th><th>${U.site_h[1]}</th><th>${U.site_h[2]}</th></tr>` + G.sites.map(s => `<tr><td>${s[0]}</td><td class="n">${s[1]}</td><td class="muted">${s[2]}</td></tr>`).join('');
   $('#budgetTable').innerHTML = G.budget.map(b => `<tr><td>${b[0]}</td><td class="n">${b[1]}</td></tr>`).join('') + `<tfoot><tr><td>${U.total}</td><td class="n">${U.total_v}</td></tr></tfoot>`;
-  $('#foodTable').innerHTML = G.food.map(f => `<tr><td><b>${f[0]}</b></td><td class="muted">${f[1]}</td></tr>`).join('');
   $('#sitesIntro').innerHTML = G.text.sitesIntro; $('#sitesNote').innerHTML = G.text.sitesNote; $('#budgetNote').innerHTML = G.text.budgetNote;
   $('#foodRules').innerHTML = G.text.foodRules.map(x => `<li>${x}</li>`).join('');
   $('#guideBlocks').innerHTML = G.text.blocks1; $('#guideBlocks2').innerHTML = G.text.blocks2;
@@ -251,7 +250,7 @@
     try { localStorage.setItem('lang', nl); } catch (e) {}
     location.href = location.pathname + '?lang=' + nl + '&v=' + Date.now();
   });
-  $('#phr').innerHTML = G.phrases.map(p => `<div><b>${p[0]}</b><i>${p[1]}</i></div>`).join('');
+  $('#phr').innerHTML = `<div class="pb">${G.phrasebook.map(g => `<h4>${g.group}</h4><table>${g.items.map(p => `<tr><td class="gr">${p[0]}</td><td class="tr">${p[1]}</td><td class="me">${p[2]}</td></tr>`).join('')}</table>`).join('')}</div>`;
 
   /* ---------- Checklist ---------- */
   function checklist(items, key, progEl, withLinks) {
@@ -298,6 +297,8 @@
     $$('#foodBody input').forEach(b => b.addEventListener('change', () => { const v = store.get('food-visited', {}); v[b.dataset.fid] = b.checked; store.set('food-visited', v); b.closest('.fp').classList.toggle('done', b.checked); }));
   }
   renderFood();
+  $('#menuBody').innerHTML = G.menu.map(g => `<div class="mgrp"><h4>${g.group}</h4><div class="mgrid">${g.items.map(it => `<div class="mi"><div class="ph" data-wiki="${esc(it.wiki)}"><img alt="${esc(it.name)}" loading="lazy"><div class="cap"></div></div><div class="tx"><b>${it.name}</b><span>${it.desc}</span></div></div>`).join('')}</div></div>`).join('');
+  fillPhotos($('#menuBody'));
 
   /* ---------- Viste ---------- */
   function showView(v) {
