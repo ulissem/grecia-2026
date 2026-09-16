@@ -1,6 +1,13 @@
 /* Grecia 2026 — logica dell'app. I contenuti stanno in data.js. */
 (function () {
-  const LANG = (function(){ try { return localStorage.getItem('lang') || (navigator.language||'it').slice(0,2); } catch(e){ return 'it'; } })();
+  const LANG = (function () {
+    let l = null;
+    try { l = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+    if (l === 'it' || l === 'en') { try { localStorage.setItem('lang', l); } catch (e) {} return l; }
+    try { l = localStorage.getItem('lang'); } catch (e) {}
+    if (l === 'it' || l === 'en') return l;
+    return (navigator.language || 'it').slice(0, 2) === 'en' ? 'en' : 'it';
+  })();
   const G = (LANG === 'en' && window.GUIDE_EN) ? window.GUIDE_EN : window.GUIDE;
   const U = G.ui;
   document.documentElement.lang = G.lang;
@@ -232,7 +239,11 @@
   $('#foodRules').innerHTML = G.text.foodRules.map(x => `<li>${x}</li>`).join('');
   $('#guideBlocks').innerHTML = G.text.blocks1; $('#guideBlocks2').innerHTML = G.text.blocks2;
   $$('[data-ui]').forEach(el => { const v = U[el.dataset.ui]; if (typeof v === 'string') el.textContent = v; });
-  const lb = $('#langBtn'); lb.textContent = G.lang === 'en' ? 'IT' : 'EN'; lb.addEventListener('click', () => { try { localStorage.setItem('lang', G.lang === 'en' ? 'it' : 'en'); } catch (e) {} location.reload(); });
+  const lb = $('#langBtn'); lb.textContent = G.lang === 'en' ? 'IT' : 'EN'; lb.addEventListener('click', () => {
+    const nl = G.lang === 'en' ? 'it' : 'en';
+    try { localStorage.setItem('lang', nl); } catch (e) {}
+    location.href = location.pathname + '?lang=' + nl + '&v=' + Date.now();
+  });
   $('#phr').innerHTML = G.phrases.map(p => `<div><b>${p[0]}</b><i>${p[1]}</i></div>`).join('');
 
   /* ---------- Checklist ---------- */
@@ -274,5 +285,9 @@
   showDay(autoDay || store.get('day', 'd1'), false);
   showView(t >= G.trip.start && t <= G.trip.end ? 'today' : store.get('view', 'today'));
 
-  if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').then(r => r.update()).catch(() => {}));
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (!reloaded) { reloaded = true; location.reload(); } });
+  }
 })();

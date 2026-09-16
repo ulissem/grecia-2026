@@ -1,4 +1,4 @@
-const VERSION = 'grecia-2026-v4';
+const VERSION = 'grecia-2026-v5';
 const CORE = ['./','./index.html','./style.css','./app.js','./data.js','./data-en.js','./manifest.json','./icon-192.png','./icon-512.png','./icon-180.png',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css','https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE).catch(()=>{})).then(() => self.skipWaiting())); });
@@ -9,7 +9,9 @@ self.addEventListener('fetch', e => {
   const live = u.hostname.includes('open-meteo.com') || u.hostname.includes('wikipedia.org') || u.hostname.includes('project-osrm.org');
   if (live) { e.respondWith(fetch(e.request).then(r => { caches.open(VERSION).then(c => c.put(e.request, r.clone())); return r; }).catch(() => caches.match(e.request))); return; }
   if (u.origin === location.origin) {
-    e.respondWith(caches.match(e.request).then(c => { const n = fetch(e.request).then(r => { caches.open(VERSION).then(cc => cc.put(e.request, r.clone())); return r; }).catch(() => c); return c || n; }));
+    // File dell'app: rete prima (aggiornamenti subito visibili), cache se offline
+    e.respondWith(fetch(e.request).then(r => { caches.open(VERSION).then(cc => cc.put(e.request, r.clone())); return r; })
+      .catch(() => caches.match(e.request, { ignoreSearch: true })));
     return;
   }
   e.respondWith(caches.match(e.request).then(c => c || fetch(e.request).then(r => { if (r.ok || r.type === 'opaque') caches.open(VERSION).then(cc => cc.put(e.request, r.clone())); return r; }).catch(() => c)));
