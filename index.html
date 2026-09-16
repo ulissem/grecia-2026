@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1F4E79">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Grecia 2026">
 <title>Grecia 2026 — Peloponneso classico</title>
 <link rel="manifest" href="./manifest.json">
@@ -81,6 +81,11 @@
 
   <!-- VALIGIA -->
   <section class="view" id="v-bag" role="tabpanel">
+    <div class="card"><h3 data-ui="n_title"></h3><p class="muted" data-ui="n_sub"></p>
+      <div class="notes-info" id="noteInfo"></div>
+      <div id="noteDays"></div>
+      <div class="btns"><button class="btn sm" id="copyNotes" type="button" data-ui="n_copy"></button><span class="muted" id="copyMsg"></span></div>
+    </div>
     <div class="card"><h3 data-ui="b_todo"></h3><p class="muted" data-ui="b_todo_sub"></p><div class="prog"><i id="progTodo"></i></div><ul class="check" id="todoList"></ul></div>
     <div class="card"><h3 data-ui="b_pack"></h3><p class="muted" data-ui="b_pack_sub"></p><div class="prog"><i id="progPack"></i></div><div id="packList"></div><div class="btns"><button class="btn sm" id="resetChk" type="button" data-ui="b_reset"></button></div></div>
   </section>

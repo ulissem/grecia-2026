@@ -313,6 +313,20 @@
   $('#menuBody').innerHTML = G.menu.map(g => `<div class="mgrp"><h4>${g.group}</h4><div class="mgrid">${g.items.map(it => `<div class="mi"><div class="ph" data-wiki="${esc(it.wiki)}"><img alt="${esc(it.name)}" loading="lazy"><div class="cap"></div></div><div class="tx"><b>${it.name}</b><span>${it.desc}</span></div></div>`).join('')}</div></div>`).join('');
   fillPhotos($('#menuBody'));
 
+
+  /* ---------- Note ---------- */
+  (function () {
+    const N = store.get('notes', {});
+    $('#noteInfo').innerHTML = U.n_fields.map(([k, l]) => `<div><label for="nf-${k}">${l}</label><input id="nf-${k}" data-nk="${k}" value="${esc(N[k] || '')}" autocomplete="off"></div>`).join('');
+    const days = [['general', U.n_general], ...G.days.map(d => [d.id, d.chip[0] + ' · ' + d.chip[1]])];
+    $('#noteDays').innerHTML = days.map(([k, l]) => `<div class="nd"><label for="nd-${k}">${l}</label><textarea id="nd-${k}" data-nk="${k}">${esc(N[k] || '')}</textarea></div>`).join('');
+    $$('[data-nk]').forEach(el => el.addEventListener('input', () => { N[el.dataset.nk] = el.value; store.set('notes', N); }));
+    $('#copyNotes').addEventListener('click', async () => {
+      const txt = [...U.n_fields.map(([k, l]) => N[k] ? `${l}: ${N[k]}` : ''), '', ...days.map(([k, l]) => N[k] ? `## ${l}\n${N[k]}` : '')].filter(Boolean).join('\n');
+      try { await navigator.clipboard.writeText(txt); $('#copyMsg').textContent = U.n_copied; setTimeout(() => $('#copyMsg').textContent = '', 1500); } catch (e) { prompt('', txt); }
+    });
+  })();
+
   /* ---------- Viste ---------- */
   function showView(v) {
     $$('[data-v]').forEach(b => b.setAttribute('aria-selected', b.dataset.v === v));
