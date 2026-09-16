@@ -9,7 +9,7 @@
     return (navigator.language || 'it').slice(0, 2) === 'en' ? 'en' : 'it';
   })();
   const G = (LANG === 'en' && window.GUIDE_EN) ? window.GUIDE_EN : window.GUIDE;
-  const U = G.ui;
+  const U = Object.assign({}, G.ui, G.ui_food || {});
   document.documentElement.lang = G.lang;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -227,6 +227,12 @@
     if (cached) draw(cached);
     else fetch(`https://router.project-osrm.org/route/v1/driving/${wp.map(p => p[1] + ',' + p[0]).join(';')}?overview=full&geometries=geojson`)
       .then(r => r.json()).then(j => { if (j.routes && j.routes[0]) { const c = j.routes[0].geometry.coordinates; store.set('osrm-route', c); draw(c); } }).catch(() => {});
+    const foodLayer = L.layerGroup();
+    G.food_places.forEach(grp => grp.items.forEach(it => {
+      const ic = L.divIcon({ className: '', html: `<div style="width:22px;height:22px;border-radius:50%;background:${it.cat === 'sweet' ? '#B4553F' : '#6F7F36'};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:12px">${it.cat === 'sweet' ? '🍯' : '🍽️'}</div>`, iconSize: [22, 22], iconAnchor: [11, 11], popupAnchor: [0, -12] });
+      L.marker([it.lat, it.lng], { icon: ic }).bindPopup(`<b>${it.name}</b><br><span style="color:#666">${it.city} · ${it.price}</span><br>${it.what}<br><a class="btn fill sm" target="_blank" rel="noopener" href="${gm(it.name + ' ' + it.city)}">Google Maps</a>`).addTo(foodLayer);
+    }));
+    L.control.layers(null, { [U.f_map]: foodLayer }, { position: 'topright', collapsed: false }).addTo(map);
     $('#legend').innerHTML = G.days.map(D => `<span><i style="background:${G.colors[D.id]}"></i>${D.chip[0]} · ${D.chip[1]}</span>`).join('');
     $('#distTable').innerHTML = `<tr><th>${U.dist_h[0]}</th><th>${U.dist_h[1]}</th><th>${U.dist_h[2]}</th></tr>` + G.days.flatMap(D => D.legs.map(l => `<tr><td>${l[0]} → ${l[1]}</td><td class="n">${l[2]}</td><td class="n">${l[3]}</td></tr>`)).join('');
   }
@@ -269,6 +275,29 @@
   $$('.check input').forEach(b => b.addEventListener('change', () => { const s = store.get(b.dataset.k, {}); s[b.dataset.i] = b.checked; store.set(b.dataset.k, s); todo.prog(); packProg(); }));
   todo.prog(); packProg();
   $('#resetChk').addEventListener('click', () => { $$('.check input').forEach(b => b.checked = false); store.set('chk-todo', {}); store.set('chk-pack', {}); todo.prog(); packProg(); });
+
+
+  /* ---------- Cibo ---------- */
+  const FOOD_ICON = { sweet: '🍯', eat: '🍽️' };
+  let foodFilter = store.get('food-filter', 'all');
+  function renderFood() {
+    const visited = store.get('food-visited', {});
+    $('#foodFilter').innerHTML = [['all', U.f_all], ['eat', U.f_eat], ['sweet', U.f_sweet]].map(([k, l]) => `<button class="chip mini" data-f="${k}" aria-selected="${foodFilter === k}"><b>${l}</b></button>`).join('');
+    $$('#foodFilter .chip').forEach(b => b.addEventListener('click', () => { foodFilter = b.dataset.f; store.set('food-filter', foodFilter); renderFood(); }));
+    $('#foodBody').innerHTML = G.food_places.map(grp => {
+      const items = grp.items.filter(it => foodFilter === 'all' || it.cat === foodFilter);
+      if (!items.length) return '';
+      return `<div class="fgrp"><h3>${grp.area}</h3>${items.map(it => { const id = it.name + '|' + it.city; return `
+        <div class="fp${visited[id] ? ' done' : ''}">
+          <div class="ic ${it.cat}">${FOOD_ICON[it.cat]}</div>
+          <div class="t"><div class="n">${it.name}<small>${it.city}</small><span class="pr">${it.price}</span></div><div class="w">${it.what}</div>
+            <div class="b"><a class="btn fill sm" target="_blank" rel="noopener" href="${gm(it.name + ' ' + it.city)}">Google Maps</a><a class="btn sm" target="_blank" rel="noopener" href="${anav(it.lat, it.lng, it.name)}">${U.apple}</a></div></div>
+          <input type="checkbox" title="${U.f_visited}" data-fid="${esc(id)}" ${visited[id] ? 'checked' : ''}>
+        </div>`; }).join('')}</div>`;
+    }).join('');
+    $$('#foodBody input').forEach(b => b.addEventListener('change', () => { const v = store.get('food-visited', {}); v[b.dataset.fid] = b.checked; store.set('food-visited', v); b.closest('.fp').classList.toggle('done', b.checked); }));
+  }
+  renderFood();
 
   /* ---------- Viste ---------- */
   function showView(v) {

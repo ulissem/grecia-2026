@@ -5,7 +5,7 @@ Online su **https://ulissem.github.io/grecia-2026/**
 
 ## File
 - `index.html` — struttura dell'app
-- `data.js` — **tutti i contenuti in italiano**; `data-en.js` — gli stessi in inglese. Il pulsante EN/IT in alto cambia lingua; la scelta resta salvata. Per modificare la guida si toccano solo questi due file, tenendoli allineati
+- `data.js` — **tutti i contenuti in italiano**; `data-en.js` — gli stessi in inglese. Il pulsante EN/IT in alto cambia lingua; la scelta resta salvata. Link diretto in inglese: `https://ulissem.github.io/grecia-2026/?lang=en` Per modificare la guida si toccano solo questi due file, tenendoli allineati
 - `app.js` — logica (meteo, foto, mappa, checklist)
 - `style.css` — grafica
 - `sw.js` — funzionamento offline; `manifest.json` e icone — installazione come app
@@ -20,6 +20,6 @@ Online su **https://ulissem.github.io/grecia-2026/**
 - Android: Chrome → ⋮ → *Installa app*
 
 ## Aggiornare
-Sostituisci il file modificato nel repo e in `sw.js` cambia `grecia-2026-v4` in `v5`, `v6`…: le app installate scaricano la nuova versione alla riapertura.
+Sostituisci il file modificato nel repo e in `sw.js` cambia `grecia-2026-v7` in `v8`, `v9`…: le app installate scaricano la nuova versione alla riapertura.
 
-Dati: meteo Open-Meteo, percorso OSRM, tile Carto/OpenStreetMap, foto Wikipedia.
+Dati: meteo Open-Meteo, percorso OSRM, mappa Esri, foto Wikipedia.

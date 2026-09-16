@@ -8,7 +8,7 @@ window.GUIDE_EN = {
     map_full: "Whole route on Google Maps", map_dist: "Distances and times", map_dist_note: "Google Maps estimates in normal traffic. In Greece you always arrive a bit later: add 15 %.",
     g_links: "Useful links", g_sites: "Site hours and tickets, October 2026", g_budget: "Estimated budget, 1 person", g_food: "At the table", g_phr: "Ten words that open doors",
     b_todo: "Before you leave", b_todo_sub: "Bookings and checks, each with the right link.", b_pack: "Packing list", b_pack_sub: "Weather: 22–26 °C by day, 13–16 at night, sea 22 °C. Ticks are saved on your phone.", b_reset: "Clear ticks",
-    footer: "Driving times and distances: Google Maps estimates. Prices collected in September 2026. Weather: Open-Meteo. Road route: OSRM on OpenStreetMap data, Carto map tiles. Photos: Wikipedia / Wikimedia Commons, licence on the linked page. The tavernas mentioned have been around for years; a glance at recent reviews before sitting down never hurts.",
+    footer: "Driving times and distances: Google Maps estimates. Prices collected in September 2026. Weather: Open-Meteo. Road route: OSRM on OpenStreetMap data, Esri map tiles. Photos: Wikipedia / Wikimedia Commons, licence on the linked page. The tavernas mentioned have been around for years; a glance at recent reviews before sitting down never hurts.",
     loading: "Loading…", see: "What to see", hist: "In two lines.", eat: "Where to eat.", nav: "Navigate (Google)", apple: "Apple Maps", sheet: "Place on Maps", nav_day: "Navigate the day", night: "Night in", weather_in: "Weather in", sleep: "Where to sleep", booking: "Search on Booking", hotels_maps: "Hotels on Maps", alt: "If it rains, if time is left.",
     wiki_it: "Wikipedia (it)", wiki_en: "Wikipedia (en)", photo: "Photo", sunset: "sunset", wind: "wind", min: "min",
     wx_off: "Weather unavailable offline. Mid-October: 22–25 °C by day, 13–16 at night, an occasional shower.",
@@ -59,6 +59,53 @@ window.GUIDE_EN = {
       <li><b>Plan C</b>: sleep in Athens and taxi at 3:45, fixed night fare ~€60, 35 minutes. Book with Uber or FreeNow the evening before.</li>
       <li>Online check-in on the evening of the 16th; single terminal, Schengen controls, 45 minutes is plenty.</li></ul></div>`
   },
+  ui_food: { nav_food: "Food", f_title: "Where the locals eat", f_intro: "No fancy restaurants: tavernas, mageirio (the lunchtime places with trays behind the counter), souvlaki and pastry shops. Price band: € under 12 a head, €€ 15–25. Ticks mark where you've been.", f_all: "All", f_sweet: "Sweets", f_eat: "Eating", f_map: "Food on the map", f_price: "price", f_visited: "visited" },
+  food_places: [
+    { area: "Itea · Delphi · Galaxidi", items: [
+      { cat: "eat", name: "O Bebelis", city: "Galaxidi", what: "Home cooking in a courtyard: gemista, rabbit stifado, the moussaka. Where the town eats.", price: "€", lat: 38.3803, lng: 22.3838 },
+      { cat: "eat", name: "Albatross", city: "Galaxidi", what: "Historic taverna on the harbour, small fried fish and mezedes, honest bill.", price: "€€", lat: 38.3795, lng: 22.3830 },
+      { cat: "eat", name: "Karathanasi", city: "Arachova", what: "Mountain grill: kontosouvli, kokoretsi, grilled formaela. Loud and full of Greeks.", price: "€", lat: 38.4788, lng: 22.5860 },
+      { cat: "sweet", name: "Arachova pastry shops", city: "Arachova", what: "Karydopita (honey walnut cake) and ravani. Any zacharoplasteio on the main street, they all make them in-house.", price: "€", lat: 38.4790, lng: 22.5870 },
+      { cat: "eat", name: "Itea seafront", city: "Itea", what: "The fish tavernas on the water do a good quick lunch: grilled sardines, salad, half a carafe. Pick the one with the most Greeks at the tables.", price: "€", lat: 38.4322, lng: 22.4260 } ] },
+    { area: "Nafpaktos · Olympia", items: [
+      { cat: "eat", name: "Cafés on the Venetian harbour", city: "Nafpaktos", what: "Freddo espresso and koulouri under the towers. For lunch, the tavernas behind the harbour towards the castle.", price: "€", lat: 38.3919, lng: 21.8296 },
+      { cat: "eat", name: "Bacchus", city: "Ancient Pissa, Olympia", what: "Family taverna with a terrace over the valley: oven lamb, garden vegetables, house wine. The best-loved place around.", price: "€€", lat: 37.6497, lng: 21.6353 },
+      { cat: "eat", name: "Aegean", city: "Olympia", what: "In the village, traditional, big portions and fair prices. Gemista and pastitsio.", price: "€", lat: 37.6440, lng: 21.6250 } ] },
+    { area: "Arcadia", items: [
+      { cat: "eat", name: "Klimataria", city: "Vytina", what: "Historic taverna under the vine, since the 1950s: kokoras me hilopites (rooster with fresh pasta), stew with chestnuts. A 10-minute detour, worth it.", price: "€", lat: 37.6595, lng: 22.1130 },
+      { cat: "sweet", name: "Vytina square", city: "Vytina", what: "Fir honey, green-walnut spoon sweets, karydopita. Take a jar of honey home.", price: "€", lat: 37.6592, lng: 22.1125 },
+      { cat: "eat", name: "Langadia square", city: "Langadia", what: "Greek coffee at the kafeneio overlooking the gorge. If it's lunchtime, the taverna on the square does fasolada and meatballs.", price: "€", lat: 37.6839, lng: 22.0339 } ] },
+    { area: "Nafplio · Argolid", items: [
+      { cat: "eat", name: "Ta Fanaria", city: "Nafplio", what: "On a stepped lane, home cooking since 1980: gemista, lemon lamb, imam aubergines. Prices ten years behind.", price: "€", lat: 37.5666, lng: 22.7967 },
+      { cat: "eat", name: "Kakanarakis 1986", city: "Nafplio", what: "Argolid dishes: pork with prunes, kid goat, cheese pie. Full of local families.", price: "€€", lat: 37.5665, lng: 22.7975 },
+      { cat: "eat", name: "O Noulis", city: "Nafplio", what: "Small, real mezedopoleio: saganaki, meatballs, sharing plates with ouzo. Dinner from 12 euro.", price: "€", lat: 37.5663, lng: 22.7982 },
+      { cat: "eat", name: "Vasilis", city: "Nafplio", what: "Historic taverna on Staikopoulou street, no frills: moussaka, oven chicken, giant beans.", price: "€", lat: 37.5664, lng: 22.7965 },
+      { cat: "sweet", name: "Antica Gelateria di Roma", city: "Nafplio", what: "Ice cream by two Italians, the best in Greece. Try the mastic kaimaki for the Greek flavour.", price: "€", lat: 37.5665, lng: 22.7960 },
+      { cat: "sweet", name: "Kentrikon, Syntagma square", city: "Nafplio", what: "The square's historic café: portokalopita with Argolid oranges and Greek coffee, watching the square.", price: "€", lat: 37.5666, lng: 22.7985 },
+      { cat: "eat", name: "Mouria", city: "Palaia Epidavros", what: "On the seafront for three generations: grilled catch of the day, octopus salad, hand-cut chips.", price: "€€", lat: 37.6373, lng: 23.1566 } ] },
+    { area: "Athens, eating", items: [
+      { cat: "eat", name: "Diporto", city: "Varvakios, centre", what: "Unmarked basement since 1887, down a staircase at Sokratous 9: beans, sardines, pork with celery, wine from the barrel, bill by eye. The most authentic place in Athens. Lunch only.", price: "€", lat: 37.9805, lng: 23.7263 },
+      { cat: "eat", name: "Oinomageireio Epirus", city: "Varvakios market", what: "Inside the meat market, since 1898: patsas (tripe soup), soups, stews. The butchers eat here.", price: "€", lat: 37.9809, lng: 23.7268 },
+      { cat: "eat", name: "Ta Karamanlidika tou Fani", city: "Sokratous 1", what: "Deli-taverna: pastourma, soutzouki, cheeses, mezedes. Excellent and still popular.", price: "€€", lat: 37.9808, lng: 23.7262 },
+      { cat: "eat", name: "Kostas", city: "Agia Irini square", what: "Pork souvlaki in pita with tomato sauce, since 1950. Runs out around 14:00, two and a half euro.", price: "€", lat: 37.9770, lng: 23.7275 },
+      { cat: "eat", name: "Feyrouz", city: "Karori 23, Psyrri", what: "Anatolian street food from a Greek family from Antioch: lahmacun, peinirli, all made to order. Queue of Athenians.", price: "€", lat: 37.9787, lng: 23.7268 },
+      { cat: "eat", name: "Atlantikos", city: "Psyrri", what: "Fried and grilled fish at market prices in an alley: anchovies, squid, marinated gavros.", price: "€", lat: 37.9797, lng: 23.7237 },
+      { cat: "eat", name: "Klimataria", city: "Theatrou square", what: "1927 taverna with live rebetiko at weekends: home cooking, bulk wine, the real atmosphere.", price: "€€", lat: 37.9822, lng: 23.7255 },
+      { cat: "eat", name: "To Kati Allo", city: "Koukaki", what: "Behind the Acropolis Museum, a mageirio with the day's trays: moussaka, beans, chicken with potatoes. Lunch from 9 euro.", price: "€", lat: 37.9680, lng: 23.7290 },
+      { cat: "eat", name: "O Thanasis", city: "Monastiraki", what: "Kebab and souvlaki since 1964, the Monastiraki square classic. Loud, fast, good.", price: "€", lat: 37.9760, lng: 23.7258 } ] },
+    { area: "Athens, sweets", items: [
+      { cat: "sweet", name: "Bougatsadiko Thessaloniki", city: "Iroon square, Psyrri", what: "Bougatsa the northern way, warm custard and hand-stretched filo, open 24 hours.", price: "€", lat: 37.9794, lng: 23.7252 },
+      { cat: "sweet", name: "Krinos", city: "Aiolou 87", what: "Loukoumades since 1923, with honey and cinnamon, served hot in a room that hasn't changed.", price: "€", lat: 37.9805, lng: 23.7275 },
+      { cat: "sweet", name: "Lukumades", city: "Aiolou 21", what: "The modern version: filled loukoumades, with ice cream, with chocolate. For comparison.", price: "€", lat: 37.9770, lng: 23.7280 },
+      { cat: "sweet", name: "Kora", city: "Kolonaki", what: "The bakery Athens queues for: croissants, cardamom buns, bread. Early morning.", price: "€", lat: 37.9797, lng: 23.7407 },
+      { cat: "sweet", name: "Overoll", city: "Koukaki", what: "Croissanterie two steps from the hotel: croissants and pastries, Friday breakfast.", price: "€", lat: 37.9640, lng: 23.7285 },
+      { cat: "sweet", name: "Asimakopouloi", city: "Exarchia", what: "Pastry shop since 1915, the old guard: galaktoboureko, ekmek kataifi, tsoureki.", price: "€", lat: 37.9863, lng: 23.7360 },
+      { cat: "sweet", name: "Stani", city: "Omonia", what: "Dairy since 1931: sheep's yogurt with honey and walnuts, rizogalo. Breakfast or snack.", price: "€", lat: 37.9838, lng: 23.7282 },
+      { cat: "sweet", name: "Kokkion", city: "Psyrri", what: "Artisan ice cream, Greek flavours: mastic, fig, yogurt. If it's still warm.", price: "€", lat: 37.9787, lng: 23.7245 },
+      { cat: "sweet", name: "Ariston", city: "Voulis 10, Syntagma", what: "Since 1910, the most famous kourou tiropita in Athens: the savoury that serves as breakfast.", price: "€", lat: 37.9752, lng: 23.7328 } ] },
+    { area: "Sounion", items: [
+      { cat: "eat", name: "Syrtaki", city: "Sounion", what: "Taverna with a view of the temple, 500 m before the site: fish, mezedes, sunset. Touristy but fair, and the only one with that view.", price: "€€", lat: 37.6558, lng: 24.0170 } ] }
+  ],
   trip: { start: "2026-10-07", end: "2026-10-17", ferieStart: "2026-10-12" },
   flights: [
     { d: "2026-10-07", t: "13:50 → 17:40", from: "FRA", to: "ATH", n: "Lufthansa, 2 h 50" },
