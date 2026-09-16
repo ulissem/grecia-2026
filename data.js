@@ -1,5 +1,64 @@
 /* Tutti i contenuti della guida. Modifica qui, non in app.js. */
 window.GUIDE = {
+  lang: "it", locale: "it-IT",
+  wmo: { 0: "Sereno", 1: "Poco nuvoloso", 2: "Variabile", 3: "Coperto", 45: "Nebbia", 48: "Nebbia", 51: "Pioviggine", 53: "Pioviggine", 55: "Pioviggine", 61: "Pioggia debole", 63: "Pioggia", 65: "Pioggia forte", 80: "Rovesci", 81: "Rovesci", 82: "Rovesci forti", 95: "Temporale", 96: "Temporale", 99: "Temporale" },
+  ui: {
+    nav_today: "Oggi", nav_days: "Itinerario", nav_map: "Mappa", nav_guide: "Guida", nav_bag: "Valigia",
+    map_note: "Tocca un segnaposto per il dettaglio e il pulsante di navigazione. La linea segue le strade reali (calcolo OSRM); senza rete mostra il tracciato semplificato.",
+    map_full: "Intero percorso su Google Maps", map_dist: "Distanze e tempi", map_dist_note: "Stime Google Maps con traffico normale. In Grecia si arriva sempre un po' dopo: conta il 15 % in più.",
+    g_links: "Link utili", g_sites: "Orari e biglietti dei siti, ottobre 2026", g_budget: "Budget stimato, 1 persona", g_food: "A tavola", g_phr: "Dieci parole che aprono porte",
+    b_todo: "Prima di partire", b_todo_sub: "Prenotazioni e verifiche, con il link giusto accanto.", b_pack: "Valigia", b_pack_sub: "Clima: 22–26 °C di giorno, 13–16 la notte, mare a 22 °C. Le spunte restano salvate sul telefono.", b_reset: "Azzera spunte",
+    footer: "Tempi di guida e chilometri: stime Google Maps. Prezzi raccolti a settembre 2026. Meteo: Open-Meteo. Percorso stradale: OSRM su dati OpenStreetMap, mappa Carto. Foto: Wikipedia / Wikimedia Commons, licenza sulla pagina linkata. Le taverne citate esistono da anni: un'occhiata alle recensioni recenti prima di sedersi non guasta.",
+    loading: "Caricamento…", see: "Cosa vedere", hist: "In due righe.", eat: "Dove mangiare.", nav: "Naviga (Google)", apple: "Apple Maps", sheet: "Scheda su Maps", nav_day: "Naviga la giornata", night: "Notte a", weather_in: "Meteo a", sleep: "Dove dormire", booking: "Cerca su Booking", hotels_maps: "Hotel su Maps", alt: "Se piove, se avanza tempo.",
+    wiki_it: "Wikipedia (it)", wiki_en: "Wikipedia (en)", photo: "Foto", sunset: "tramonto", wind: "vento", min: "min",
+    wx_off: "Meteo non disponibile senza connessione. Metà ottobre: 22–25 °C di giorno, 13–16 di notte, qualche rovescio possibile.",
+    wx_far: (last, date, place) => `Previsioni disponibili fino al ${last}; quelle per il ${date} compaiono circa due settimane prima. Media di metà ottobre a ${place}: 22–25 °C di giorno, 13–16 di notte.`,
+    q_sos: "Emergenze 112", q_fuel: "Benzina", q_tickets: "Biglietti",
+    countdown: d => `Mancano ${d} giorni`, countdown_sub: "Volo Francoforte → Atene mercoledì 7 ottobre alle 13:50. Le ferie iniziano lunedì 12 a Itea.",
+    todo_title: "Cose da chiudere prima di partire", todo_more: "La lista completa con le spunte è nella sezione Valigia.", open: "apri", wx_itea: "Meteo a Itea, prossimi giorni", flights: "I voli",
+    done_title: "Viaggio concluso", done_sub: "La guida resta qui per i ricordi e per la prossima volta.", fly_title: "Volo alle 6:25", fly_sub: "Check-in alle 4:30. Buon rientro.", fly_status: "Stato voli AIA",
+    next: "Prossima tappa", full_prog: "Programma completo", now_in: "Adesso a", the_day: "La giornata", nav_all: "Naviga l'intera giornata", max: "Max", rain: "pioggia", sunrise: "Alba", wx_off_short: "Meteo non disponibile senza rete.",
+    dist_h: ["Tratta", "km", "tempo"], site_h: ["Sito", "Intero", "Note"], total: "Totale indicativo", total_v: "€950–1.200", d0_suffix: " – domenica 11"
+  },
+  text: {
+    sitesIntro: `Siti del Ministero della Cultura: <b>8:00–18:30 fino al 15 ottobre</b>, <b>8:00–18:00 dal 16</b>, ultimo ingresso 20 minuti prima. Tariffa estiva fino al 31 ottobre. Biglietti ufficiali online su <a target="_blank" rel="noopener" href="https://tickets.hh.gr/en">tickets.hh.gr</a> (Hellenic Heritage, senza commissioni): obbligatorio prenotare solo per l'Acropoli, per gli altri si compra in loco.`,
+    sitesNote: "Prezzi raccolti a settembre 2026. Quelli con forbice li ho trovati discordanti tra le fonti: controllo definitivo su odysseus.culture.gr o alla biglietteria.",
+    budgetNote: `Benzina 95 a €2,15/l a metà settembre 2026, in salita: controlla su <a target="_blank" rel="noopener" href="https://www.fuelprices.gr/">fuelprices.gr</a>.`,
+    foodRules: ["Pranzo 13:30–16:00, cena dalle 21:00. Alle 19:30 le taverne buone sono vuote.", "Si ordina a centro tavola: 3–4 mezedes per due. Il pesce si paga a peso, chiedi il prezzo al chilo.", "Mancia: si arrotonda o 5–10 %. Il pane in tavola costa 1–2 €.", "Acqua di rubinetto ok ad Atene, in provincia in bottiglia."],
+    blocks1: `
+    <div class="card"><h3>Numeri e contatti</h3><dl class="kv">
+      <dt>Emergenze</dt><dd><a href="tel:112">112</a> numero unico europeo · Polizia turistica <a href="tel:1571">1571</a> (parlano inglese)</dd>
+      <dt>Soccorso stradale</dt><dd>prima il numero del noleggio sul contratto; poi ELPA <a href="tel:10400">10400</a> o Express Service <a href="tel:1154">1154</a></dd>
+      <dt>Farmacie di turno</dt><dd>cartello verde in ogni farmacia con l'elenco; <a target="_blank" rel="noopener" href="https://www.fsa.gr/">fsa.gr</a> per Atene</dd>
+      <dt>Ambasciata d'Italia</dt><dd>Atene, <a href="tel:+302103617260">+30 210 361 7260</a></dd>
+      <dt>Fuso orario</dt><dd>Grecia = Germania + 1 ora (ora legale fino al 25 ottobre)</dd>
+      <dt>Prese e telefono</dt><dd>Tipo C/F, 230 V. Roaming UE incluso nel piano tedesco; copertura buona ovunque tranne tratti dell'Arcadia.</dd></dl></div>
+    <div class="card"><h3>Guidare in Grecia</h3><ul>
+      <li>Limiti: 50 in città, 90 statali, 130 autostrada. Autovelox veri sulla Corinto–Atene e sull'Attiki Odos.</li>
+      <li>Sulle statali si usa la corsia di emergenza per farsi sorpassare: fallo anche tu, con giudizio, e aspettati che chi ti precede lo faccia.</li>
+      <li>Pedaggi a barriera, si paga a tratta in contanti o carta. Corsie gialle = solo telepass, evitale.</li>
+      <li>Distributori serviti, con benzinaio. Nell'entroterra alcuni chiudono la sera: pieno a Olimpia il martedì mattina, a Nafplio il giovedì, a Markopoulo prima della riconsegna.</li>
+      <li>Parcheggio: a Nafplio nel parcheggio del porto (gratis), a Olimpia in hotel, ad Atene lasci l'auto in hotel e ti muovi a piedi o in metro.</li>
+      <li>Patente tedesca o italiana: nessun permesso internazionale.</li>
+      <li>Capre e cani sulla strada in Arcadia sono normali; i tornanti sopra Langadia non hanno guardrail ovunque.</li></ul></div>`,
+    blocks2: `
+    <div class="card"><h3>Storia in due minuti, per orientarsi tra le pietre</h3><dl class="kv small">
+      <dt>1600–1100 a.C.</dt><dd><b>Micenei</b>: Micene, Tirinto, la guerra di Troia. Oro, mura ciclopiche, Lineare B.</dd>
+      <dt>1100–800</dt><dd><b>Secoli bui</b>: crolla tutto, si perde la scrittura.</dd>
+      <dt>800–480</dt><dd><b>Età arcaica</b>: nascono le città, Olimpia (776) e Delfi, i primi templi in pietra.</dd>
+      <dt>480–323</dt><dd><b>Età classica</b>: Pericle, il Partenone, Socrate, Epidauro. Finisce con Alessandro.</dd>
+      <dt>323–146</dt><dd><b>Ellenismo</b>: i regni dei successori, poi arrivano i romani.</dd>
+      <dt>146 a.C.–330 d.C.</dt><dd><b>Roma</b>: Nerone a Corinto, Adriano ad Atene, l'Odeon di Erode Attico.</dd>
+      <dt>330–1453</dt><dd><b>Bisanzio</b>: Osios Loukas, le chiese di Atene, i castelli.</dd>
+      <dt>1204–1715</dt><dd><b>Franchi e Veneziani</b>: Nafplio, Palamidi, Bourtzi, Nafpaktos.</dd>
+      <dt>1453–1821</dt><dd><b>Ottomani</b>: quattro secoli, le moschee di Nafplio.</dd>
+      <dt>1821–1834</dt><dd><b>Indipendenza</b>: Kolokotronis, Kapodistrias, Nafplio capitale, poi Atene.</dd></dl></div>
+    <div class="card"><h3>Notte del 16 e volo delle 6:25</h3><ul class="small">
+      <li><b>Piano A</b>: auto riconsegnata la sera, notte al Sofitel Athens Airport, collegato al terminal. Alle 4:15 sei al check-in.</li>
+      <li><b>Piano B</b>: hotel a Spata o Markopoulo con navetta, metà prezzo, 10 minuti; conferma che la navetta giri alle 4.</li>
+      <li><b>Piano C</b>: dormi ad Atene e taxi alle 3:45, tariffa notturna fissa ~€60, 35 minuti. Prenota con Uber o FreeNow la sera prima.</li>
+      <li>Check-in online la sera del 16; terminal unico, controlli Schengen, 45 minuti sono abbondanti.</li></ul></div>`
+  },
   trip: { start: "2026-10-07", end: "2026-10-17", ferieStart: "2026-10-12" },
   flights: [
     { d: "2026-10-07", t: "13:50 → 17:40", from: "FRA", to: "ATH", n: "Lufthansa, 2 h 50" },

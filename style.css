@@ -32,6 +32,9 @@ button{font:inherit}
 .nowpill{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);white-space:nowrap}
 .nowpill b{color:var(--ink);font-weight:600;font-size:16px}
 
+.lang{border:1px solid var(--line);background:var(--paper);color:var(--ink-2);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:600;cursor:pointer}
+.lang:hover{border-color:var(--sea);color:var(--sea)}
+
 /* bottom nav */
 .bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--paper);border-top:1px solid var(--line);padding-bottom:var(--safe-b);display:grid;grid-template-columns:repeat(5,1fr)}
 .bottomnav button{border:0;background:transparent;color:var(--ink-3);height:var(--nav-h);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;cursor:pointer}

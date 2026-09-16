@@ -22,12 +22,13 @@
   <div class="wrap">
     <div class="brand"><img src="./icon-192.png" alt="">Grecia 2026</div>
     <nav class="topnav" role="tablist" aria-label="Sezioni">
-      <button role="tab" data-v="today">Oggi</button>
-      <button role="tab" data-v="days">Itinerario</button>
-      <button role="tab" data-v="map">Mappa</button>
-      <button role="tab" data-v="guide">Guida</button>
-      <button role="tab" data-v="bag">Valigia</button>
+      <button role="tab" data-v="today" data-ui="nav_today">Oggi</button>
+      <button role="tab" data-v="days" data-ui="nav_days">Itinerario</button>
+      <button role="tab" data-v="map" data-ui="nav_map">Mappa</button>
+      <button role="tab" data-v="guide" data-ui="nav_guide">Guida</button>
+      <button role="tab" data-v="bag" data-ui="nav_bag">Valigia</button>
     </nav>
+    <button class="lang" id="langBtn" type="button" aria-label="Language">EN</button>
     <div class="nowpill" id="nowpill"><span id="nowIco">·</span><b id="nowT">—</b><span id="nowP"></span></div>
   </div>
 </header>
@@ -51,125 +52,44 @@
   <section class="view" id="v-map" role="tabpanel">
     <div id="map" role="img" aria-label="Mappa del percorso"></div>
     <div class="legend" id="legend"></div>
-    <p class="muted" style="margin-top:8px">Tocca un segnaposto per il dettaglio e il pulsante di navigazione. La linea segue le strade reali (calcolo OSRM); se manca la rete mostra il tracciato semplificato.</p>
-    <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Itea,Greece&destination=Athens+International+Airport&waypoints=Nafpaktos,Greece%7CArchaeological+Site+of+Olympia%7CNafplio,Greece%7CCorinth+Canal%7CCape+Sounion&travelmode=driving">Intero percorso su Google Maps</a></div>
-    <div class="card" style="margin-top:14px"><h3>Distanze e tempi</h3><table id="distTable"></table><p class="muted" style="margin-top:8px">Stime Google Maps con traffico normale. In Grecia si arriva sempre un po' dopo: conta il 15 % in più.</p></div>
+    <p class="muted" style="margin-top:8px" data-ui="map_note"></p>
+    <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Itea,Greece&destination=Athens+International+Airport&waypoints=Nafpaktos,Greece%7CArchaeological+Site+of+Olympia%7CNafplio,Greece%7CCorinth+Canal%7CCape+Sounion&travelmode=driving" data-ui="map_full"></a></div>
+    <div class="card" style="margin-top:14px"><h3 data-ui="map_dist"></h3><table id="distTable"></table><p class="muted" style="margin-top:8px" data-ui="map_dist_note"></p></div>
   </section>
 
   <!-- GUIDA -->
   <section class="view" id="v-guide" role="tabpanel">
-    <div class="card">
-      <h3>Link utili</h3>
-      <div class="hub" id="hub"></div>
-    </div>
-    <div class="card">
-      <h3>Numeri e contatti</h3>
-      <dl class="kv">
-        <dt>Emergenze</dt><dd><a href="tel:112">112</a> numero unico europeo · Polizia turistica <a href="tel:1571">1571</a> (parlano inglese)</dd>
-        <dt>Soccorso stradale</dt><dd>prima il numero del noleggio sul contratto; poi ELPA <a href="tel:10400">10400</a> o Express Service <a href="tel:1154">1154</a></dd>
-        <dt>Farmacie di turno</dt><dd>cartello verde in ogni farmacia con l'elenco; <a target="_blank" rel="noopener" href="https://www.fsa.gr/">fsa.gr</a> per Atene</dd>
-        <dt>Ambasciata d'Italia</dt><dd>Atene, <a href="tel:+302103617260">+30 210 361 7260</a></dd>
-        <dt>Fuso orario</dt><dd>Grecia = Germania + 1 ora (ora legale fino al 25 ottobre)</dd>
-        <dt>Prese e telefono</dt><dd>Tipo C/F, 230 V. Roaming UE incluso nel piano tedesco; copertura buona ovunque tranne tratti dell'Arcadia.</dd>
-      </dl>
-    </div>
-    <div class="card">
-      <h3>Guidare in Grecia</h3>
-      <ul>
-        <li>Limiti: 50 in città, 90 statali, 130 autostrada. Autovelox veri sulla Corinto–Atene e sull'Attiki Odos.</li>
-        <li>Sulle statali si usa la corsia di emergenza per farsi sorpassare: fallo anche tu, con giudizio, e aspettati che chi ti precede lo faccia.</li>
-        <li>Pedaggi a barriera, si paga a tratta in contanti o carta. Corsie gialle = solo telepass, evitale.</li>
-        <li>Distributori serviti, con benzinaio. Nell'entroterra alcuni chiudono la sera: pieno a Olimpia il martedì mattina, a Nafplio il giovedì, a Markopoulo prima della riconsegna.</li>
-        <li>Parcheggio: a Nafplio nel parcheggio del porto (gratis), a Olimpia in hotel, ad Atene lasci l'auto in hotel e ti muovi a piedi o in metro.</li>
-        <li>Patente tedesca o italiana: nessun permesso internazionale.</li>
-        <li>Capre e cani sulla strada in Arcadia sono normali; i tornanti sopra Langadia non hanno guardrail ovunque.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Orari e biglietti dei siti, ottobre 2026</h3>
-      <p class="small">Siti del Ministero della Cultura: <b>8:00–18:30 fino al 15 ottobre</b>, <b>8:00–18:00 dal 16</b>, ultimo ingresso 20 minuti prima. Tariffa estiva fino al 31 ottobre. Biglietti ufficiali online su <a target="_blank" rel="noopener" href="https://tickets.hh.gr/en">tickets.hh.gr</a> (Hellenic Heritage, senza commissioni): obbligatorio prenotare solo per l'Acropoli, per gli altri si compra in loco.</p>
-      <table id="siteTable" style="margin-top:10px"></table>
-      <p class="muted" style="margin-top:8px">Prezzi raccolti a settembre 2026. Quelli con forbice li ho trovati discordanti tra le fonti: controllo definitivo su odysseus.culture.gr o alla biglietteria.</p>
-    </div>
+    <div class="card"><h3 data-ui="g_links"></h3><div class="hub" id="hub"></div></div>
+    <div id="guideBlocks"></div>
+    <div class="card"><h3 data-ui="g_sites"></h3><p class="small" id="sitesIntro"></p><table id="siteTable" style="margin-top:10px"></table><p class="muted" style="margin-top:8px" id="sitesNote"></p></div>
     <div class="grid2">
-      <div class="card">
-        <h3>Budget stimato, 1 persona</h3>
-        <table id="budgetTable"></table>
-        <p class="muted" style="margin-top:8px">Benzina 95 a €2,15/l a metà settembre 2026, in salita: controlla su <a target="_blank" rel="noopener" href="https://www.fuelprices.gr/">fuelprices.gr</a>.</p>
-      </div>
-      <div class="card">
-        <h3>A tavola</h3>
-        <ul class="small">
-          <li>Pranzo 13:30–16:00, cena dalle 21:00. Alle 19:30 le taverne buone sono vuote.</li>
-          <li>Si ordina a centro tavola: 3–4 mezedes per due. Il pesce si paga a peso, chiedi il prezzo al chilo.</li>
-          <li>Mancia: si arrotonda o 5–10 %. Il pane in tavola costa 1–2 €.</li>
-          <li>Acqua di rubinetto ok ad Atene, in provincia in bottiglia.</li>
-        </ul>
-        <table id="foodTable" style="margin-top:8px"></table>
-      </div>
+      <div class="card"><h3 data-ui="g_budget"></h3><table id="budgetTable"></table><p class="muted" style="margin-top:8px" id="budgetNote"></p></div>
+      <div class="card"><h3 data-ui="g_food"></h3><ul class="small" id="foodRules"></ul><table id="foodTable" style="margin-top:8px"></table></div>
     </div>
-    <div class="card">
-      <h3>Dieci parole che aprono porte</h3>
-      <div class="phr" id="phr"></div>
-    </div>
-    <div class="card">
-      <h3>Storia in due minuti, per orientarsi tra le pietre</h3>
-      <dl class="kv small">
-        <dt>1600–1100 a.C.</dt><dd><b>Micenei</b>: Micene, Tirinto, la guerra di Troia. Oro, mura ciclopiche, Lineare B.</dd>
-        <dt>1100–800</dt><dd><b>Secoli bui</b>: crolla tutto, si perde la scrittura.</dd>
-        <dt>800–480</dt><dd><b>Età arcaica</b>: nascono le città, Olimpia (776) e Delfi, i primi templi in pietra.</dd>
-        <dt>480–323</dt><dd><b>Età classica</b>: Pericle, il Partenone, Socrate, Epidauro. Finisce con Alessandro.</dd>
-        <dt>323–146</dt><dd><b>Ellenismo</b>: i regni dei successori, poi arrivano i romani.</dd>
-        <dt>146 a.C.–330 d.C.</dt><dd><b>Roma</b>: Nerone a Corinto, Adriano ad Atene, l'Odeon di Erode Attico.</dd>
-        <dt>330–1453</dt><dd><b>Bisanzio</b>: Osios Loukas, le chiese di Atene, i castelli.</dd>
-        <dt>1204–1715</dt><dd><b>Franchi e Veneziani</b>: Nafplio, Palamidi, Bourtzi, Nafpaktos.</dd>
-        <dt>1453–1821</dt><dd><b>Ottomani</b>: quattro secoli, le moschee di Nafplio.</dd>
-        <dt>1821–1834</dt><dd><b>Indipendenza</b>: Kolokotronis, Kapodistrias, Nafplio capitale, poi Atene.</dd>
-      </dl>
-    </div>
-    <div class="card">
-      <h3>Notte del 16 e volo delle 6:25</h3>
-      <ul class="small">
-        <li><b>Piano A</b>: auto riconsegnata la sera, notte al Sofitel Athens Airport, collegato al terminal. Alle 4:15 sei al check-in.</li>
-        <li><b>Piano B</b>: hotel a Spata o Markopoulo con navetta, metà prezzo, 10 minuti; conferma che la navetta giri alle 4.</li>
-        <li><b>Piano C</b>: dormi ad Atene e taxi alle 3:45, tariffa notturna fissa ~€60, 35 minuti. Prenota con Uber o FreeNow la sera prima.</li>
-        <li>Check-in online la sera del 16; terminal unico, controlli Schengen, 45 minuti sono abbondanti.</li>
-      </ul>
-    </div>
+    <div class="card"><h3 data-ui="g_phr"></h3><div class="phr" id="phr"></div></div>
+    <div id="guideBlocks2"></div>
   </section>
 
   <!-- VALIGIA -->
   <section class="view" id="v-bag" role="tabpanel">
-    <div class="card">
-      <h3>Prima di partire</h3>
-      <p class="muted">Prenotazioni e verifiche, con il link giusto accanto.</p>
-      <div class="prog"><i id="progTodo"></i></div>
-      <ul class="check" id="todoList"></ul>
-    </div>
-    <div class="card">
-      <h3>Valigia</h3>
-      <p class="muted">Clima: 22–26 °C di giorno, 13–16 la notte, mare a 22 °C. Le spunte restano salvate sul telefono.</p>
-      <div class="prog"><i id="progPack"></i></div>
-      <div id="packList"></div>
-      <div class="btns"><button class="btn sm" id="resetChk" type="button">Azzera spunte</button></div>
-    </div>
+    <div class="card"><h3 data-ui="b_todo"></h3><p class="muted" data-ui="b_todo_sub"></p><div class="prog"><i id="progTodo"></i></div><ul class="check" id="todoList"></ul></div>
+    <div class="card"><h3 data-ui="b_pack"></h3><p class="muted" data-ui="b_pack_sub"></p><div class="prog"><i id="progPack"></i></div><div id="packList"></div><div class="btns"><button class="btn sm" id="resetChk" type="button" data-ui="b_reset"></button></div></div>
   </section>
 
-  <footer>
-    Tempi di guida e chilometri: stime Google Maps. Prezzi raccolti a settembre 2026. Meteo: Open-Meteo. Percorso stradale: OSRM su dati OpenStreetMap. Foto: Wikipedia / Wikimedia Commons, licenza sulla pagina linkata. Le taverne citate esistono da anni: un'occhiata alle recensioni recenti prima di sedersi non guasta.
-  </footer>
+  <footer data-ui="footer"></footer>
 </main>
 
 <nav class="bottomnav" role="tablist" aria-label="Sezioni">
-  <button role="tab" data-v="today"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Oggi</button>
-  <button role="tab" data-v="days"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Itinerario</button>
-  <button role="tab" data-v="map"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Mappa</button>
-  <button role="tab" data-v="guide"><svg viewBox="0 0 24 24"><path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14"/><path d="M4 19a2 2 0 002 2h14M8 7h8M8 11h8"/></svg>Guida</button>
-  <button role="tab" data-v="bag"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 12h18"/></svg>Valigia</button>
+  <button role="tab" data-v="today"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span data-ui="nav_today">Oggi</span></button>
+  <button role="tab" data-v="days"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-ui="nav_days">Itinerario</span></button>
+  <button role="tab" data-v="map"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg><span data-ui="nav_map">Mappa</span></button>
+  <button role="tab" data-v="guide"><svg viewBox="0 0 24 24"><path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14"/><path d="M4 19a2 2 0 002 2h14M8 7h8M8 11h8"/></svg><span data-ui="nav_guide">Guida</span></button>
+  <button role="tab" data-v="bag"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 12h18"/></svg><span data-ui="nav_bag">Valigia</span></button>
 </nav>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="./data.js"></script>
+<script src="./data-en.js"></script>
 <script src="./app.js"></script>
 </body>
 </html>

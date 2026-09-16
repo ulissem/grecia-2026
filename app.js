@@ -1,15 +1,19 @@
 /* Grecia 2026 — logica dell'app. I contenuti stanno in data.js. */
 (function () {
-  const G = window.GUIDE;
+  const LANG = (function(){ try { return localStorage.getItem('lang') || (navigator.language||'it').slice(0,2); } catch(e){ return 'it'; } })();
+  const G = (LANG === 'en' && window.GUIDE_EN) ? window.GUIDE_EN : window.GUIDE;
+  const U = G.ui;
+  document.documentElement.lang = G.lang;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const store = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
   const todayISO = () => { const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
-  const itDate = iso => new Date(iso + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'short' });
-  const itLong = iso => new Date(iso + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
+  const itDate = iso => new Date(iso + 'T12:00:00').toLocaleDateString(G.locale, { weekday: 'short', day: 'numeric', month: 'short' });
+  const itLong = iso => new Date(iso + 'T12:00:00').toLocaleDateString(G.locale, { weekday: 'long', day: 'numeric', month: 'long' });
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-  const WMO = { 0: ['☀️', 'Sereno'], 1: ['🌤️', 'Poco nuvoloso'], 2: ['⛅', 'Variabile'], 3: ['☁️', 'Coperto'], 45: ['🌫️', 'Nebbia'], 48: ['🌫️', 'Nebbia'], 51: ['🌦️', 'Pioviggine'], 53: ['🌦️', 'Pioviggine'], 55: ['🌧️', 'Pioviggine'], 61: ['🌧️', 'Pioggia debole'], 63: ['🌧️', 'Pioggia'], 65: ['🌧️', 'Pioggia forte'], 80: ['🌦️', 'Rovesci'], 81: ['🌧️', 'Rovesci'], 82: ['⛈️', 'Rovesci forti'], 95: ['⛈️', 'Temporale'], 96: ['⛈️', 'Temporale'], 99: ['⛈️', 'Temporale'] };
+  const WMO_I = { 0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 51: '🌦️', 53: '🌦️', 55: '🌧️', 61: '🌧️', 63: '🌧️', 65: '🌧️', 80: '🌦️', 81: '🌧️', 82: '⛈️', 95: '⛈️', 96: '⛈️', 99: '⛈️' };
+  const WMO = {}; Object.keys(WMO_I).forEach(k => { WMO[k] = [WMO_I[k], (G.wmo && G.wmo[k]) || '—']; });
   const wmo = c => WMO[c] || ['🌡️', '—'];
 
   const gm = q => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
@@ -35,7 +39,7 @@
       try {
         const w = await wiki(el.dataset.wiki);
         const img = $('img', el), cap = $('.cap', el);
-        if (w.img) { img.src = w.img; if (cap) cap.innerHTML = `Foto: <a target="_blank" rel="noopener" href="${w.url || '#'}">Wikipedia</a>`; }
+        if (w.img) { img.src = w.img; if (cap) cap.innerHTML = `${U.photo}: <a target="_blank" rel="noopener" href="${w.url || '#'}">Wikipedia</a>`; }
         else el.classList.add('nophoto');
       } catch (e) { const ph = el.classList.contains('ph') ? el : $('.ph', el); if (ph) ph.style.display = 'none'; }
     }
@@ -55,25 +59,25 @@
     return `<div class="wx">${j.daily.time.map((t, i) => {
       const [ico, lab] = wmo(j.daily.weather_code[i]);
       const cls = (t === t0 ? ' today' : '') + (t === highlight ? ' trip' : '');
-      return `<div class="c${cls}"><div class="s">${itDate(t)}</div><div class="i">${ico}</div><div class="t">${Math.round(j.daily.temperature_2m_max[i])}°</div><div class="s">min ${Math.round(j.daily.temperature_2m_min[i])}° · 🌧 ${j.daily.precipitation_probability_max[i] ?? 0}%</div><div class="s">${lab}</div><div class="s">vento ${Math.round(j.daily.wind_speed_10m_max[i])} km/h</div><div class="s">tramonto ${j.daily.sunset[i].slice(11)}</div></div>`;
+      return `<div class="c${cls}"><div class="s">${itDate(t)}</div><div class="i">${ico}</div><div class="t">${Math.round(j.daily.temperature_2m_max[i])}°</div><div class="s">${U.min} ${Math.round(j.daily.temperature_2m_min[i])}° · 🌧 ${j.daily.precipitation_probability_max[i] ?? 0}%</div><div class="s">${lab}</div><div class="s">${U.wind} ${Math.round(j.daily.wind_speed_10m_max[i])} km/h</div><div class="s">${U.sunset} ${j.daily.sunset[i].slice(11)}</div></div>`;
     }).join('')}</div>`;
   }
   async function renderWx(box, pid, date) {
     try {
       const j = await forecast(pid);
       const last = j.daily.time[j.daily.time.length - 1];
-      const note = date && last < date ? `<p class="muted" style="margin-top:8px">Previsioni disponibili fino al ${itDate(last)}; quelle per il ${itDate(date)} compaiono circa due settimane prima. Media di metà ottobre a ${G.places[pid].name}: 22–25 °C di giorno, 13–16 di notte.</p>` : '';
+      const note = date && last < date ? `<p class="muted" style="margin-top:8px">${U.wx_far(itDate(last), itDate(date), G.places[pid].name)}</p>` : '';
       box.innerHTML = wxCards(j, date) + note;
-    } catch (e) { box.innerHTML = '<p class="muted">Meteo non disponibile senza connessione. Metà ottobre: 22–25 °C di giorno, 13–16 di notte, qualche rovescio possibile.</p>'; }
+    } catch (e) { box.innerHTML = `<p class="muted">${U.wx_off}</p>`; }
   }
 
   /* ---------- Rendering tappe ---------- */
   function stopHTML(s, color) {
     const info = s.info ? `<dl class="info">${s.info.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : '';
-    const see = s.see ? `<details><summary>Cosa vedere</summary><ul class="see">${s.see.map(([a, b]) => `<li><b>${a}</b> — ${b}</li>`).join('')}</ul></details>` : '';
+    const see = s.see ? `<details><summary>${U.see}</summary><ul class="see">${s.see.map(([a, b]) => `<li><b>${a}</b> — ${b}</li>`).join('')}</ul></details>` : '';
     const links = [
-      ['Wikipedia (it)', `https://it.wikipedia.org/wiki/${encodeURIComponent(s.wit || s.wiki)}`],
-      ['Wikipedia (en)', `https://en.wikipedia.org/wiki/${encodeURIComponent(s.wiki)}`],
+      [U.wiki_it, `https://it.wikipedia.org/wiki/${encodeURIComponent(s.wit || s.wiki)}`],
+      [U.wiki_en, `https://en.wikipedia.org/wiki/${encodeURIComponent(s.wiki)}`],
       ...(s.links || [])
     ].map(([t, u]) => `<a target="_blank" rel="noopener" href="${u}">${t}</a>`).join('');
     return `<article class="stop">
@@ -83,11 +87,11 @@
         <div class="body">
           <div class="head"><h3>${s.name}</h3><span class="dur">${s.dur}</span></div>
           <p class="desc">${s.desc}</p>
-          ${s.hist ? `<div class="hist"><b>In due righe.</b> ${s.hist}</div>` : ''}
+          ${s.hist ? `<div class="hist"><b>${U.hist}</b> ${s.hist}</div>` : ''}
           ${info}${see}
           ${s.tip ? `<p class="tip">${s.tip}</p>` : ''}
-          ${s.eat ? `<div class="eat"><b>Dove mangiare.</b> ${s.eat}</div>` : ''}
-          <div class="btns"><a class="btn fill sm" target="_blank" rel="noopener" href="${gnav(s.lat, s.lng)}">Naviga (Google)</a><a class="btn sm" target="_blank" rel="noopener" href="${anav(s.lat, s.lng, s.nav)}">Apple Maps</a><a class="btn sm" target="_blank" rel="noopener" href="${gm(s.nav)}">Scheda su Maps</a></div>
+          ${s.eat ? `<div class="eat"><b>${U.eat}</b> ${s.eat}</div>` : ''}
+          <div class="btns"><a class="btn fill sm" target="_blank" rel="noopener" href="${gnav(s.lat, s.lng)}">${U.nav}</a><a class="btn sm" target="_blank" rel="noopener" href="${anav(s.lat, s.lng, s.nav)}">${U.apple}</a><a class="btn sm" target="_blank" rel="noopener" href="${gm(s.nav)}">${U.sheet}</a></div>
           <div class="links">${links}</div>
         </div>
       </div></article>`;
@@ -98,16 +102,16 @@
     const legs = D.legs.map((l, i) => `${i === 0 ? l[0] : ''}<span class="a">→</span>${l[1]} <span class="m">(${l[2]} km · ${l[3]})</span>`).join('');
     return `
       <div class="hero" data-wiki="${esc(D.hero)}"><img alt=""><div class="shade"></div><div class="cap"></div>
-        <div class="txt"><div class="k">${itLong(D.date)}${D.id === 'd0' ? ' – domenica 11' : ''}</div><h2>${D.title}</h2><p>${D.intro}</p></div></div>
+        <div class="txt"><div class="k">${itLong(D.date)}${D.id === 'd0' ? U.d0_suffix : ''}</div><h2>${D.title}</h2><p>${D.intro}</p></div></div>
       <div class="route">
         <div class="legs">${legs}</div>
         <div class="sum">${km} km in tutto · ${D.routeNote}</div>
-        <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="${gdir(D.origin, D.dest, D.way)}">Naviga la giornata</a><a class="btn" target="_blank" rel="noopener" href="${adir(D.origin, D.dest)}">Apple Maps</a><span class="tag">Notte a ${D.night}</span></div>
+        <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="${gdir(D.origin, D.dest, D.way)}">${U.nav_day}</a><a class="btn" target="_blank" rel="noopener" href="${adir(D.origin, D.dest)}">${U.apple}</a><span class="tag">${U.night} ${D.night}</span></div>
       </div>
-      <div class="card"><h3>Meteo a ${G.places[D.place].name}</h3><div class="wxbox" data-place="${D.place}" data-date="${D.date}"><p class="muted">Caricamento…</p></div></div>
+      <div class="card"><h3>${U.weather_in} ${G.places[D.place].name}</h3><div class="wxbox" data-place="${D.place}" data-date="${D.date}"><p class="muted">${U.loading}</p></div></div>
       <div class="tl">${D.stops.map(s => stopHTML(s, color)).join('')}</div>
-      ${D.sleep ? `<div class="sleep"><h3>Dove dormire · ${D.sleep.city}</h3><p>${D.sleep.txt}</p><div class="btns"><a class="btn olive" target="_blank" rel="noopener" href="${bk(D.sleep.city, D.sleep.ci, D.sleep.co)}">Cerca su Booking (${D.sleep.ci.slice(5).replace('-', '/')} → ${D.sleep.co.slice(5).replace('-', '/')})</a><a class="btn olive" target="_blank" rel="noopener" href="${gm('hotels ' + D.sleep.city)}">Hotel su Maps</a></div></div>` : ''}
-      ${D.alt ? `<div class="alt"><b>Se piove, se avanza tempo.</b> ${D.alt}</div>` : ''}`;
+      ${D.sleep ? `<div class="sleep"><h3>${U.sleep} · ${D.sleep.city}</h3><p>${D.sleep.txt}</p><div class="btns"><a class="btn olive" target="_blank" rel="noopener" href="${bk(D.sleep.city, D.sleep.ci, D.sleep.co)}">${U.booking} (${D.sleep.ci.slice(5).replace('-', '/')} → ${D.sleep.co.slice(5).replace('-', '/')})</a><a class="btn olive" target="_blank" rel="noopener" href="${gm('hotels ' + D.sleep.city)}">${U.hotels_maps}</a></div></div>` : ''}
+      ${D.alt ? `<div class="alt"><b>${U.alt}</b> ${D.alt}</div>` : ''}`;
   }
 
   /* ---------- Itinerario ---------- */
@@ -137,41 +141,41 @@
     const pid = G.dayPlace[t] || (t < G.trip.start ? 'itea' : 'atene');
     const p = G.places[pid];
     quick.innerHTML = `
-      <a href="tel:112"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg>Emergenze 112</a>
-      <a target="_blank" rel="noopener" href="https://www.fuelprices.gr/"><svg viewBox="0 0 24 24"><path d="M4 20V6a2 2 0 012-2h6a2 2 0 012 2v14M4 20h10M14 10h2a2 2 0 012 2v4a1.5 1.5 0 003 0V9l-3-3"/></svg>Benzina</a>
-      <a target="_blank" rel="noopener" href="https://tickets.hh.gr/en"><svg viewBox="0 0 24 24"><path d="M4 8a2 2 0 002 2 2 2 0 010 4 2 2 0 00-2 2v2h16v-2a2 2 0 00-2-2 2 2 0 010-4 2 2 0 002-2V6H4z"/></svg>Biglietti</a>`;
+      <a href="tel:112"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg>${U.q_sos}</a>
+      <a target="_blank" rel="noopener" href="https://www.fuelprices.gr/"><svg viewBox="0 0 24 24"><path d="M4 20V6a2 2 0 012-2h6a2 2 0 012 2v14M4 20h10M14 10h2a2 2 0 012 2v4a1.5 1.5 0 003 0V9l-3-3"/></svg>${U.q_fuel}</a>
+      <a target="_blank" rel="noopener" href="https://tickets.hh.gr/en"><svg viewBox="0 0 24 24"><path d="M4 8a2 2 0 002 2 2 2 0 010 4 2 2 0 00-2 2v2h16v-2a2 2 0 00-2-2 2 2 0 010-4 2 2 0 002-2V6H4z"/></svg>${U.q_tickets}</a>`;
     if (t < G.trip.start) {
       const days = Math.round((new Date(G.trip.start) - new Date(t)) / 86400000);
-      hero.innerHTML = `<div class="hero" data-wiki="Nafplio"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>Mancano ${days} giorni</h2><p>Volo Francoforte → Atene mercoledì 7 ottobre alle 13:50. Le ferie iniziano lunedì 12 a Itea.</p></div></div>`;
+      hero.innerHTML = `<div class="hero" data-wiki="Nafplio"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.countdown(days)}</h2><p>${U.countdown_sub}</p></div></div>`;
       body.innerHTML = `
-        <div class="card"><h3>Cose da chiudere prima di partire</h3><ul>${G.todo.slice(0, 5).map(x => `<li>${x[0]}${x[2] ? ` — <a target="_blank" rel="noopener" href="${x[2]}">apri</a>` : ''}</li>`).join('')}</ul><p class="muted" style="margin-top:8px">La lista completa con le spunte è nella sezione Valigia.</p></div>
-        <div class="card"><h3>Meteo a Itea, prossimi giorni</h3><div class="wxbox" data-place="itea"><p class="muted">Caricamento…</p></div></div>
-        <div class="card"><h3>I voli</h3><dl class="kv">${G.flights.map(f => `<dt>${itDate(f.d)}</dt><dd><b>${f.from} → ${f.to}</b> ${f.t} · ${f.n}</dd>`).join('')}</dl></div>`;
+        <div class="card"><h3>${U.todo_title}</h3><ul>${G.todo.slice(0, 5).map(x => `<li>${x[0]}${x[2] ? ` — <a target="_blank" rel="noopener" href="${x[2]}">${U.open}</a>` : ''}</li>`).join('')}</ul><p class="muted" style="margin-top:8px">${U.todo_more}</p></div>
+        <div class="card"><h3>${U.wx_itea}</h3><div class="wxbox" data-place="itea"><p class="muted">${U.loading}</p></div></div>
+        <div class="card"><h3>${U.flights}</h3><dl class="kv">${G.flights.map(f => `<dt>${itDate(f.d)}</dt><dd><b>${f.from} → ${f.to}</b> ${f.t} · ${f.n}</dd>`).join('')}</dl></div>`;
     } else if (t > G.trip.end) {
-      hero.innerHTML = `<div class="hero" data-wiki="Cape Sounion"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>Viaggio concluso</h2><p>La guida resta qui per i ricordi e per la prossima volta.</p></div></div>`;
+      hero.innerHTML = `<div class="hero" data-wiki="Cape Sounion"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.done_title}</h2><p>${U.done_sub}</p></div></div>`;
       body.innerHTML = '';
     } else if (t === '2026-10-17') {
-      hero.innerHTML = `<div class="hero" data-wiki="Athens International Airport"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>Volo alle 6:25</h2><p>Check-in alle 4:30. Buon rientro.</p></div></div>`;
-      body.innerHTML = `<div class="card"><div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="https://www.aia.gr/traveler/flight-info/">Stato voli AIA</a><a class="btn" target="_blank" rel="noopener" href="https://www.lufthansa.com/">Lufthansa</a></div></div>`;
+      hero.innerHTML = `<div class="hero" data-wiki="Athens International Airport"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.fly_title}</h2><p>${U.fly_sub}</p></div></div>`;
+      body.innerHTML = `<div class="card"><div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="https://www.aia.gr/traveler/flight-info/">${U.fly_status}</a><a class="btn" target="_blank" rel="noopener" href="https://www.lufthansa.com/">Lufthansa</a></div></div>`;
     } else if (day) {
       const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
       const toMin = s => { const m = /^(\d{1,2}):(\d{2})/.exec(s.time); return m ? (+m[1]) * 60 + (+m[2]) : 9999; };
       const timed = day.stops.filter(s => toMin(s) < 9999);
       const next = timed.find(s => toMin(s) > nowMin - 60) || timed[timed.length - 1];
-      hero.innerHTML = `<div class="hero" data-wiki="${esc(day.hero)}"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)} · notte a ${day.night}</div><h2>${day.title}</h2><p>${day.intro}</p></div></div>`;
+      hero.innerHTML = `<div class="hero" data-wiki="${esc(day.hero)}"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)} · ${U.night.toLowerCase()} ${day.night}</div><h2>${day.title}</h2><p>${day.intro}</p></div></div>`;
       body.innerHTML = `
         <div class="today-grid">
-          <div class="card"><h3>Prossima tappa</h3><div class="stat"><span class="v">${next.time}</span><span class="k">${next.name}</span></div><p class="muted" style="margin-top:6px">${next.dur}</p>
-            <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="${gnav(next.lat, next.lng)}">Naviga</a><a class="btn" target="_blank" rel="noopener" href="${anav(next.lat, next.lng, next.nav)}">Apple Maps</a><button class="btn" data-goday="${day.id}">Programma completo</button></div></div>
-          <div class="card"><h3>Adesso a ${p.name}</h3><div id="todayWxNow" class="muted">Caricamento…</div></div>
+          <div class="card"><h3>${U.next}</h3><div class="stat"><span class="v">${next.time}</span><span class="k">${next.name}</span></div><p class="muted" style="margin-top:6px">${next.dur}</p>
+            <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="${gnav(next.lat, next.lng)}">${U.nav}</a><a class="btn" target="_blank" rel="noopener" href="${anav(next.lat, next.lng, next.nav)}">${U.apple}</a><button class="btn" data-goday="${day.id}">${U.full_prog}</button></div></div>
+          <div class="card"><h3>${U.now_in} ${p.name}</h3><div id="todayWxNow" class="muted">${U.loading}</div></div>
         </div>
-        <div class="card"><h3>La giornata</h3><dl class="kv">${day.stops.map(s => `<dt>${s.time}</dt><dd><b>${s.name}</b> <span class="muted">${s.dur}</span></dd>`).join('')}</dl>
-          <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${gdir(day.origin, day.dest, day.way)}">Naviga l'intera giornata</a></div></div>
-        <div class="card"><h3>Meteo a ${p.name}</h3><div class="wxbox" data-place="${pid}" data-date="${t}"><p class="muted">Caricamento…</p></div></div>`;
+        <div class="card"><h3>${U.the_day}</h3><dl class="kv">${day.stops.map(s => `<dt>${s.time}</dt><dd><b>${s.name}</b> <span class="muted">${s.dur}</span></dd>`).join('')}</dl>
+          <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${gdir(day.origin, day.dest, day.way)}">${U.nav_all}</a></div></div>
+        <div class="card"><h3>${U.weather_in} ${p.name}</h3><div class="wxbox" data-place="${pid}" data-date="${t}"><p class="muted">${U.loading}</p></div></div>`;
       forecast(pid).then(j => {
         const [ico, lab] = wmo(j.current.weather_code);
-        $('#todayWxNow').innerHTML = `<div class="stat"><span class="v">${Math.round(j.current.temperature_2m)}°</span><span class="k">${ico} ${lab}</span></div><p class="muted" style="margin-top:6px">Max ${Math.round(j.daily.temperature_2m_max[0])}°, pioggia ${j.daily.precipitation_probability_max[0] ?? 0}%, vento ${Math.round(j.current.wind_speed_10m)} km/h<br>Alba ${j.daily.sunrise[0].slice(11)} · tramonto ${j.daily.sunset[0].slice(11)}</p>`;
-      }).catch(() => { $('#todayWxNow').textContent = 'Meteo non disponibile senza rete.'; });
+        $('#todayWxNow').innerHTML = `<div class="stat"><span class="v">${Math.round(j.current.temperature_2m)}°</span><span class="k">${ico} ${lab}</span></div><p class="muted" style="margin-top:6px">${U.max} ${Math.round(j.daily.temperature_2m_max[0])}°, ${U.rain} ${j.daily.precipitation_probability_max[0] ?? 0}%, ${U.wind} ${Math.round(j.current.wind_speed_10m)} km/h<br>${U.sunrise} ${j.daily.sunrise[0].slice(11)} · ${U.sunset} ${j.daily.sunset[0].slice(11)}</p>`;
+      }).catch(() => { $('#todayWxNow').textContent = U.wx_off_short; });
     }
     fillPhotos(hero);
     $$('.wxbox', body).forEach(b => renderWx(b, b.dataset.place, b.dataset.date));
@@ -202,7 +206,7 @@
       D.stops.forEach((s, i) => {
         const icon = L.divIcon({ className: '', html: `<div class="pin" style="background:${color}"><span>${D.id === 'd0' ? '·' : D.id.slice(1)}</span></div>`, iconSize: [26, 26], iconAnchor: [4, 26], popupAnchor: [9, -26] });
         const m = L.marker([s.lat, s.lng], { icon }).addTo(map);
-        m.bindPopup(`<b>${s.name}</b><br><span style="color:#666">${D.chip[0]} · ${s.time}</span><br>${s.desc.split('. ')[0]}.<br><a class="btn fill sm" target="_blank" rel="noopener" href="${gnav(s.lat, s.lng)}">Naviga</a> <a class="btn sm" target="_blank" rel="noopener" href="${anav(s.lat, s.lng, s.nav)}">Apple Maps</a>`);
+        m.bindPopup(`<b>${s.name}</b><br><span style="color:#666">${D.chip[0]} · ${s.time}</span><br>${s.desc.split('. ')[0]}.<br><a class="btn fill sm" target="_blank" rel="noopener" href="${gnav(s.lat, s.lng)}">${U.nav}</a> <a class="btn sm" target="_blank" rel="noopener" href="${anav(s.lat, s.lng, s.nav)}">${U.apple}</a>`);
         all.push([s.lat, s.lng]);
       });
     });
@@ -216,21 +220,26 @@
     else fetch(`https://router.project-osrm.org/route/v1/driving/${wp.map(p => p[1] + ',' + p[0]).join(';')}?overview=full&geometries=geojson`)
       .then(r => r.json()).then(j => { if (j.routes && j.routes[0]) { const c = j.routes[0].geometry.coordinates; store.set('osrm-route', c); draw(c); } }).catch(() => {});
     $('#legend').innerHTML = G.days.map(D => `<span><i style="background:${G.colors[D.id]}"></i>${D.chip[0]} · ${D.chip[1]}</span>`).join('');
-    $('#distTable').innerHTML = '<tr><th>Tratta</th><th>km</th><th>tempo</th></tr>' + G.days.flatMap(D => D.legs.map(l => `<tr><td>${l[0]} → ${l[1]}</td><td class="n">${l[2]}</td><td class="n">${l[3]}</td></tr>`)).join('');
+    $('#distTable').innerHTML = `<tr><th>${U.dist_h[0]}</th><th>${U.dist_h[1]}</th><th>${U.dist_h[2]}</th></tr>` + G.days.flatMap(D => D.legs.map(l => `<tr><td>${l[0]} → ${l[1]}</td><td class="n">${l[2]}</td><td class="n">${l[3]}</td></tr>`)).join('');
   }
 
   /* ---------- Guida ---------- */
   $('#hub').innerHTML = G.hub.map(([t, d, u]) => `<a target="_blank" rel="noopener" href="${u}"><b>${t}</b><span>${d}</span></a>`).join('');
-  $('#siteTable').innerHTML = '<tr><th>Sito</th><th>Intero</th><th>Note</th></tr>' + G.sites.map(s => `<tr><td>${s[0]}</td><td class="n">${s[1]}</td><td class="muted">${s[2]}</td></tr>`).join('');
-  $('#budgetTable').innerHTML = G.budget.map(b => `<tr><td>${b[0]}</td><td class="n">${b[1]}</td></tr>`).join('') + '<tfoot><tr><td>Totale indicativo</td><td class="n">€950–1.200</td></tr></tfoot>';
+  $('#siteTable').innerHTML = `<tr><th>${U.site_h[0]}</th><th>${U.site_h[1]}</th><th>${U.site_h[2]}</th></tr>` + G.sites.map(s => `<tr><td>${s[0]}</td><td class="n">${s[1]}</td><td class="muted">${s[2]}</td></tr>`).join('');
+  $('#budgetTable').innerHTML = G.budget.map(b => `<tr><td>${b[0]}</td><td class="n">${b[1]}</td></tr>`).join('') + `<tfoot><tr><td>${U.total}</td><td class="n">${U.total_v}</td></tr></tfoot>`;
   $('#foodTable').innerHTML = G.food.map(f => `<tr><td><b>${f[0]}</b></td><td class="muted">${f[1]}</td></tr>`).join('');
+  $('#sitesIntro').innerHTML = G.text.sitesIntro; $('#sitesNote').innerHTML = G.text.sitesNote; $('#budgetNote').innerHTML = G.text.budgetNote;
+  $('#foodRules').innerHTML = G.text.foodRules.map(x => `<li>${x}</li>`).join('');
+  $('#guideBlocks').innerHTML = G.text.blocks1; $('#guideBlocks2').innerHTML = G.text.blocks2;
+  $$('[data-ui]').forEach(el => { const v = U[el.dataset.ui]; if (typeof v === 'string') el.textContent = v; });
+  const lb = $('#langBtn'); lb.textContent = G.lang === 'en' ? 'IT' : 'EN'; lb.addEventListener('click', () => { try { localStorage.setItem('lang', G.lang === 'en' ? 'it' : 'en'); } catch (e) {} location.reload(); });
   $('#phr').innerHTML = G.phrases.map(p => `<div><b>${p[0]}</b><i>${p[1]}</i></div>`).join('');
 
   /* ---------- Checklist ---------- */
   function checklist(items, key, progEl, withLinks) {
     const saved = store.get(key, {});
     return {
-      html: items.map((it, i) => `<li><label><input type="checkbox" data-k="${key}" data-i="${i}" ${saved[i] ? 'checked' : ''}><span>${it[0]}${withLinks && it[2] ? ` — <a target="_blank" rel="noopener" href="${it[2]}">apri</a>` : ''}${it[1] ? `<span class="sub">${it[1]}</span>` : ''}</span></label></li>`).join(''),
+      html: items.map((it, i) => `<li><label><input type="checkbox" data-k="${key}" data-i="${i}" ${saved[i] ? 'checked' : ''}><span>${it[0]}${withLinks && it[2] ? ` — <a target="_blank" rel="noopener" href="${it[2]}">${U.open}</a>` : ''}${it[1] ? `<span class="sub">${it[1]}</span>` : ''}</span></label></li>`).join(''),
       prog: () => { const n = Object.values(store.get(key, {})).filter(Boolean).length; progEl.style.width = (100 * n / items.length) + '%'; }
     };
   }

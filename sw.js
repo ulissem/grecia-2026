@@ -1,5 +1,5 @@
-const VERSION = 'grecia-2026-v3';
-const CORE = ['./','./index.html','./style.css','./app.js','./data.js','./manifest.json','./icon-192.png','./icon-512.png','./icon-180.png',
+const VERSION = 'grecia-2026-v4';
+const CORE = ['./','./index.html','./style.css','./app.js','./data.js','./data-en.js','./manifest.json','./icon-192.png','./icon-512.png','./icon-180.png',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css','https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE).catch(()=>{})).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== VERSION).map(x => caches.delete(x)))).then(() => self.clients.claim())); });
