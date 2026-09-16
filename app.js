@@ -190,7 +190,12 @@
   function buildMap() {
     if (mapBuilt || typeof L === 'undefined') return; mapBuilt = true;
     map = L.map('map', { scrollWheelZoom: false });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+    const carto = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>' });
+    const esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
+    let tileErrors = 0, switched = false;
+    carto.on('tileerror', () => { if (!switched && ++tileErrors > 3) { switched = true; map.removeLayer(carto); esri.addTo(map); } });
+    carto.addTo(map);
+    L.control.layers({ 'Carto': carto, 'Esri': esri }, null, { position: 'topright' }).addTo(map);
     const all = [];
     G.days.forEach(D => {
       const color = G.colors[D.id];
