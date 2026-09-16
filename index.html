@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1F4E79">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Grecia 2026">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<title>Peloponneso classico — 12–17 ottobre 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F4EE; --paper:#FFFFFF; --ink:#22303A; --ink-2:#5A6670; --ink-3:#8A949C;
+  --line:#DCD9D0; --sea:#1F4E79; --sea-2:#DDE9F2; --olive:#7B8A3E; --olive-2:#EEF1DF; --sun:#D9A441; --sun-2:#FBF1DA; --rose:#B4553F;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14191E; --paper:#1C2329; --ink:#E8E6DF; --ink-2:#AEB4B9; --ink-3:#7D858C;
+    --line:#2E373F; --sea:#8FB6DC; --sea-2:#1F3142; --olive:#A6B45E; --olive-2:#242D1E; --sun:#E3B457; --sun-2:#33301F; --rose:#E08A75;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55}
+h1,h2,h3,h4{font-family:Fraunces,Georgia,"Times New Roman",serif;font-weight:600;margin:0;letter-spacing:-.01em;line-height:1.15}
+h1{font-size:clamp(28px,6vw,42px)}
+h2{font-size:24px;margin-bottom:12px}
+h3{font-size:19px}
+h4{font-size:16px}
+p{margin:0}
+a{color:var(--sea);text-decoration:none}
+a:hover{text-decoration:underline}
+ul{margin:0;padding-left:18px}
+li{margin:4px 0}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 90px}
+.hero{padding:28px 0 16px}
+.hero .dates{color:var(--ink-2);margin-top:8px}
+.now{margin-top:16px;background:var(--sea);color:#fff;border-radius:14px;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.now .big{font-family:Fraunces,Georgia,serif;font-size:34px;font-weight:600;line-height:1}
+.now .txt{font-size:15px;opacity:.95}
+.now .txt b{font-weight:600}
+.now .ico{font-size:34px;line-height:1}
+
+.tabs{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0;margin:8px -16px 0;padding-left:16px;padding-right:16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;font:inherit;font-size:15px;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--sea);border-color:var(--sea);color:#fff}
+.tab:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.panel{display:none;padding-top:22px}
+.panel.on{display:block}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{margin-bottom:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px}
+.kv dt{color:var(--ink-2)}
+.kv dd{margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.btn{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600;border:1px solid var(--sea);color:var(--sea);background:transparent}
+.btn.fill{background:var(--sea);color:#fff}
+.btn.olive{border-color:var(--olive);color:var(--olive)}
+.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.muted{color:var(--ink-2);font-size:14px}
+.tag{display:inline-block;font-size:13px;padding:2px 9px;border-radius:999px;background:var(--sun-2);color:#6F4E0E;font-weight:600}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag{color:#F2D28A}}
+
+.dayhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.dayhead .d{font-family:Fraunces,Georgia,serif;font-size:30px;font-weight:600;line-height:1}
+.dayhead .r{color:var(--ink-2);margin-top:6px}
+.route{background:var(--sea-2);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.route .legs{display:flex;flex-wrap:wrap;gap:6px 0;align-items:center;font-weight:600}
+.route .legs span.arrow{color:var(--ink-3);margin:0 8px;font-weight:400}
+.route .sum{margin-top:4px;font-size:15px;color:var(--ink-2)}
+.wx{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.wx .c{flex:0 0 auto;min-width:112px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-align:center}
+.wx .c .i{font-size:30px;line-height:1.1}
+.wx .c .t{font-family:Fraunces,Georgia,serif;font-size:20px;font-weight:600}
+.wx .c .s{font-size:13px;color:var(--ink-2)}
+.wx .c.today{border-color:var(--sun);box-shadow:inset 0 0 0 1px var(--sun)}
+
+.stop{border:1px solid var(--line);border-radius:14px;background:var(--paper);overflow:hidden;margin-bottom:14px}
+.stop .ph{position:relative;aspect-ratio:16/9;background:var(--sea-2);overflow:hidden}
+.stop .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.stop .ph .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 8px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-size:12px}
+.stop .ph .cap a{color:#fff;text-decoration:underline}
+.stop .body{padding:14px 16px 16px}
+.stop .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.stop .when{color:var(--ink-2);font-size:14px}
+.stop .desc{margin:8px 0 10px;color:var(--ink-2)}
+.stop .desc.wiki{font-size:14px}
+.stop .info{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px;margin:8px 0}
+.stop .info dt{color:var(--ink-2)}
+.stop .info dd{margin:0}
+.stop .see li b{font-weight:600}
+.tip{margin-top:10px;font-size:14px;color:var(--ink-2);border-left:3px solid var(--sun);padding-left:10px}
+.eat{margin-top:12px;background:var(--olive-2);border-radius:10px;padding:10px 12px;font-size:15px}
+.eat b{color:var(--olive)}
+.sleep{background:var(--sun-2);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.sleep h3{margin-bottom:6px}
+.sleep .muted{margin-top:6px}
+
+.map svg{width:100%;height:auto;display:block}
+.rt{fill:none;stroke:#1F8F6B;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.rt.thin{stroke-width:1.8;stroke-dasharray:4 4}
+.city{fill:var(--paper);stroke:var(--ink-2);stroke-width:1.2}
+.city.base{fill:var(--sun);stroke:var(--sun)}
+.lbl{font:600 13px "Source Sans 3",sans-serif;fill:var(--ink)}
+.dl{font:600 11px "Source Sans 3",sans-serif;fill:#fff}
+.dc{fill:#1F8F6B}
+.sea{fill:var(--sea-2)}
+.seatxt{font:italic 12px Fraunces,Georgia,serif;fill:var(--sea);opacity:.8}
+
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--ink-2);font-weight:600;font-size:13px}
+td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tfoot td{font-weight:600;border-bottom:0}
+
+.check{list-style:none;padding:0;display:grid;gap:4px}
+.check li{margin:0}
+.check label{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:10px;cursor:pointer}
+.check label:hover{background:var(--sea-2)}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--olive);flex:0 0 auto}
+.check input:checked + span{text-decoration:line-through;color:var(--ink-3)}
+.check .sub{display:block;font-size:13px;color:var(--ink-2);text-decoration:none}
+.prog{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:8px 0 14px}
+.prog i{display:block;height:100%;background:var(--olive);width:0;transition:width .2s}
+.phr{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px}
+.phr b{font-weight:600}
+.phr i{color:var(--ink-2);font-style:normal;font-size:13px;display:block}
+footer{margin-top:24px;color:var(--ink-3);font-size:13px;line-height:1.5}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>Peloponneso classico</h1>
+  <p class="dates">Da Itea ad Atene · lunedì 12 – sabato 17 ottobre 2026 · circa 650 km, 10 ore di guida in tutto</p>
+  <div class="now" id="now"><div class="ico">⛅</div><div><div class="big" id="nowT">—</div><div class="txt" id="nowTxt">Caricamento meteo…</div></div></div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Sezioni" id="tabs">
+  <button class="tab" role="tab" data-p="over" aria-selected="true">Panoramica</button>
+  <button class="tab" role="tab" data-p="d0">Prima · 7–11</button>
+  <button class="tab" role="tab" data-p="d1">Lun 12</button>
+  <button class="tab" role="tab" data-p="d2">Mar 13</button>
+  <button class="tab" role="tab" data-p="d3">Mer 14</button>
+  <button class="tab" role="tab" data-p="d4">Gio 15</button>
+  <button class="tab" role="tab" data-p="d5">Ven 16</button>
+  <button class="tab" role="tab" data-p="prat">Pratico</button>
+  <button class="tab" role="tab" data-p="bag">Valigia</button>
+</nav>
+
+<!-- ============ PANORAMICA ============ -->
+<section class="panel on" id="p-over" role="tabpanel">
+  <div class="card map" aria-label="Mappa schematica del percorso">
+    <svg viewBox="0 0 680 470" role="img" aria-labelledby="mt"><title id="mt">Mappa schematica delle tappe</title>
+      <path class="sea" d="M120 236 Q250 214 372 244 L372 262 Q250 240 120 258 Z"/>
+      <text class="seatxt" x="180" y="232">Golfo di Corinto</text>
+      <path class="sea" d="M400 300 Q470 300 520 330 Q560 350 600 380 L600 410 Q540 400 500 360 Q450 320 400 322 Z"/>
+      <text class="seatxt" x="500" y="400">Golfo Saronico</text>
+      <path class="rt" d="M283 249 L182 254 L148 354 L348 363 L507 309 L556 353 L560 322"/>
+      <path class="rt thin" d="M348 363 L341 342 L396 359 L348 363"/>
+      <circle class="city base" cx="283" cy="249" r="7"/>
+      <circle class="city" cx="182" cy="254" r="5"/>
+      <circle class="city" cx="148" cy="354" r="5"/>
+      <circle class="city" cx="348" cy="363" r="5"/>
+      <circle class="city" cx="341" cy="342" r="4"/>
+      <circle class="city" cx="396" cy="359" r="4"/>
+      <circle class="city" cx="446" cy="330" r="4"/>
+      <circle class="city" cx="507" cy="309" r="7"/>
+      <circle class="city" cx="556" cy="353" r="4"/>
+      <circle class="city" cx="560" cy="322" r="4"/>
+      <text class="lbl" x="283" y="228" text-anchor="middle">Itea · Delfi</text>
+      <text class="lbl" x="182" y="276" text-anchor="middle">Nafpaktos</text>
+      <text class="lbl" x="136" y="354" text-anchor="end">Olimpia</text>
+      <text class="lbl" x="336" y="384" text-anchor="end">Nafplio</text>
+      <text class="lbl" x="333" y="334" text-anchor="end">Micene</text>
+      <text class="lbl" x="396" y="378" text-anchor="middle">Epidauro</text>
+      <text class="lbl" x="452" y="322">Corinto</text>
+      <text class="lbl" x="520" y="296">Atene</text>
+      <text class="lbl" x="566" y="357">Sounion</text>
+      <text class="lbl" x="568" y="318">Aeroporto</text>
+      <g><circle class="dc" cx="215" cy="304" r="10"/><text class="dl" x="215" y="308" text-anchor="middle">1</text></g>
+      <g><circle class="dc" cx="248" cy="374" r="10"/><text class="dl" x="248" y="378" text-anchor="middle">2</text></g>
+      <g><circle class="dc" cx="372" cy="340" r="10"/><text class="dl" x="372" y="344" text-anchor="middle">3</text></g>
+      <g><circle class="dc" cx="430" cy="352" r="10"/><text class="dl" x="430" y="356" text-anchor="middle">4</text></g>
+      <g><circle class="dc" cx="533" cy="339" r="10"/><text class="dl" x="533" y="343" text-anchor="middle">5</text></g>
+    </svg>
+    <div class="btns">
+      <a class="btn fill" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Itea,Greece&destination=Athens+International+Airport&waypoints=Nafpaktos,Greece%7CArchaeological+Site+of+Olympia%7CNafplio,Greece%7CCape+Sounion&travelmode=driving">Intero percorso su Google Maps</a>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Il viaggio in breve</h3>
+      <dl class="kv">
+        <dt>Lun 12</dt><dd>Itea → Nafpaktos → Olimpia · <b>Olimpia</b></dd>
+        <dt>Mar 13</dt><dd>Olimpia → Nafplio · <b>Nafplio</b></dd>
+        <dt>Mer 14</dt><dd>Micene ed Epidauro · <b>Nafplio</b></dd>
+        <dt>Gio 15</dt><dd>Nafplio → Corinto → Atene · <b>Atene</b></dd>
+        <dt>Ven 16</dt><dd>Atene → Sounion → aeroporto · <b>Hotel aeroporto</b></dd>
+        <dt>Sab 17</dt><dd>Volo LH 06:25 ATH → FRA</dd>
+      </dl>
+    </div>
+    <div class="card">
+      <h3>Budget stimato (1 persona)</h3>
+      <table>
+        <tr><td>Benzina, ~700 km × 7 l/100 × €2,15</td><td class="n">≈ €105</td></tr>
+        <tr><td>Pedaggi (ponte di Rio €15,90 + autostrade)</td><td class="n">≈ €30</td></tr>
+        <tr><td>Ingressi a siti e musei</td><td class="n">≈ €130</td></tr>
+        <tr><td>Hotel, 5 notti (fascia media)</td><td class="n">€450–650</td></tr>
+        <tr><td>Pasti e caffè</td><td class="n">≈ €40/giorno</td></tr>
+        <tfoot><tr><td>Totale indicativo</td><td class="n">€900–1.150</td></tr></tfoot>
+      </table>
+      <p class="muted" style="margin-top:8px">Benzina 95: circa €2,15/l a metà settembre 2026, in salita. <a target="_blank" rel="noopener" href="https://www.fuelprices.gr/">Prezzi per distributore (fuelprices.gr)</a> · <a target="_blank" rel="noopener" href="https://www.fueldaddy.gr/en">FuelDaddy</a></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Prenotazioni da fare</h3>
+    <ul>
+      <li><b>Acropoli</b>: ingresso a fascia oraria, biglietto €30. Prenota su <a target="_blank" rel="noopener" href="https://hhticket.gr/">hhticket.gr</a> (sito ufficiale) per giovedì 15 nel pomeriggio.</li>
+      <li><b>Hotel</b>: Nafplio si riempie nei weekend d'autunno, prenota per prima. Link diretti nelle schede di ogni giorno.</li>
+      <li><b>Auto</b>: verifica che la riconsegna in aeroporto la sera del 16 sia possibile (di solito 24h, ma controlla il contratto) e se il chilometraggio è illimitato. Il ponte di Rio e le autostrade si pagano in contanti o con carta ai caselli.</li>
+      <li><b>Volo 17/10 ore 06:25</b>: check-in online il 16, presentarsi alle 04:30. Il Sofitel è dentro il terminal, gli altri hotel di Spata hanno navetta: chiedila all'arrivo.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PRIMA DEL 12 ============ -->
+<section class="panel" id="p-d0" role="tabpanel">
+  <div class="dayhead"><div><div class="d">7–11 ottobre</div><div class="r">Arrivo, training a Itea, gara. Cose da incastrare nei ritagli.</div></div></div>
+  <div class="route">
+    <div class="legs">Aeroporto Atene <span class="arrow">→</span> Itea</div>
+    <div class="sum">210 km · 2 h 30 · atterri alle 17:40, con l'auto sei a Itea verso le 21:00. Autostrada A1 fino a Kastro/Thermopyles, poi statale per Amfissa. Pedaggi ~€10.</div>
+    <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Athens+International+Airport&destination=Itea,Greece&travelmode=driving">Naviga</a><a class="btn" target="_blank" rel="noopener" href="https://maps.apple.com/?saddr=Athens+International+Airport&daddr=Itea,Greece&dirflg=d">Apple Maps</a></div>
+  </div>
+  <div id="stops-d0"></div>
+</section>
+
+<!-- ============ GIORNI 1–5 ============ -->
+<section class="panel" id="p-d1" role="tabpanel"></section>
+<section class="panel" id="p-d2" role="tabpanel"></section>
+<section class="panel" id="p-d3" role="tabpanel"></section>
+<section class="panel" id="p-d4" role="tabpanel"></section>
+<section class="panel" id="p-d5" role="tabpanel"></section>
+
+<!-- ============ PRATICO ============ -->
+<section class="panel" id="p-prat" role="tabpanel">
+  <div class="card">
+    <h3>Numeri e contatti</h3>
+    <dl class="kv">
+      <dt>Emergenze</dt><dd><a href="tel:112">112</a> (unico numero europeo) · Polizia turistica <a href="tel:1571">1571</a></dd>
+      <dt>Soccorso stradale</dt><dd>ELPA <a href="tel:10400">10400</a> · Express Service <a href="tel:1154">1154</a> · ma prima chiama il numero del noleggio sul contratto</dd>
+      <dt>Ambasciata d'Italia</dt><dd>Atene, <a href="tel:+302103617260">+30 210 361 7260</a> · <a target="_blank" rel="noopener" href="https://ambatene.esteri.it">ambatene.esteri.it</a></dd>
+      <dt>Fuso orario</dt><dd>Grecia = Germania + 1 ora (ora legale fino al 25 ottobre)</dd>
+      <dt>Prese</dt><dd>Tipo C/F come in Germania e Italia, 230 V</dd>
+      <dt>Telefono</dt><dd>Roaming UE incluso nel piano tedesco. Copertura buona ovunque tranne tratti dell'Arcadia.</dd>
+    </dl>
+  </div>
+
+  <div class="card">
+    <h3>Guidare in Grecia</h3>
+    <ul>
+      <li>Limiti: 50 in città, 90 statali, 130 autostrada. Autovelox veri soprattutto sulla Corinto–Atene e sull'Attiki Odos.</li>
+      <li>Sulle statali si usa la corsia di emergenza per farsi sorpassare: fallo anche tu, ma con giudizio.</li>
+      <li>Pedaggi a barriera, si paga a tratta in contanti o carta. Corsie gialle = solo telepass, evitale. Ponte di Rio €15,90.</li>
+      <li>Tieni €40–50 in contanti: qualche casello e le taverne di paese non prendono carte.</li>
+      <li>Distributori: serviti, con benzinaio. Di domenica nell'entroterra alcuni chiudono: fai il pieno a Olimpia il martedì mattina e a Nafplio il giovedì.</li>
+      <li>Parcheggio: a Nafplio nel grande parcheggio del porto (gratuito), a Olimpia in hotel, ad Atene lascia l'auto in hotel e muoviti a piedi o in metro.</li>
+      <li>Patente tedesca o italiana: nessun permesso internazionale necessario.</li>
+    </ul>
+    <div class="btns"><a class="btn" target="_blank" rel="noopener" href="https://www.fuelprices.gr/">Prezzi carburante</a><a class="btn" target="_blank" rel="noopener" href="https://www.tolls.eu/greece">Pedaggi Grecia</a><a class="btn" target="_blank" rel="noopener" href="https://support.google.com/maps/answer/6291838">Mappe offline (come fare)</a></div>
+  </div>
+
+  <div class="card">
+    <h3>Orari e biglietti dei siti (ottobre 2026)</h3>
+    <p>Siti del Ministero della Cultura (Olimpia, Micene, Epidauro, Acropoli, Agorà, Sounion): <b>8:00–18:30 fino al 15 ottobre</b>, <b>8:00–18:00 dal 16</b>, ultimo ingresso 20 minuti prima. Tariffa estiva in vigore fino al 31 ottobre. I musei archeologici statali sono spesso chiusi il martedì: non tocca il tuo piano, ma occhio se sposti qualcosa.</p>
+    <table style="margin-top:10px">
+      <tr><th>Sito</th><th>Prezzo intero</th><th>Note</th></tr>
+      <tr><td>Olimpia, sito + museo</td><td class="n">€20</td><td>biglietto unico</td></tr>
+      <tr><td>Micene, sito + Tesoro di Atreo + museo</td><td class="n">€12–20</td><td>verifica in loco</td></tr>
+      <tr><td>Epidauro, teatro + santuario + museo</td><td class="n">€12–20</td><td>verifica in loco</td></tr>
+      <tr><td>Palamidi (Nafplio)</td><td class="n">€8</td><td>strada fino in cima</td></tr>
+      <tr><td>Acropoli</td><td class="n">€30</td><td>fascia oraria, prenota</td></tr>
+      <tr><td>Museo dell'Acropoli</td><td class="n">€20</td><td>separato, aperto fino alle 20 il venerdì</td></tr>
+      <tr><td>Agorà antica</td><td class="n">€10</td><td>il combinato è stato abolito</td></tr>
+      <tr><td>Museo Archeologico Nazionale</td><td class="n">€12</td><td></td></tr>
+      <tr><td>Sounion, tempio di Poseidone</td><td class="n">€10</td><td>apre alle 9:30</td></tr>
+    </table>
+    <p class="muted" style="margin-top:8px">Prezzi raccolti a settembre 2026: quelli con forbice li ho trovati discordanti tra le fonti. Controllo definitivo su <a target="_blank" rel="noopener" href="http://odysseus.culture.gr/">odysseus.culture.gr</a> o <a target="_blank" rel="noopener" href="https://hhticket.gr/">hhticket.gr</a>.</p>
+  </div>
+
+  <div class="card">
+    <h3>Mangiare e bere, regole del gioco</h3>
+    <ul>
+      <li>Pranzo 13:30–16:00, cena dalle 21:00. Alle 19:30 le taverne buone sono vuote o chiuse.</li>
+      <li>Ordina a centro tavola: 3–4 mezedes bastano per due. Il pesce si paga a peso: chiedi il prezzo al chilo prima.</li>
+      <li>Mancia: si arrotonda o si lascia il 5–10 % se il servizio è buono. Il pane in tavola (κουβέρ) costa 1–2 €.</li>
+      <li>Da provare in zona: gemista, kokoras me hilopites (gallo con pasta fresca, Arcadia), pesce alla griglia a Palaia Epidavros, saganaki, souvlaki da Kostas ad Atene, loukoumades per finire.</li>
+      <li>Acqua di rubinetto bevibile ad Atene, in provincia meglio in bottiglia.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Dieci parole che aprono porte</h3>
+    <div class="phr">
+      <div><b>Kaliméra</b><i>buongiorno (fino a metà pomeriggio)</i></div>
+      <div><b>Kalispéra</b><i>buonasera</i></div>
+      <div><b>Efcharistó</b><i>grazie</i></div>
+      <div><b>Parakaló</b><i>prego / per favore</i></div>
+      <div><b>Ne / Óchi</b><i>sì / no (attenzione: "ne" è sì)</i></div>
+      <div><b>Ton logariasmó, parakaló</b><i>il conto, per favore</i></div>
+      <div><b>Yámas</b><i>salute (brindisi)</i></div>
+      <div><b>Signómi</b><i>scusi</i></div>
+      <div><b>Pou íne…?</b><i>dov'è…?</i></div>
+      <div><b>Éna ellinikó kafé, métrio</b><i>un caffè greco, medio zucchero</i></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Notte del 16 e volo delle 6:25</h3>
+    <ul>
+      <li><b>Piano A</b>: riconsegna auto in aeroporto la sera, dormi al <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Sofitel+Athens+Airport">Sofitel Athens Airport</a> (collegato al terminal, 2 minuti a piedi). Costa, ma alle 4:15 sei già al check-in.</li>
+      <li><b>Piano B</b>: hotel a Spata o Markopoulo con navetta (molti la offrono anche di notte, chiedi conferma alla prenotazione): metà prezzo, 10 minuti dal terminal.</li>
+      <li><b>Piano C</b>: dormi ad Atene centro e prendi un taxi alle 3:45. Tariffa notturna fissa aeroporto ~€60, 35 minuti. Prenota con Uber o FreeNow la sera prima.</li>
+      <li>Check-in online la sera del 16. Terminal unico, controlli Schengen: 45 minuti sono abbondanti.</li>
+    </ul>
+    <div class="btns"><a class="btn" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=Athens+International+Airport&checkin=2026-10-16&checkout=2026-10-17&group_adults=1&no_rooms=1">Hotel vicino all'aeroporto</a><a class="btn" target="_blank" rel="noopener" href="https://www.aia.gr/traveler/">Sito aeroporto Atene</a></div>
+  </div>
+</section>
+
+<!-- ============ VALIGIA ============ -->
+<section class="panel" id="p-bag" role="tabpanel">
+  <div class="card">
+    <h3>Checklist valigia</h3>
+    <p class="muted">Le spunte si salvano sul telefono. Clima: 22–26 °C di giorno, 13–16 la notte, mare a 22 °C.</p>
+    <div class="prog"><i id="prog"></i></div>
+    <h4>Documenti e soldi</h4>
+    <ul class="check" data-g="doc">
+      <li><label><input type="checkbox"><span>Carta d'identità o passaporto</span></label></li>
+      <li><label><input type="checkbox"><span>Patente e carta di credito intestata al conducente <span class="sub">la cauzione dell'auto va sulla stessa carta</span></span></label></li>
+      <li><label><input type="checkbox"><span>Voucher noleggio e numero assistenza</span></label></li>
+      <li><label><input type="checkbox"><span>Tessera sanitaria europea (EHIC)</span></label></li>
+      <li><label><input type="checkbox"><span>Carta d'imbarco LH 7/10 e 17/10 sul telefono</span></label></li>
+      <li><label><input type="checkbox"><span>€100–150 in contanti in banconote piccole</span></label></li>
+      <li><label><input type="checkbox"><span>Biglietto Acropoli prenotato per giovedì 15</span></label></li>
+    </ul>
+    <h4 style="margin-top:14px">Tecnologia</h4>
+    <ul class="check" data-g="tech">
+      <li><label><input type="checkbox"><span>Power bank e cavi</span></label></li>
+      <li><label><input type="checkbox"><span>Supporto telefono per auto <span class="sub">le auto a noleggio raramente hanno CarPlay</span></span></label></li>
+      <li><label><input type="checkbox"><span>Mappe offline scaricate: Peloponneso e Attica</span></label></li>
+      <li><label><input type="checkbox"><span>Questa guida salvata sul telefono</span></label></li>
+      <li><label><input type="checkbox"><span>Cuffie e caricatore per l'attrezzatura di lavoro</span></label></li>
+    </ul>
+    <h4 style="margin-top:14px">Abbigliamento (5 giorni + lavoro)</h4>
+    <ul class="check" data-g="cloth">
+      <li><label><input type="checkbox"><span>Scarpe da camminata con suola che tiene <span class="sub">Micene, Palamidi e Acropoli sono marmo e ghiaia lucidi</span></span></label></li>
+      <li><label><input type="checkbox"><span>Sandali o scarpe leggere per la sera</span></label></li>
+      <li><label><input type="checkbox"><span>Costume e telo leggero <span class="sub">Arvanitia, Karathona, Palaia Epidavros</span></span></label></li>
+      <li><label><input type="checkbox"><span>Giacca leggera o pile per Delfi e le sere</span></label></li>
+      <li><label><input type="checkbox"><span>Antipioggia compatto</span></label></li>
+      <li><label><input type="checkbox"><span>Cappello e occhiali da sole</span></label></li>
+      <li><label><input type="checkbox"><span>Una camicia decente per Nafplio e Atene</span></label></li>
+    </ul>
+    <h4 style="margin-top:14px">Varie</h4>
+    <ul class="check" data-g="misc">
+      <li><label><input type="checkbox"><span>Crema solare 30+: a ottobre brucia ancora</span></label></li>
+      <li><label><input type="checkbox"><span>Borraccia (fontanelle nei siti archeologici)</span></label></li>
+      <li><label><input type="checkbox"><span>Zainetto piccolo per i siti</span></label></li>
+      <li><label><input type="checkbox"><span>Farmaci personali, cerotti, antinfiammatorio</span></label></li>
+      <li><label><input type="checkbox"><span>Tappi per le orecchie (hotel in centro a Nafplio)</span></label></li>
+      <li><label><input type="checkbox"><span>Sacchetto per i vestiti da lavare</span></label></li>
+    </ul>
+    <div class="btns"><button class="btn" id="resetChk" type="button">Azzera spunte</button></div>
+  </div>
+</section>
+
+<footer>
+  Tempi di guida e chilometri: stime Google Maps con traffico normale. Prezzi raccolti a settembre 2026, possono cambiare. Meteo: Open-Meteo, aggiornato a ogni apertura del file (serve connessione). Foto e riassunti: Wikipedia, con licenza indicata sulla pagina linkata. Le taverne citate esistono da anni, ma un'occhiata alle recensioni recenti prima di sedersi non guasta.
+</footer>
+</div>
+
+<script>
+/* ---------- DATI ---------- */
+const WMO = {0:["☀️","Sereno"],1:["🌤️","Poco nuvoloso"],2:["⛅","Parzialmente nuvoloso"],3:["☁️","Coperto"],45:["🌫️","Nebbia"],48:["🌫️","Nebbia"],51:["🌦️","Pioviggine"],53:["🌦️","Pioviggine"],55:["🌧️","Pioviggine"],61:["🌧️","Pioggia debole"],63:["🌧️","Pioggia"],65:["🌧️","Pioggia forte"],80:["🌦️","Rovesci"],81:["🌧️","Rovesci"],82:["⛈️","Rovesci forti"],95:["⛈️","Temporale"],96:["⛈️","Temporale con grandine"],99:["⛈️","Temporale con grandine"]};
+const wmo = c => WMO[c] || ["🌡️","—"];
+
+const PLACES = {
+  itea:{name:"Itea",lat:38.4336,lng:22.4247},
+  delfi:{name:"Delfi",lat:38.4824,lng:22.5010},
+  olimpia:{name:"Olimpia",lat:37.6384,lng:21.6300},
+  nafplio:{name:"Nafplio",lat:37.5676,lng:22.8016},
+  atene:{name:"Atene",lat:37.9715,lng:23.7257},
+  sounion:{name:"Sounion",lat:37.6502,lng:24.0246}
+};
+const DAY_PLACE = {"2026-10-07":"itea","2026-10-08":"delfi","2026-10-09":"itea","2026-10-10":"itea","2026-10-11":"itea","2026-10-12":"olimpia","2026-10-13":"nafplio","2026-10-14":"nafplio","2026-10-15":"atene","2026-10-16":"sounion"};
+
+const gm = (q)=>`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+const gdir = (o,d,w)=>`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(o)}&destination=${encodeURIComponent(d)}${w?'&waypoints='+encodeURIComponent(w.join('|')):''}&travelmode=driving`;
+const adir = (o,d)=>`https://maps.apple.com/?saddr=${encodeURIComponent(o)}&daddr=${encodeURIComponent(d)}&dirflg=d`;
+const bk = (city,ci,co)=>`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city)}&checkin=${ci}&checkout=${co}&group_adults=1&no_rooms=1`;
+
+const DAYS = [
+ {id:"d0", place:"itea", stops:[
+   {name:"Delfi", when:"8, 9 o 10 ottobre, ore 8:00", wiki:"Delphi", nav:"Archaeological Site of Delphi",
+    desc:"A 15 minuti da Itea. Il sito apre alle 8: entrando all'apertura sei fuori per le 10, prima dei pullman e in tempo per il training.",
+    info:[["Orario","8:00–18:30 (dal 16/10 fino alle 18:00)"],["Biglietto","€20, sito e museo insieme"],["Durata","2 ore, 3 con il museo"]],
+    see:[["Santuario di Apollo","la Via Sacra, i tesori e il tempio dell'oracolo"],["Museo","l'Auriga di bronzo, la Sfinge dei Nassi, l'Omphalos"],["Tholos di Atena Pronaia","sotto la strada, gratis, il cerchio di colonne più fotografato"],["Stadio","in cima, 10 minuti di salita, quasi sempre vuoto"]],
+    tip:"Sotto il sito, la fonte Castalia è chiusa per caduta massi da anni: non perderci tempo.",
+    links:[["Sito ufficiale","http://odysseus.culture.gr/h/3/eh351.jsp?obj_id=2507"]]},
+   {name:"Galaxidi", when:"una sera libera", wiki:"Galaxidi", nav:"Galaxidi",
+    desc:"20 minuti da Itea lungo la costa. Il paese dei capitani: case neoclassiche su due porticcioli, il posto giusto per una cena tranquilla.",
+    see:[["Porto di Agora","taverne di pesce sul molo, tramonto sul Parnaso"],["Museo Nautico","piccolo, racconta la flotta velica dell'Ottocento"],["Bosco di Pefkakia","pineta sul mare di fronte al paese, per una passeggiata"]],
+    eat:"O Bebelis per cucina casalinga, Ta Delfinia sul porto per il pesce."},
+   {name:"Arachova", when:"in alternativa a Galaxidi", wiki:"Arachova", nav:"Arachova",
+    desc:"Il borgo di montagna sopra Delfi, a 25 minuti. D'inverno è la Cortina dei greci; a ottobre è tranquillo, con vista sulla valle degli ulivi fino a Itea.",
+    see:[["Torre dell'orologio","sulla roccia sopra il paese"],["Formaela","il formaggio locale, servito alla griglia"]]}
+ ]},
+ {id:"d1", d:"Lun 12", title:"Itea → Nafpaktos → Olimpia", place:"olimpia", night:"Olimpia",
+  legs:[["Itea","Nafpaktos",80,"1 h 10"],["Nafpaktos","Olimpia",130,"1 h 50"]],
+  routeNote:"Costiera del golfo fino a Nafpaktos, ponte di Rio (€15,90), poi la nuova autostrada verso Pyrgos e Olimpia. Partenza alle 9, a Olimpia per pranzo.",
+  origin:"Itea,Greece", dest:"Archaeological Site of Olympia", way:["Nafpaktos old port"],
+  stops:[
+   {name:"Nafpaktos", when:"10:15, sosta di 45 minuti", wiki:"Nafpaktos", nav:"Nafpaktos old port",
+    desc:"Il porticciolo veneziano più piccolo e più bello della Grecia, chiuso da due torri. Qui nel 1571 si combatté la battaglia di Lepanto: c'è anche la statua di Cervantes, che ci perse l'uso della mano.",
+    see:[["Il porto rotondo","caffè sotto le mura, giro a piedi in 10 minuti"],["Castello","cinque cinte di mura fino alla cima; in auto quasi fino su, vista sul ponte"]],
+    eat:"Caffè al porto: qualunque tavolino con vista sulle torri.",
+    tip:"Parcheggia lungo la spiaggia di Gribovo, a 3 minuti a piedi dal porto."},
+   {name:"Ponte di Rio–Antirrio", when:"11:10, 3 minuti", wiki:"Rio–Antirrio Bridge", nav:"Rio-Antirrio Bridge",
+    desc:"2,9 km di strallato che uniscono la Grecia continentale al Peloponneso, inaugurato la vigilia delle Olimpiadi 2004. Pedaggio prima del ponte, contanti o carta.",
+    info:[["Pedaggio","€15,90 auto, solo andata"]],
+    tip:"Se vuoi la foto, fermati prima del casello sul lato di Antirrio: c'è un piazzale con vista sui piloni."},
+   {name:"Olimpia antica", when:"dalle 14:00, sito e museo", wiki:"Olympia, Greece", nav:"Archaeological Site of Olympia",
+    desc:"Il santuario di Zeus dove per undici secoli si corsero i Giochi. Il sito è in un boschetto di pini e platani, piatto e ombreggiato: piacevole anche nel primo pomeriggio.",
+    info:[["Orario","8:00–18:30"],["Biglietto","€20, vale per sito e museo"],["Durata","2 ore sito + 1 ora museo"]],
+    see:[["Stadio","entri dalla volta della crypte, la linea di partenza in marmo è ancora lì"],["Tempio di Zeus","i rocchi di colonna caduti come domino dal terremoto del VI secolo"],["Officina di Fidia","dove fu scolpito lo Zeus crisoelefantino, una delle sette meraviglie"],["Museo Archeologico","l'Hermes di Prassitele, i frontoni del tempio di Zeus, la Nike di Peonio"],["Museo dei Giochi antichi","in paese, piccolo e gratuito: come funzionavano davvero le gare"]],
+    tip:"Prima il sito con la luce alta, poi il museo verso le 16:30 quando il caldo cala e i gruppi se ne vanno. Palestra e Philippeion sono nella parte ovest, non saltarle.",
+    links:[["Sito ufficiale","http://odysseus.culture.gr/h/3/eh351.jsp?obj_id=2358"],["Museo","http://odysseus.culture.gr/h/1/eh151.jsp?obj_id=7124"]],
+    eat:"Cena alla taverna Bacchus ad Ancient Pissa, 3 km sopra il paese, terrazza sulla valle dell'Alfeo; in paese Aegean o Garden Taverna."}
+  ],
+  sleep:{city:"Olimpia", ci:"2026-10-12", co:"2026-10-13", txt:"Il paese moderno è una via di negozi, si dorme per stare vicino al sito. Hotel Europa in collina con piscina e vista, oppure Hotel Pelops o Kronio in centro, semplici e onesti. Se preferisci la campagna: Bacchus ad Ancient Pissa ha anche le camere."}},
+
+ {id:"d2", d:"Mar 13", title:"Olimpia → Nafplio, attraverso l'Arcadia", place:"nafplio", night:"Nafplio",
+  legs:[["Olimpia","Nafplio",200,"3 h"]],
+  routeNote:"Strada interna via Tripoli: E55 fino a Pyrgos, poi la statale che sale a Langadia e Vytina e scende a Tripoli, autostrada A7 e uscita per Argo/Nafplio. Curve e panorami, niente pedaggi fino a Tripoli. Pieno di benzina a Olimpia prima di partire.",
+  origin:"Archaeological Site of Olympia", dest:"Nafplio,Greece", way:["Langadia,Greece"],
+  stops:[
+   {name:"Langadia", when:"11:00, sosta caffè", wiki:"Langadia", nav:"Langadia Arcadia",
+    desc:"Villaggio di scalpellini aggrappato a un versante verticale sopra la gola del Lousios: le case sembrano una sopra l'altra. Sosta di 20 minuti, caffè greco alla piazza e foto dalla strada.",
+    tip:"Se hai un'ora in più, la deviazione per Dimitsana e il monastero di Prodromou, murato nella roccia della gola, è la cosa più bella dell'Arcadia."},
+   {name:"Nafplio", when:"arrivo verso le 14:30", wiki:"Nafplio", nav:"Nafplio old town",
+    desc:"Prima capitale della Grecia moderna, veneziana nei palazzi e nelle fortezze, con il mare da tre lati. È la città dove gli ateniesi vanno il weekend per sentirsi in vacanza.",
+    see:[["Palamidi","la fortezza veneziana in cima: 999 gradini dalla città oppure 5 minuti in auto dal retro; biglietto €8, aperta fino alle 18:30, vacci alle 17 per la luce"],["Piazza Syntagma","il salotto della città, con la moschea veneziana e il museo archeologico"],["Bourtzi","il fortino sull'isolotto; barchetta dal molo, 10 minuti, €5 circa"],["Passeggiata di Arvanitia","il sentiero sotto le mura di Acronauplia fino alla spiaggetta: bagno alle 16 con il sole ancora alto"],["Vie del centro","Staikopoulou e Vasileos Konstantinou per bottegucce e komboloi"]],
+    tip:"Auto nel parcheggio grande del porto, gratuito, poi non la tocchi più fino a mercoledì. La Antica Gelateria di Roma in via Farmakopoulon è di due italiani e fa il gelato migliore della Grecia: fidati.",
+    eat:"Ta Fanaria (cucina tradizionale in una via a scale), Alaloum in piazza, Kakanarakis 1986 per piatti dell'Argolide. Aperitivo con vista al bar sotto Palamidi, nella zona di Arvanitia."}
+  ],
+  sleep:{city:"Nafplio", ci:"2026-10-13", co:"2026-10-15", txt:"Due notti nel centro storico, a piedi da tutto. Amfitriti Palazzo e Pension Marianna (con la famosa colazione in terrazza) sono sotto Acronauplia; 3Sixty e Ippoliti sono più eleganti; Aetoma è in una piazzetta silenziosa. Prenota ora: nei weekend d'autunno la città è piena, e il martedì e mercoledì si trova ancora posto ma non a lungo."}},
+
+ {id:"d3", d:"Mer 14", title:"Micene ed Epidauro, anello dell'Argolide", place:"nafplio", night:"Nafplio",
+  legs:[["Nafplio","Micene",25,"30 min"],["Micene","Epidauro",50,"50 min"],["Epidauro","Nafplio",35,"40 min"]],
+  routeNote:"Anello di 110 km in tutto. Partenza alle 8:30 per essere a Micene all'apertura, poi Epidauro, pranzo a mare a Palaia Epidavros, rientro per il bagno e il tramonto.",
+  origin:"Nafplio,Greece", dest:"Nafplio,Greece", way:["Archaeological Site of Mycenae","Ancient Theatre of Epidaurus","Palaia Epidavros"],
+  stops:[
+   {name:"Micene", when:"9:00–11:00", wiki:"Mycenae", nav:"Archaeological Site of Mycenae",
+    desc:"La cittadella di Agamennone, 1.300 anni prima di Cristo. Mura ciclopiche, la Porta dei Leoni e le tombe a cupola che Schliemann scavò nel 1876 convinto di trovare gli eroi di Omero.",
+    info:[["Orario","8:00–18:30"],["Biglietto","€12–20, comprende sito, Tesoro di Atreo e museo"],["Durata","2 ore"]],
+    see:[["Porta dei Leoni","la più antica scultura monumentale d'Europa, sopra l'architrave"],["Cerchio delle tombe A","dove fu trovata la maschera d'oro che vedrai ad Atene venerdì"],["Cisterna sotterranea","scala nel buio nell'angolo nord-est: porta la torcia del telefono"],["Tesoro di Atreo","la tholos alta 13 metri, 400 m prima del sito lungo la strada: fermati con l'auto"],["Museo","piccolo e ben fatto, appena sotto la cittadella"]],
+    tip:"La salita è su pietra liscia: scarpe con suola che tiene. Alle 9 sei quasi solo, alle 11 arrivano i pullman da Atene.",
+    links:[["Sito ufficiale","http://odysseus.culture.gr/h/3/eh355.jsp?obj_id=2573"]]},
+   {name:"Epidauro", when:"12:00–13:30", wiki:"Ancient Theatre of Epidaurus", nav:"Ancient Theatre of Epidaurus",
+    desc:"Il teatro meglio conservato dell'antichità, IV secolo a.C., 14.000 posti e un'acustica che non è leggenda: dal centro dell'orchestra un fiammifero acceso si sente in ultima fila. Intorno, il santuario di Asclepio, il grande ospedale del mondo antico.",
+    info:[["Orario","8:00–18:30"],["Biglietto","€12–20, teatro, santuario e museo"],["Durata","1 ora e mezza"]],
+    see:[["Teatro","sali in cima, poi fai parlare qualcuno dal centro"],["Santuario di Asclepio","la tholos, l'abaton dove i malati dormivano aspettando il dio in sogno, lo stadio"],["Museo","statue e strumenti chirurgici del santuario"]],
+    tip:"Nel parcheggio ci sono i pini d'Aleppo più fotografati della Grecia. Il museo lo puoi anche saltare se hai fame.",
+    links:[["Sito ufficiale","http://odysseus.culture.gr/h/3/eh355.jsp?obj_id=2374"]]},
+   {name:"Palaia Epidavros", when:"pranzo, 14:00", wiki:"Palaia Epidavros", nav:"Palaia Epidavros",
+    desc:"Il porticciolo dell'antica Epidauro, 15 minuti sotto il sito: taverne di pesce sull'acqua e una spiaggia con il piccolo teatro antico accanto agli aranceti. Il posto dove il giro rallenta.",
+    see:[["Pranzo a mare","pesce alla griglia e insalata, con i piedi quasi in acqua"],["Piccolo teatro","300 m dal porto, tra gli aranceti, spesso gratuito e vuoto"],["Città sommersa","a Kalymnios, 1 km a nord, resti romani a 2 m di profondità: maschera e snorkel"]],
+    eat:"Mouria, sul lungomare, da tre generazioni; in alternativa Gialasi."},
+   {name:"Nafplio, sera", when:"dalle 17:00", wiki:"Palamidi", nav:"Palamidi Fortress",
+    desc:"Rientro per le 17, bagno ad Arvanitia se ancora non l'hai fatto, poi Palamidi per il tramonto (in auto fino al parcheggio in cima, ultimo ingresso 18:10). Cena in centro.",
+    tip:"Dal bastione di Agios Andreas si vede tutto il golfo argolico fino a Astros. Alle 18:45 il sole scende dietro le montagne dell'Arcadia.",
+    eat:"Stasera qualcosa di diverso: Pidalio per il pesce, o Vasilis in via Staikopoulou, storico e senza fronzoli."}
+  ],
+  sleep:{city:"Nafplio", ci:"2026-10-13", co:"2026-10-15", txt:"Stessa camera di ieri."}},
+
+ {id:"d4", d:"Gio 15", title:"Nafplio → Corinto → Atene", place:"atene", night:"Atene",
+  legs:[["Nafplio","Canale di Corinto",65,"55 min"],["Canale di Corinto","Atene",85,"1 h 15"]],
+  routeNote:"Autostrada A7 fino a Corinto, sosta al canale, poi A8 Olympia Odos e Attiki Odos fino in città. Pedaggi ~€10 in tutto. Partenza alle 9:30 da Nafplio, ad Atene per pranzo, Acropoli nel pomeriggio.",
+  origin:"Nafplio,Greece", dest:"Acropolis Museum", way:["Corinth Canal"],
+  stops:[
+   {name:"Canale di Corinto", when:"10:30, 20 minuti", wiki:"Corinth Canal", nav:"Corinth Canal",
+    desc:"6,3 km di taglio dritto nella roccia, 80 metri di pareti a picco, aperto nel 1893. Ci si ferma sul ponte della vecchia statale per guardare giù.",
+    see:[["Ponte di Isthmia","il punto panoramico classico, con i caffè lato Peloponneso"],["Ponte sommergibile","a Isthmia, sul mare: si abbassa per far passare le barche"]],
+    tip:"Se sei in anticipo: Corinto antica e il tempio di Apollo sono a 15 minuti (biglietto €8), ma con l'Acropoli nel pomeriggio io li salterei."},
+   {name:"Acropoli", when:"dalle 15:00, prenotazione a fascia oraria", wiki:"Acropolis of Athens", nav:"Acropolis of Athens",
+    desc:"Arrivi in hotel, lasci l'auto e sali a piedi da Dionysiou Areopagitou. Il pomeriggio è il momento buono: i gruppi delle crociere sono già scesi e la luce è laterale.",
+    info:[["Orario","8:00–18:30, ultimo ingresso 18:00"],["Biglietto","€30, prenota su hhticket.gr"],["Durata","2 ore"]],
+    see:[["Propilei e tempio di Atena Nike","l'ingresso monumentale"],["Partenone","da poco senza impalcature sul lato nord"],["Eretteo","la loggia delle Cariatidi (copie: le vere sono al museo)"],["Pendio sud","teatro di Dioniso e Odeon di Erode Attico, in discesa"],["Areopago","la roccia davanti all'ingresso, gratis, per la vista sull'Agorà al tramonto"]],
+    tip:"Entra dall'ingresso principale e scendi da quello del teatro di Dioniso: ti trovi a 200 m dal museo. Il tramonto sull'Acropoli è alle 18:45: dall'Areopago o dalla collina di Filopappo, non da dentro (chiude prima).",
+    links:[["Biglietti ufficiali","https://hhticket.gr/"],["Sito ufficiale","http://odysseus.culture.gr/h/3/eh351.jsp?obj_id=2384"]]},
+   {name:"Museo dell'Acropoli", when:"17:30–20:00", wiki:"Acropolis Museum", nav:"Acropolis Museum",
+    desc:"Il giovedì e il venerdì è aperto fino alle 20 (verifica): perfetto dopo il sito. Le Cariatidi vere al primo piano e la sala del Partenone all'ultimo, con il fregio orientato come sul tempio e la vista sull'originale.",
+    info:[["Orario","fino alle 20:00 gio–ven, verifica"],["Biglietto","€20"]],
+    tip:"Il ristorante del museo, sulla terrazza del secondo piano, è sorprendentemente buono e con vista sul Partenone illuminato.",
+    links:[["Sito ufficiale","https://www.theacropolismuseum.gr/en"]],
+    eat:"Cena a Koukaki, il quartiere dietro il museo: Mani Mani per la cucina del Peloponneso rivisitata, Fabrika tou Efrosinou per una taverna moderna. Con vista sul Partenone: Strofi, prenota."}
+  ],
+  sleep:{city:"Athens", ci:"2026-10-15", co:"2026-10-16", txt:"Dormi a Koukaki o Makrygianni, sotto il museo: parcheggio in hotel indispensabile, quindi filtra per 'parking'. Herodion e Acropolis Hill sono le scelte classiche; Coco-Mat Athens BC ha il rooftop sul Partenone. Un hotel con garage ti evita la caccia al posto, che ad Atene è un lavoro."}},
+
+ {id:"d5", d:"Ven 16", title:"Atene → Sounion → aeroporto", place:"sounion", night:"Hotel aeroporto",
+  legs:[["Atene centro","Capo Sounion",70,"1 h 15"],["Capo Sounion","Aeroporto",45,"45 min"]],
+  routeNote:"Mattina a piedi in centro. Alle 15:30 si prende l'auto e si scende per la litoranea (Leoforos Poseidonos) lungo la Costa di Apollo fino al capo. Dopo il tramonto, 45 minuti di strada interna fino all'aeroporto per la riconsegna.",
+  origin:"Acropolis Museum", dest:"Athens International Airport", way:["Temple of Poseidon, Sounion"],
+  stops:[
+   {name:"Agorà antica e Plaka", when:"9:00–12:00", wiki:"Ancient Agora of Athens", nav:"Ancient Agora of Athens",
+    desc:"Il centro civile di Atene classica: il tempio di Efesto è il meglio conservato di tutta la Grecia, la Stoà di Attalo ricostruita ospita il museo. Poi su per Anafiotika, il villaggio cicladico nascosto sotto la roccia dell'Acropoli.",
+    info:[["Orario","8:00–18:00"],["Biglietto","€10"]],
+    see:[["Tempio di Efesto","intatto perché fu chiesa per 1.300 anni"],["Stoà di Attalo","il museo dell'Agorà, con il kleroterion per sorteggiare i giudici"],["Anafiotika","le casette bianche costruite dai muratori di Anafi nell'Ottocento"],["Cambio della guardia","a Syntagma, allo scoccare di ogni ora; alle 11 della domenica è la versione grande, il venerdì è quella piccola"]],
+    eat:"Pranzo veloce: Kostas in piazza Agia Irini per il souvlaki (fino a esaurimento, verso le 14), o Ta Karamanlidika tou Fani vicino al mercato per salumi e mezedes."},
+   {name:"Museo Archeologico Nazionale", when:"12:30–14:30, facoltativo", wiki:"National Archaeological Museum, Athens", nav:"National Archaeological Museum Athens",
+    desc:"Il più grande museo di antichità greche del mondo. Tre cose valgono il viaggio da sole: la maschera d'oro di Micene (quella vera, dopo averne visto il buco a Micene), il Poseidone di bronzo di capo Artemisio e il meccanismo di Antikythera.",
+    info:[["Orario","8:00–20:00 (verifica)"],["Biglietto","€12"],["Come","metro linea 1 fino a Victoria, o taxi 10 minuti"]],
+    tip:"Se sei stanco di pietre, saltalo e passa l'ora al Licabetto in funicolare. Ma la maschera di Agamennone chiude il cerchio aperto mercoledì.",
+    links:[["Sito ufficiale","https://www.namuseum.gr/en/"]]},
+   {name:"Capo Sounion", when:"17:00–19:00", wiki:"Cape Sounion", nav:"Temple of Poseidon Sounion",
+    desc:"Il tempio di Poseidone sull'ultima punta dell'Attica, dove Egeo si gettò in mare credendo morto Teseo. Il tramonto del 16 ottobre è alle 18:43: il sole scende in mare tra le colonne.",
+    info:[["Orario","9:30 fino al tramonto (verifica: dal 16/10 alcune fonti dicono 18:00)"],["Biglietto","€10"]],
+    see:[["Il tempio","cerca la firma di Byron su una colonna, lato nord"],["La scogliera","i punti migliori per la foto sono fuori dal recinto, verso ovest, gratis e aperti"],["Spiaggia sotto il capo","un ultimo bagno alle 16:30 se il mare è calmo"]],
+    tip:"Se il sito chiude alle 18:00 il giorno 16, entra alle 17:00 per vedere il tempio da vicino e guarda il tramonto dal promontorio accanto, che è libero. Fai benzina prima: la stazione vicina all'aeroporto per il pieno di riconsegna è a Markopoulo.",
+    eat:"Cena veloce alla taverna Syrtaki, sulla strada 500 m prima del tempio, con vista; poi in aeroporto."},
+   {name:"Aeroporto e notte", when:"dalle 20:30", wiki:"Athens International Airport", nav:"Athens International Airport car rental return",
+    desc:"Riconsegna dell'auto seguendo i cartelli 'Car rental return', 5 minuti a piedi dal terminal. Notte in hotel, sveglia alle 4:00, check-in alle 4:30, volo LH alle 6:25.",
+    tip:"Fotografa l'auto e il contachilometri alla riconsegna e conserva la ricevuta del pieno.",
+    links:[["Aeroporto di Atene","https://www.aia.gr/traveler/"]]}
+  ],
+  sleep:{city:"Athens Airport", ci:"2026-10-16", co:"2026-10-17", txt:"Sofitel Athens Airport, di fronte al terminal: la scelta senza pensieri. Alternative a metà prezzo con navetta a Spata e Markopoulo, 10 minuti: chiedi conferma che la navetta giri alle 4."}}
+];
+
+/* ---------- RENDER ---------- */
+function stopCard(s){
+  const info = s.info ? `<dl class="info">${s.info.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : '';
+  const see = s.see ? `<ul class="see">${s.see.map(([a,b])=>`<li><b>${a}</b> — ${b}</li>`).join('')}</ul>` : '';
+  const links = (s.links||[]).map(([t,u])=>`<a class="btn" target="_blank" rel="noopener" href="${u}">${t}</a>`).join('');
+  return `<article class="stop" data-wiki="${encodeURIComponent(s.wiki)}">
+    <div class="ph"><img alt="" loading="lazy"><div class="cap"></div></div>
+    <div class="body">
+      <div class="top"><h3>${s.name}</h3><span class="when">${s.when}</span></div>
+      <p class="desc">${s.desc}</p>
+      ${info}${see}
+      ${s.tip?`<p class="tip">${s.tip}</p>`:''}
+      ${s.eat?`<div class="eat"><b>Dove mangiare.</b> ${s.eat}</div>`:''}
+      <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="${gm(s.nav)}">Naviga con Google Maps</a><a class="btn" target="_blank" rel="noopener" href="https://maps.apple.com/?q=${encodeURIComponent(s.nav)}">Apple Maps</a><a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/${encodeURIComponent(s.wiki)}">Wikipedia</a>${links}</div>
+    </div></article>`;
+}
+function renderDay(D){
+  const el = document.getElementById('p-'+D.id);
+  if(D.id==='d0'){ document.getElementById('stops-d0').innerHTML = D.stops.map(stopCard).join(''); return; }
+  const km = D.legs.reduce((a,l)=>a+l[2],0);
+  const legs = D.legs.map((l,i)=>`${i===0?l[0]:''}<span class="arrow">→</span>${l[1]} <span class="muted" style="font-weight:400">(${l[2]} km · ${l[3]})</span>`).join('');
+  el.innerHTML = `
+    <div class="dayhead"><div><div class="d">${D.d}</div><div class="r">${D.title}</div></div><span class="tag">Notte a ${D.night}</span></div>
+    <div class="route">
+      <div class="legs">${legs}</div>
+      <div class="sum">${km} km in tutto · ${D.routeNote}</div>
+      <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="${gdir(D.origin,D.dest,D.way)}">Naviga la giornata</a><a class="btn" target="_blank" rel="noopener" href="${adir(D.origin,D.dest)}">Apple Maps</a></div>
+    </div>
+    <div class="card"><h3>Meteo a ${PLACES[D.place].name}</h3><div class="wx" id="wx-${D.id}"><div class="muted">Caricamento…</div></div></div>
+    ${D.stops.map(stopCard).join('')}
+    <div class="sleep"><h3>Dove dormire · ${D.sleep.city}</h3><p>${D.sleep.txt}</p>
+      <div class="btns"><a class="btn olive" target="_blank" rel="noopener" href="${bk(D.sleep.city,D.sleep.ci,D.sleep.co)}">Cerca su Booking (${D.sleep.ci.slice(5).replace('-','/')} → ${D.sleep.co.slice(5).replace('-','/')})</a><a class="btn olive" target="_blank" rel="noopener" href="${gm('hotels '+D.sleep.city)}">Hotel su Maps</a></div></div>`;
+}
+DAYS.forEach(renderDay);
+
+/* ---------- TABS ---------- */
+const tabs=[...document.querySelectorAll('.tab')];
+function show(p){
+  tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.p===p));
+  document.querySelectorAll('.panel').forEach(s=>s.classList.toggle('on',s.id==='p-'+p));
+  try{localStorage.setItem('pelo-tab',p);}catch(e){}
+  window.scrollTo({top:0});
+}
+tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.p)));
+(function(){
+  const today=new Date().toISOString().slice(0,10);
+  const auto={"2026-10-12":"d1","2026-10-13":"d2","2026-10-14":"d3","2026-10-15":"d4","2026-10-16":"d5"}[today];
+  let p=auto||'over';
+  if(!auto){ try{ const s=localStorage.getItem('pelo-tab'); if(s&&document.getElementById('p-'+s)) p=s; }catch(e){} }
+  show(p);
+})();
+
+/* ---------- FOTO (Wikipedia) ---------- */
+async function wikiSummary(title){
+  const key='wk-'+title;
+  try{ const c=localStorage.getItem(key); if(c) return JSON.parse(c); }catch(e){}
+  const r=await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/'+title,{headers:{'Accept':'application/json'}});
+  if(!r.ok) throw new Error('wiki');
+  const j=await r.json();
+  const out={img:(j.originalimage&&j.originalimage.source)||(j.thumbnail&&j.thumbnail.source)||null,url:j.content_urls?j.content_urls.mobile.page:null};
+  try{ localStorage.setItem(key,JSON.stringify(out)); }catch(e){}
+  return out;
+}
+document.querySelectorAll('.stop[data-wiki]').forEach(async el=>{
+  try{
+    const s=await wikiSummary(el.dataset.wiki);
+    const img=el.querySelector('img'), cap=el.querySelector('.cap');
+    if(s.img){ img.src=s.img; cap.innerHTML=`Foto: <a target="_blank" rel="noopener" href="${s.url||'#'}">Wikipedia / Wikimedia Commons</a>`; }
+    else el.querySelector('.ph').remove();
+  }catch(e){ const ph=el.querySelector('.ph'); if(ph) ph.remove(); }
+});
+
+/* ---------- METEO (Open-Meteo) ---------- */
+const WX_CACHE={};
+async function forecast(pid){
+  if(WX_CACHE[pid]) return WX_CACHE[pid];
+  const p=PLACES[pid];
+  const u=`https://api.open-meteo.com/v1/forecast?latitude=${p.lat}&longitude=${p.lng}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max,sunset&current=temperature_2m,weather_code,wind_speed_10m&timezone=Europe%2FAthens&forecast_days=16`;
+  const r=await fetch(u); if(!r.ok) throw new Error('wx'); const j=await r.json();
+  WX_CACHE[pid]=j; return j;
+}
+const itDate=iso=>{const d=new Date(iso+'T12:00:00');return d.toLocaleDateString('it-IT',{weekday:'short',day:'numeric',month:'short'});};
+async function renderWx(D){
+  const box=document.getElementById('wx-'+D.id); if(!box) return;
+  try{
+    const j=await forecast(D.place);
+    const today=new Date().toISOString().slice(0,10);
+    const cards=j.daily.time.map((t,i)=>{
+      const [ico,lab]=wmo(j.daily.weather_code[i]);
+      return `<div class="c${t===today?' today':''}"><div class="s">${itDate(t)}</div><div class="i">${ico}</div><div class="t">${Math.round(j.daily.temperature_2m_max[i])}°</div><div class="s">min ${Math.round(j.daily.temperature_2m_min[i])}° · 🌧 ${j.daily.precipitation_probability_max[i]??0}%</div><div class="s">${lab}</div><div class="s">vento ${Math.round(j.daily.wind_speed_10m_max[i])} km/h · tramonto ${j.daily.sunset[i].slice(11)}</div></div>`;
+    }).join('');
+    const last=j.daily.time[j.daily.time.length-1];
+    const note = last<'2026-10-16' ? `<p class="muted" style="margin-top:8px">Previsioni disponibili fino al ${itDate(last)}: quelle per i giorni del viaggio compaiono da inizio ottobre. Media di metà ottobre a ${PLACES[D.place].name}: 22–25 °C di giorno, 13–16 di notte.</p>` : '';
+    box.outerHTML=`<div class="wx">${cards}</div>${note}`;
+  }catch(e){ box.innerHTML='<p class="muted">Meteo non disponibile senza connessione. Metà ottobre: 22–25 °C di giorno, 13–16 di notte, qualche rovescio possibile.</p>'; }
+}
+DAYS.filter(d=>d.id!=='d0').forEach(renderWx);
+(async()=>{
+  const today=new Date().toISOString().slice(0,10);
+  const pid=DAY_PLACE[today]||(today<'2026-10-07'?'itea':'atene');
+  try{
+    const j=await forecast(pid); const [ico,lab]=wmo(j.current.weather_code);
+    document.querySelector('#now .ico').textContent=ico;
+    document.getElementById('nowT').textContent=Math.round(j.current.temperature_2m)+'°';
+    document.getElementById('nowTxt').innerHTML=`<b>${PLACES[pid].name}, adesso.</b> ${lab}, vento ${Math.round(j.current.wind_speed_10m)} km/h · oggi max ${Math.round(j.daily.temperature_2m_max[0])}°, pioggia ${j.daily.precipitation_probability_max[0]??0}% · tramonto ${j.daily.sunset[0].slice(11)}`;
+  }catch(e){ document.getElementById('nowTxt').textContent='Meteo non disponibile: serve una connessione.'; document.getElementById('nowT').textContent='–'; }
+})();
+
+/* ---------- CHECKLIST ---------- */
+const boxes=[...document.querySelectorAll('.check input')];
+let saved={}; try{ saved=JSON.parse(localStorage.getItem('pelo-chk')||'{}'); }catch(e){}
+boxes.forEach((b,i)=>{ b.checked=!!saved[i]; b.addEventListener('change',()=>{ saved[i]=b.checked; try{localStorage.setItem('pelo-chk',JSON.stringify(saved));}catch(e){} prog(); }); });
+function prog(){ const n=boxes.filter(b=>b.checked).length; document.getElementById('prog').style.width=(100*n/boxes.length)+'%'; }
+prog();
+document.getElementById('resetChk').addEventListener('click',()=>{ boxes.forEach(b=>b.checked=false); saved={}; try{localStorage.removeItem('pelo-chk');}catch(e){} prog(); });
+
+/* ---------- PWA ---------- */
+if('serviceWorker' in navigator){ window.addEventListener('load',()=>{ navigator.serviceWorker.register('./sw.js').catch(()=>{}); }); }
+</script>
+</body>
+</html>
