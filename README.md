@@ -20,6 +20,6 @@ Online su **https://ulissem.github.io/grecia-2026/**
 - Android: Chrome → ⋮ → *Installa app*
 
 ## Aggiornare
-Sostituisci il file modificato nel repo e in `sw.js` cambia `grecia-2026-v10` in `v11`, `v12`…: le app installate scaricano la nuova versione alla riapertura.
+Sostituisci il file modificato nel repo e in `sw.js` cambia `grecia-2026-v11` in `v12`, `v13`…: le app installate scaricano la nuova versione alla riapertura.
 
 Dati: meteo Open-Meteo, percorso OSRM, mappa Esri, foto Wikipedia.

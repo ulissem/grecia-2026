@@ -160,6 +160,28 @@ window.GUIDE_EN = {
     { group: "At the hotel", items: [["Έχω κράτηση", "écho krátisi", "I have a reservation"], ["Έχετε πάρκινγκ;", "échete párking?", "do you have parking?"], ["Ο κωδικός του Wi-Fi;", "o kodikós tu wi-fi?", "the Wi-Fi password?"], ["Τι ώρα είναι το πρωινό;", "ti óra íne to proinó?", "what time is breakfast?"], ["Μπορώ να πληρώσω τώρα;", "boró na pliróso tóra?", "can I pay now?"], ["Ένα ταξί για τις 4, παρακαλώ", "éna taxí ya tis tésseris, parakaló", "a taxi for 4 o'clock, please"]] },
     { group: "Numbers and emergencies", items: [["1 2 3 4 5", "éna, dío, tría, téssera, pénde", ""], ["6 7 8 9 10", "éxi, eftá, ochtó, enniá, déka", ""], ["20 / 50 / 100", "íkosi / penínda / ekató", ""], ["Βοήθεια!", "voíthia!", "help!"], ["Χρειάζομαι γιατρό", "chriázome yatró", "I need a doctor"], ["Φαρμακείο", "farmakío", "pharmacy"], ["Πού είναι η τουαλέτα;", "pu íne i tualéta?", "where is the toilet?"]] }
   ],
+  essentials: [
+    ["Country", "Greece: European Union, Schengen area, euro. No passport control arriving from Frankfurt, no currency exchange, no converter needed: prices are in euro as at home."],
+    ["Documents", "An ID card is enough. A valid German or Italian driving licence, no international permit. European health insurance card for doctors and hospitals."],
+    ["Phone", "EU roaming: calls, texts and data from your German plan work in Greece at no extra cost (just check any data cap). No eSIM needed. Good 4G/5G coverage except mountain stretches in Arcadia."],
+    ["Sockets", "Type C and F, 230 V 50 Hz: identical to Germany and Italy. No adapter."],
+    ["Money", "Cards accepted almost everywhere, but cash for tolls, village tavernas, kiosks and the Bourtzi boat. Use Greek bank ATMs (Alpha, Piraeus, NBG, Eurobank), not the yellow Euronet ones that charge €3–4 per withdrawal. If a card terminal asks 'pay in EUR or your currency', always choose EUR."],
+    ["Tipping", "Not compulsory: round up or leave 5–10 % in a taverna, a few coins at a café, round up for taxis."],
+    ["Hours", "Shops 9–14 and 17:30–21 (Tue, Thu, Fri), mornings only Mon, Wed, Sat; many closed on Sunday. Supermarkets open through until 21. Periptera (kiosks) sell water, cigarettes and top-ups almost round the clock."],
+    ["Time", "UTC+3 until 25 October: one hour ahead of Germany and Italy. Sunrise around 7:30, sunset around 18:45."],
+    ["Water", "Tap water is fine in Athens; in the provinces prefer bottled. The half-litre bottle has a capped price of €0.50 at kiosks."],
+    ["Toilets", "In many tavernas and homes toilet paper goes in the bin, not the bowl: the pipes are narrow. There's always a sign."],
+    ["Sun and sea", "UV index still 5–6 at midday: sunscreen and hat. Sea at 22–23 °C, jellyfish rare in October."],
+    ["Pharmacies", "Green cross, well stocked, pharmacists advise and speak English. Duty rota: the list is on the door."],
+    ["Safety", "Greece is very safe. In Athens mind your wallet on the metro (line 3 to the airport) and around Monastiraki. Car: leave nothing visible."],
+    ["Driving", "Drive on the right, seat belts compulsory, alcohol limit 0.5 (0.2 for new drivers). Greeks flash their lights to say 'you go'."],
+    ["Gestures", "The Greek 'yes' is a slight nod down; the 'no' is the chin up with a small click: it looks like a yes. And an open palm towards someone (moutza) is an insult: no high-fives in the street."],
+    ["Holidays and strikes", "No national holiday on your dates (28 October is after). Transport strikes are frequent and announced a few days ahead: Ekathimerini in the useful links."],
+    ["Smoking", "Banned indoors, in practice tolerated outdoors and in many tavernas. Terraces are for smokers."]
+  ],
+  signs: [["ΕΙΣΟΔΟΣ", "ísodos", "entrance"], ["ΕΞΟΔΟΣ", "éxodos", "exit"], ["ΑΝΟΙΚΤΟ / ΚΛΕΙΣΤΟ", "anichtó / klistó", "open / closed"], ["ΚΕΝΤΡΟ", "kéndro", "centre"], ["ΠΑΡΑΛΙΑ", "paralía", "beach"], ["ΛΙΜΑΝΙ", "limáni", "harbour"], ["ΑΕΡΟΔΡΟΜΙΟ", "aerodrómio", "airport"], ["ΔΙΟΔΙΑ", "diódia", "toll"], ["ΒΕΝΖΙΝΑΔΙΚΟ", "venzinádiko", "petrol station"], ["ΑΜΟΛΥΒΔΗ", "amólivdi", "unleaded"], ["ΠΑΡΚΙΝΓΚ", "párking", "parking"], ["ΑΠΑΓΟΡΕΥΕΤΑΙ", "apagorévete", "forbidden"], ["ΠΡΟΣΟΧΗ", "prosochí", "caution"], ["ΦΑΡΜΑΚΕΙΟ", "farmakío", "pharmacy"], ["ΝΟΣΟΚΟΜΕΙΟ", "nosokomío", "hospital"], ["ΑΣΤΥΝΟΜΙΑ", "astinomía", "police"], ["ΤΟΥΑΛΕΤΕΣ", "tualétes", "toilets"], ["ΑΝΔΡΩΝ / ΓΥΝΑΙΚΩΝ", "andrón / yinekón", "men / women"], ["ΑΡΧΑΙΟΛΟΓΙΚΟΣ ΧΩΡΟΣ", "archeologikós chóros", "archaeological site"], ["ΜΟΥΣΕΙΟ", "musío", "museum"], ["ΤΑΒΕΡΝΑ / ΨΗΣΤΑΡΙΑ", "tavérna / psistariá", "taverna / grill house"], ["ΖΑΧΑΡΟΠΛΑΣΤΕΙΟ", "zacharoplastío", "pastry shop"], ["ΦΟΥΡΝΟΣ", "fúrnos", "bakery"], ["ΠΕΡΙΠΤΕΡΟ", "períptero", "kiosk"]],
+  alphabet: "Α α a · Β β v · Γ γ gh/y · Δ δ dh · Ε ε e · Ζ ζ z · Η η i · Θ θ th · Ι ι i · Κ κ k · Λ λ l · Μ μ m · Ν ν n · Ξ ξ x · Ο ο o · Π π p · Ρ ρ r · Σ σ/ς s · Τ τ t · Υ υ i · Φ φ f · Χ χ ch · Ψ ψ ps · Ω ω o. Combinations: ΟΥ = u, ΑΙ = e, ΕΙ/ΟΙ = i, ΜΠ = b, ΝΤ = d, ΓΚ = g, ΤΣ = ts.",
+  ui_ess: { e_title: "The country in brief", e_signs: "Signs you'll see", e_alpha: "The alphabet, to read the signs", e_fuel: "Fuel calculator", e_km: "km", e_cons: "l/100 km", e_price: "€/l", e_res: "estimated cost" },
   trip: { start: "2026-10-07", end: "2026-10-17", ferieStart: "2026-10-12" },
   flights: [
     { d: "2026-10-07", t: "13:50 → 17:40", from: "FRA", to: "ATH", n: "Lufthansa, 2 h 50" },

@@ -228,3 +228,16 @@ footer{padding:20px 0 10px;color:var(--ink-3);font-size:13px;line-height:1.5}
 .nd textarea{min-height:64px;resize:vertical;line-height:1.45}
 .nd{margin-bottom:10px}
 input:focus,textarea:focus{outline:2px solid var(--sun);border-color:transparent}
+
+/* essentials */
+.ess{grid-template-columns:110px 1fr;font-size:15px}
+.ess dt{font-weight:600;color:var(--ink)}
+@media (max-width:520px){.ess{grid-template-columns:1fr}.ess dt{margin-top:6px;color:var(--sea)}}
+.fuel{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fuel label{display:block;font-size:12px;color:var(--ink-2)}
+.fuel input{width:100%;margin-top:3px;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.signs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:4px 16px}
+.signs div{padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+.signs b{display:block;font-size:15px;letter-spacing:.04em}
+.signs i{font-style:normal;color:var(--sea);font-weight:600}
+.signs span{color:var(--ink-2)}

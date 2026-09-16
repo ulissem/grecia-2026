@@ -160,6 +160,28 @@ window.GUIDE = {
     { group: "In hotel", items: [["Έχω κράτηση", "écho krátisi", "ho una prenotazione"], ["Έχετε πάρκινγκ;", "échete párking?", "avete un parcheggio?"], ["Ο κωδικός του Wi-Fi;", "o kodikós tu wi-fi?", "la password del Wi-Fi?"], ["Τι ώρα είναι το πρωινό;", "ti óra íne to proinó?", "a che ora è la colazione?"], ["Μπορώ να πληρώσω τώρα;", "boró na pliróso tóra?", "posso pagare adesso?"], ["Ένα ταξί για τις 4, παρακαλώ", "éna taxí ya tis tésseris, parakaló", "un taxi per le 4, per favore"]] },
     { group: "Numeri e urgenze", items: [["1 2 3 4 5", "éna, dío, tría, téssera, pénde", ""], ["6 7 8 9 10", "éxi, eftá, ochtó, enniá, déka", ""], ["20 / 50 / 100", "íkosi / penínda / ekató", ""], ["Βοήθεια!", "voíthia!", "aiuto!"], ["Χρειάζομαι γιατρό", "chriázome yatró", "ho bisogno di un medico"], ["Φαρμακείο", "farmakío", "farmacia"], ["Πού είναι η τουαλέτα;", "pu íne i tualéta?", "dov'è il bagno?"]] }
   ],
+  essentials: [
+    ["Paese", "Grecia: Unione Europea, area Schengen, euro. Niente controllo passaporti in arrivo da Francoforte, niente cambio valuta, niente convertitore: i prezzi sono in euro come a casa."],
+    ["Documenti", "Basta la carta d'identità. Patente tedesca o italiana valida, nessun permesso internazionale. Tessera sanitaria europea per medico e ospedale."],
+    ["Telefono", "Roaming UE: chiamate, SMS e dati del tuo piano tedesco valgono in Grecia senza costi extra (verifica solo eventuali tetti ai giga). Nessuna eSIM necessaria. Copertura 4G/5G buona, salvo tratti di montagna in Arcadia."],
+    ["Prese", "Tipo C e F, 230 V 50 Hz: identiche a Germania e Italia. Nessun adattatore."],
+    ["Soldi", "Carte accettate quasi ovunque, ma contanti per caselli, taverne di paese, chioschi e la barchetta per il Bourtzi. Bancomat delle banche greche (Alpha, Piraeus, NBG, Eurobank), non gli Euronet gialli che costano 3–4 € a prelievo. Se il POS chiede 'pagare in EUR o nella tua valuta' scegli sempre EUR."],
+    ["Mance", "Non obbligatorie: si arrotonda o si lascia il 5–10 % in taverna, qualche moneta al bar, si arrotonda al tassista."],
+    ["Orari", "Negozi 9–14 e 17:30–21 (mar, gio, ven), solo mattina lun, mer, sab; molti chiusi la domenica. Supermercati continuati fino alle 21. I periptera (chioschi) vendono acqua, sigarette e ricariche quasi 24 ore."],
+    ["Ora", "UTC+3 fino al 25 ottobre: un'ora avanti rispetto a Germania e Italia. Alba verso le 7:30, tramonto verso le 18:45."],
+    ["Acqua", "Rubinetto potabile ad Atene; in provincia meglio la bottiglia. La bottiglia da mezzo litro ha prezzo calmierato a 0,50 € nei chioschi."],
+    ["Bagni", "In molte taverne e case la carta igienica va nel cestino, non nel water: le tubature sono strette. C'è sempre un cartello."],
+    ["Sole e mare", "Indice UV ancora 5–6 a mezzogiorno: crema e cappello. Mare a 22–23 °C, meduse rare in ottobre."],
+    ["Farmacie", "Croce verde, ben fornite, i farmacisti consigliano e parlano inglese. Di turno a rotazione: l'elenco è affisso sulla porta."],
+    ["Sicurezza", "Grecia molto sicura. Ad Atene occhio al portafogli in metro (linea 3 per l'aeroporto) e a Monastiraki. Auto: non lasciare nulla in vista."],
+    ["Guida", "Si guida a destra, cinture obbligatorie, limite alcol 0,5 (0,2 per neopatentati). I greci lampeggiano per dire 'passa tu'."],
+    ["Gesti", "Il 'sì' greco è un leggero cenno del capo verso il basso, il 'no' è il mento in su con un piccolo schiocco: sembra un sì. E il palmo aperto verso qualcuno (moutza) è un insulto: non fare il 'cinque' per strada."],
+    ["Feste e scioperi", "Nessuna festa nazionale nelle tue date (il 28 ottobre è dopo). Gli scioperi di trasporti sono frequenti e annunciati con pochi giorni di anticipo: Ekathimerini nei link utili."],
+    ["Fumo", "Vietato nei locali chiusi, in pratica tollerato all'aperto e in molte taverne. Le terrazze sono per fumatori."]
+  ],
+  signs: [["ΕΙΣΟΔΟΣ", "ísodos", "entrata"], ["ΕΞΟΔΟΣ", "éxodos", "uscita"], ["ΑΝΟΙΚΤΟ / ΚΛΕΙΣΤΟ", "anichtó / klistó", "aperto / chiuso"], ["ΚΕΝΤΡΟ", "kéndro", "centro"], ["ΠΑΡΑΛΙΑ", "paralía", "spiaggia"], ["ΛΙΜΑΝΙ", "limáni", "porto"], ["ΑΕΡΟΔΡΟΜΙΟ", "aerodrómio", "aeroporto"], ["ΔΙΟΔΙΑ", "diódia", "pedaggio"], ["ΒΕΝΖΙΝΑΔΙΚΟ", "venzinádiko", "distributore"], ["ΑΜΟΛΥΒΔΗ", "amólivdi", "senza piombo"], ["ΠΑΡΚΙΝΓΚ", "párking", "parcheggio"], ["ΑΠΑΓΟΡΕΥΕΤΑΙ", "apagorévete", "vietato"], ["ΠΡΟΣΟΧΗ", "prosochí", "attenzione"], ["ΦΑΡΜΑΚΕΙΟ", "farmakío", "farmacia"], ["ΝΟΣΟΚΟΜΕΙΟ", "nosokomío", "ospedale"], ["ΑΣΤΥΝΟΜΙΑ", "astinomía", "polizia"], ["ΤΟΥΑΛΕΤΕΣ", "tualétes", "bagni"], ["ΑΝΔΡΩΝ / ΓΥΝΑΙΚΩΝ", "andrón / yinekón", "uomini / donne"], ["ΑΡΧΑΙΟΛΟΓΙΚΟΣ ΧΩΡΟΣ", "archeologikós chóros", "sito archeologico"], ["ΜΟΥΣΕΙΟ", "musío", "museo"], ["ΤΑΒΕΡΝΑ / ΨΗΣΤΑΡΙΑ", "tavérna / psistariá", "taverna / griglieria"], ["ΖΑΧΑΡΟΠΛΑΣΤΕΙΟ", "zacharoplastío", "pasticceria"], ["ΦΟΥΡΝΟΣ", "fúrnos", "forno, panetteria"], ["ΠΕΡΙΠΤΕΡΟ", "períptero", "chiosco"]],
+  alphabet: "Α α a · Β β v · Γ γ gh/y · Δ δ dh · Ε ε e · Ζ ζ z · Η η i · Θ θ th · Ι ι i · Κ κ k · Λ λ l · Μ μ m · Ν ν n · Ξ ξ x · Ο ο o · Π π p · Ρ ρ r · Σ σ/ς s · Τ τ t · Υ υ i · Φ φ f · Χ χ ch · Ψ ψ ps · Ω ω o. Combinazioni: ΟΥ = u, ΑΙ = e, ΕΙ/ΟΙ = i, ΜΠ = b, ΝΤ = d, ΓΚ = g, ΤΣ = ts.",
+  ui_ess: { e_title: "Il paese in breve", e_signs: "I cartelli che vedrai", e_alpha: "L'alfabeto, per leggere le insegne", e_fuel: "Calcolo carburante", e_km: "km", e_cons: "l/100 km", e_price: "€/l", e_res: "costo stimato" },
   trip: { start: "2026-10-07", end: "2026-10-17", ferieStart: "2026-10-12" },
   flights: [
     { d: "2026-10-07", t: "13:50 → 17:40", from: "FRA", to: "ATH", n: "Lufthansa, 2 h 50" },

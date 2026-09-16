@@ -9,7 +9,7 @@
     return (navigator.language || 'it').slice(0, 2) === 'en' ? 'en' : 'it';
   })();
   const G = (LANG === 'en' && window.GUIDE_EN) ? window.GUIDE_EN : window.GUIDE;
-  const U = Object.assign({}, G.ui, G.ui_food || {});
+  const U = Object.assign({}, G.ui, G.ui_food || {}, G.ui_ess || {});
   document.documentElement.lang = G.lang;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -313,6 +313,19 @@
   $('#menuBody').innerHTML = G.menu.map(g => `<div class="mgrp"><h4>${g.group}</h4><div class="mgrid">${g.items.map(it => `<div class="mi"><div class="ph" data-wiki="${esc(it.wiki)}"><img alt="${esc(it.name)}" loading="lazy"><div class="cap"></div></div><div class="tx"><b>${it.name}</b><span>${it.desc}</span></div></div>`).join('')}</div></div>`).join('');
   fillPhotos($('#menuBody'));
 
+
+  /* ---------- Essenziali ---------- */
+  $('#essentials').innerHTML = G.essentials.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+  $('#alphabet').textContent = G.alphabet;
+  $('#signs').innerHTML = `<div class="signs">${G.signs.map(([g, t, m]) => `<div><b>${g}</b><i>${t}</i> <span>${m}</span></div>`).join('')}</div>`;
+  (function () {
+    const F = store.get('fuel', {});
+    const ids = ['fKm', 'fCons', 'fPrice'];
+    ids.forEach(id => { if (F[id]) $('#' + id).value = F[id]; });
+    const calc = () => { const km = +$('#fKm').value || 0, c = +$('#fCons').value || 0, p = +$('#fPrice').value || 0; $('#fRes').textContent = '€ ' + Math.round(km * c / 100 * p); };
+    ids.forEach(id => $('#' + id).addEventListener('input', () => { F[id] = $('#' + id).value; store.set('fuel', F); calc(); }));
+    calc();
+  })();
 
   /* ---------- Note ---------- */
   (function () {
