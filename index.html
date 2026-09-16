@@ -6,8 +6,8 @@
 <meta name="theme-color" content="#1F4E79">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Grecia 2026">
-<title>Grecia 2026 — Peloponneso classico</title>
+<meta name="apple-mobile-web-app-title" content="Guide">
+<title>Travel guide</title>
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="./icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
@@ -20,7 +20,7 @@
 
 <header class="topbar">
   <div class="wrap">
-    <div class="brand"><img src="./icon-192.png" alt="">Grecia 2026</div>
+    <div class="brand"><img src="./icon-192.png" alt=""><span data-brand></span></div>
     <nav class="topnav" role="tablist" aria-label="Sezioni">
       <button role="tab" data-v="today" data-ui="nav_today">Oggi</button>
       <button role="tab" data-v="days" data-ui="nav_days">Itinerario</button>
@@ -54,7 +54,7 @@
     <div id="map" role="img" aria-label="Mappa del percorso"></div>
     <div class="legend" id="legend"></div>
     <p class="muted" style="margin-top:8px" data-ui="map_note"></p>
-    <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Itea,Greece&destination=Athens+International+Airport&waypoints=Nafpaktos,Greece%7CArchaeological+Site+of+Olympia%7CNafplio,Greece%7CCorinth+Canal%7CCape+Sounion&travelmode=driving" data-ui="map_full"></a></div>
+    <div class="btns"><a class="btn fill" id="fullRoute" target="_blank" rel="noopener" href="#" data-ui="map_full"></a></div>
     <div class="card" style="margin-top:14px"><h3 data-ui="map_dist"></h3><table id="distTable"></table><p class="muted" style="margin-top:8px" data-ui="map_dist_note"></p></div>
   </section>
 

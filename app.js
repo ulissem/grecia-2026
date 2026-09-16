@@ -145,7 +145,7 @@
     const t = todayISO();
     const hero = $('#todayHero'), body = $('#todayBody'), quick = $('#quick');
     const day = G.days.find(d => d.date === t) || (t > '2026-10-07' && t < '2026-10-12' ? G.days[0] : null);
-    const pid = G.dayPlace[t] || (t < G.trip.start ? 'itea' : 'atene');
+    const pid = G.dayPlace[t] || (t < G.trip.start ? G.trip.basePlace : G.trip.endPlace);
     const p = G.places[pid];
     quick.innerHTML = `
       <a href="tel:112"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg>${U.q_sos}</a>
@@ -153,17 +153,17 @@
       <a target="_blank" rel="noopener" href="https://tickets.hh.gr/en"><svg viewBox="0 0 24 24"><path d="M4 8a2 2 0 002 2 2 2 0 010 4 2 2 0 00-2 2v2h16v-2a2 2 0 00-2-2 2 2 0 010-4 2 2 0 002-2V6H4z"/></svg>${U.q_tickets}</a>`;
     if (t < G.trip.start) {
       const days = Math.round((new Date(G.trip.start) - new Date(t)) / 86400000);
-      hero.innerHTML = `<div class="hero" data-wiki="Nafplio"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.countdown(days)}</h2><p>${U.countdown_sub}</p></div></div>`;
+      hero.innerHTML = `<div class="hero" data-wiki="${esc(G.trip.heroBefore)}"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.countdown(days)}</h2><p>${U.countdown_sub}</p></div></div>`;
       body.innerHTML = `
         <div class="card"><h3>${U.todo_title}</h3><ul>${G.todo.slice(0, 5).map(x => `<li>${x[0]}${x[2] ? ` — <a target="_blank" rel="noopener" href="${x[2]}">${U.open}</a>` : ''}</li>`).join('')}</ul><p class="muted" style="margin-top:8px">${U.todo_more}</p></div>
-        <div class="card"><h3>${U.wx_itea}</h3><div class="wxbox" data-place="itea"><p class="muted">${U.loading}</p></div></div>
+        <div class="card"><h3>${U.wx_itea}</h3><div class="wxbox" data-place="${G.trip.basePlace}"><p class="muted">${U.loading}</p></div></div>
         <div class="card"><h3>${U.flights}</h3><dl class="kv">${G.flights.map(f => `<dt>${itDate(f.d)}</dt><dd><b>${f.from} → ${f.to}</b> ${f.t} · ${f.n}</dd>`).join('')}</dl></div>`;
     } else if (t > G.trip.end) {
-      hero.innerHTML = `<div class="hero" data-wiki="Cape Sounion"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.done_title}</h2><p>${U.done_sub}</p></div></div>`;
+      hero.innerHTML = `<div class="hero" data-wiki="${esc(G.trip.heroAfter)}"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.done_title}</h2><p>${U.done_sub}</p></div></div>`;
       body.innerHTML = '';
-    } else if (t === '2026-10-17') {
-      hero.innerHTML = `<div class="hero" data-wiki="Athens International Airport"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.fly_title}</h2><p>${U.fly_sub}</p></div></div>`;
-      body.innerHTML = `<div class="card"><div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="https://www.aia.gr/traveler/flight-info/">${U.fly_status}</a><a class="btn" target="_blank" rel="noopener" href="https://www.lufthansa.com/">Lufthansa</a></div></div>`;
+    } else if (t === G.trip.returnDate) {
+      hero.innerHTML = `<div class="hero" data-wiki="${esc(G.trip.heroReturn)}"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)}</div><h2>${U.fly_title}</h2><p>${U.fly_sub}</p></div></div>`;
+      body.innerHTML = `<div class="card"><div class="btns">${(G.trip.returnLinks || []).map(([t, u]) => `<a class="btn" target="_blank" rel="noopener" href="${u}">${t}</a>`).join('')}</div></div>`;
     } else if (day) {
       const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
       const toMin = s => { const m = /^(\d{1,2}):(\d{2})/.exec(s.time); return m ? (+m[1]) * 60 + (+m[2]) : 9999; };
@@ -191,7 +191,7 @@
 
   /* ---------- Pillola meteo in alto ---------- */
   (async () => {
-    const t = todayISO(); const pid = G.dayPlace[t] || (t < G.trip.start ? 'itea' : 'atene');
+    const t = todayISO(); const pid = G.dayPlace[t] || (t < G.trip.start ? G.trip.basePlace : G.trip.endPlace);
     try { const j = await forecast(pid); $('#nowIco').textContent = wmo(j.current.weather_code)[0]; $('#nowT').textContent = Math.round(j.current.temperature_2m) + '°'; $('#nowP').textContent = G.places[pid].name; }
     catch (e) { $('#nowpill').style.display = 'none'; }
   })();
@@ -219,14 +219,14 @@
       });
     });
     // percorso: waypoint principali in ordine
-    const wp = [[38.4336, 22.4247], [38.3919, 21.8296], [37.6384, 21.6300], [37.6839, 22.0339], [37.5676, 22.8016], [37.7308, 22.7564], [37.5960, 23.0793], [37.6376, 23.1573], [37.5676, 22.8016], [37.9349, 22.9843], [37.9715, 23.7257], [37.6502, 24.0246], [37.9364, 23.9445]];
+    const wp = G.trip.routeWaypoints || G.days.filter(D => D.onRoute !== false).flatMap(D => D.stops.filter(s => s.onRoute !== false).map(s => [s.lat, s.lng]));
     const fallback = L.polyline(wp, { color: '#1F8F6B', weight: 4, opacity: .8, dashArray: '6 6' }).addTo(map);
     map.fitBounds(L.latLngBounds(all).pad(0.08));
-    const cached = store.get('osrm-route', null);
+    const cached = store.get('osrm-route-' + wp.length + '-' + wp.map(p => p.join(',')).join(';').length, null);
     const draw = coords => { map.removeLayer(fallback); L.polyline(coords.map(c => [c[1], c[0]]), { color: '#1F8F6B', weight: 4, opacity: .85 }).addTo(map); };
     if (cached) draw(cached);
     else fetch(`https://router.project-osrm.org/route/v1/driving/${wp.map(p => p[1] + ',' + p[0]).join(';')}?overview=full&geometries=geojson`)
-      .then(r => r.json()).then(j => { if (j.routes && j.routes[0]) { const c = j.routes[0].geometry.coordinates; store.set('osrm-route', c); draw(c); } }).catch(() => {});
+      .then(r => r.json()).then(j => { if (j.routes && j.routes[0]) { const c = j.routes[0].geometry.coordinates; store.set('osrm-route-' + wp.length + '-' + wp.map(p => p.join(',')).join(';').length, c); draw(c); } }).catch(() => {});
     const foodLayer = L.layerGroup();
     G.food_places.forEach(grp => grp.items.forEach(it => {
       const ic = L.divIcon({ className: '', html: `<div style="width:22px;height:22px;border-radius:50%;background:${it.cat === 'sweet' ? '#B4553F' : '#6F7F36'};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:12px">${it.cat === 'sweet' ? '🍯' : '🍽️'}</div>`, iconSize: [22, 22], iconAnchor: [11, 11], popupAnchor: [0, -12] });
@@ -315,6 +315,9 @@
 
 
   /* ---------- Essenziali ---------- */
+  $('#fullRoute').href = G.trip.fullRouteUrl || gdir(G.days[0].origin, G.days[G.days.length - 1].dest);
+  $$('[data-brand]').forEach(el => el.textContent = G.trip.short);
+  document.title = G.trip.title;
   $('#essentials').innerHTML = G.essentials.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
   $('#alphabet').textContent = G.alphabet;
   $('#signs').innerHTML = `<div class="signs">${G.signs.map(([g, t, m]) => `<div><b>${g}</b><i>${t}</i> <span>${m}</span></div>`).join('')}</div>`;
@@ -353,7 +356,7 @@
   renderToday();
   const t = todayISO();
   const autoDay = (G.days.find(d => d.date === t) || {}).id;
-  showDay(autoDay || store.get('day', 'd1'), false);
+  showDay(autoDay || store.get('day', G.trip.defaultDay || G.days[0].id), false);
   showView(t >= G.trip.start && t <= G.trip.end ? 'today' : store.get('view', 'today'));
 
   if ('serviceWorker' in navigator) {
