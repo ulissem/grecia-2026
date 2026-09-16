@@ -201,12 +201,13 @@
   function buildMap() {
     if (mapBuilt || typeof L === 'undefined') return; mapBuilt = true;
     map = L.map('map', { scrollWheelZoom: false });
-    const carto = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>' });
-    const esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
+    const esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, OpenStreetMap contributors' });
+    const topo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
+    const otm = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { subdomains: 'abc', maxZoom: 17, attribution: '&copy; OpenStreetMap, SRTM | &copy; <a href="https://opentopomap.org">OpenTopoMap</a>' });
     let tileErrors = 0, switched = false;
-    carto.on('tileerror', () => { if (!switched && ++tileErrors > 3) { switched = true; map.removeLayer(carto); esri.addTo(map); } });
-    carto.addTo(map);
-    L.control.layers({ 'Carto': carto, 'Esri': esri }, null, { position: 'topright' }).addTo(map);
+    esri.on('tileerror', () => { if (!switched && ++tileErrors > 3) { switched = true; map.removeLayer(esri); otm.addTo(map); } });
+    esri.addTo(map);
+    L.control.layers({ 'Strade (Esri)': esri, 'Rilievo (Esri)': topo, 'OpenTopoMap': otm }, null, { position: 'topright' }).addTo(map);
     const all = [];
     G.days.forEach(D => {
       const color = G.colors[D.id];

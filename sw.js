@@ -1,4 +1,4 @@
-const VERSION = 'grecia-2026-v5';
+const VERSION = 'grecia-2026-v6';
 const CORE = ['./','./index.html','./style.css','./app.js','./data.js','./data-en.js','./manifest.json','./icon-192.png','./icon-512.png','./icon-180.png',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css','https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE).catch(()=>{})).then(() => self.skipWaiting())); });
