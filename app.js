@@ -126,7 +126,7 @@
       <details class="card wxcard"><summary><h3>${U.weather_in} ${G.places[D.place].name}</h3></summary><div class="wxbox" data-place="${D.place}" data-date="${D.date}"><p class="muted">${U.loading}</p></div></details>
       ${toggleAllBtn('#dayBody .tl')}
       <div class="tl">${D.stops.map((s, i) => stopHTML(s, color, i === openIdx(D))).join('')}</div>
-      ${D.sleep ? `<div class="sleep"><h3>${U.sleep} · ${D.sleep.city}</h3><p>${D.sleep.txt}</p><div class="btns"><a class="btn olive" target="_blank" rel="noopener" href="${bk(D.sleep.city, D.sleep.ci, D.sleep.co)}">${U.booking} (${D.sleep.ci.slice(5).replace('-', '/')} → ${D.sleep.co.slice(5).replace('-', '/')})</a><a class="btn olive" target="_blank" rel="noopener" href="${gm('hotels ' + D.sleep.city)}">${U.hotels_maps}</a></div></div>` : ''}
+      ${D.sleep ? (D.sleep.booked ? `<div class="sleep booked"><h3>${U.sleep} · ${D.sleep.name}</h3><p class="addr">${D.sleep.address}</p><p>${D.sleep.txt}</p><div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="${gnav(D.sleep.lat, D.sleep.lng)}">${U.nav}</a><a class="btn" target="_blank" rel="noopener" href="${anav(D.sleep.lat, D.sleep.lng, D.sleep.name)}">${U.apple}</a>${D.sleep.parking ? `<a class="btn olive" target="_blank" rel="noopener" href="${gnav(D.sleep.parking[1], D.sleep.parking[2])}">${U.parking}: ${D.sleep.parking[0]}</a>` : ''}</div></div>` : `<div class="sleep"><h3>${U.sleep} · ${D.sleep.city}</h3><p>${D.sleep.txt}</p><div class="btns"><a class="btn olive" target="_blank" rel="noopener" href="${bk(D.sleep.city, D.sleep.ci, D.sleep.co)}">${U.booking} (${D.sleep.ci.slice(5).replace('-', '/')} → ${D.sleep.co.slice(5).replace('-', '/')})</a><a class="btn olive" target="_blank" rel="noopener" href="${gm('hotels ' + D.sleep.city)}">${U.hotels_maps}</a></div></div>`) : ''}
       ${D.alt ? `<div class="alt"><b>${U.alt}</b> ${D.alt}</div>` : ''}`;
   }
 
@@ -236,6 +236,10 @@
     if (cached) draw(cached);
     else fetch(`https://router.project-osrm.org/route/v1/driving/${wp.map(p => p[1] + ',' + p[0]).join(';')}?overview=full&geometries=geojson`)
       .then(r => r.json()).then(j => { if (j.routes && j.routes[0]) { const c = j.routes[0].geometry.coordinates; store.set('osrm-route-' + wp.length + '-' + wp.map(p => p.join(',')).join(';').length, c); draw(c); } }).catch(() => {});
+    G.days.filter(D => D.sleep && D.sleep.booked).forEach(D => {
+      const ic = L.divIcon({ className: '', html: `<div style="width:24px;height:24px;border-radius:6px;background:#D9A441;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:13px">🛏</div>`, iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -12] });
+      L.marker([D.sleep.lat, D.sleep.lng], { icon: ic }).addTo(map).bindPopup(`<b>${D.sleep.name}</b><br><span style="color:#666">${D.sleep.address}</span><br><a class="btn fill sm" target="_blank" rel="noopener" href="${gnav(D.sleep.lat, D.sleep.lng)}">${U.nav}</a>`);
+    });
     const foodLayer = L.layerGroup();
     G.food_places.forEach(grp => grp.items.forEach(it => {
       const ic = L.divIcon({ className: '', html: `<div style="width:22px;height:22px;border-radius:50%;background:${it.cat === 'sweet' ? '#B4553F' : '#6F7F36'};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:12px">${it.cat === 'sweet' ? '🍯' : '🍽️'}</div>`, iconSize: [22, 22], iconAnchor: [11, 11], popupAnchor: [0, -12] });

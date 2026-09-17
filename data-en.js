@@ -18,7 +18,7 @@ window.GUIDE_EN = {
     todo_title: "Things to close before leaving", todo_more: "The full list with ticks is in the Packing section.", open: "open", wx_itea: "Weather in Itea, next days", flights: "Flights",
     done_title: "Trip over", done_sub: "The guide stays here for the memories and for next time.", fly_title: "Flight at 11:45", fly_sub: "Leave the hotel at 8:45. Safe trip home.", fly_status: "AIA flight status",
     next: "Next stop", full_prog: "Full programme", now_in: "Right now in", the_day: "The day", nav_all: "Navigate the whole day", max: "High", rain: "rain", sunrise: "Sunrise", wx_off_short: "Weather unavailable offline.",
-    dist_h: ["Leg", "km", "time"], site_h: ["Site", "Full", "Notes"], total: "Indicative total", total_v: "€800–1,000", d0_suffix: " – Sunday 11"
+    dist_h: ["Leg", "km", "time"], site_h: ["Site", "Full", "Notes"], total: "Indicative total", total_v: "€330–400 plus hotels", d0_suffix: " – Sunday 11"
   },
   text: {
     sitesIntro: `Ministry of Culture sites: <b>8:00–18:30 until 15 October</b>, <b>8:00–18:00 from the 16th</b>, last entry 20 minutes before closing. Summer rates until 31 October. Official online tickets at <a target="_blank" rel="noopener" href="https://tickets.hh.gr/en">tickets.hh.gr</a> (Hellenic Heritage, no fees): booking is only required for the Acropolis, everywhere else you buy at the gate.`,
@@ -64,7 +64,7 @@ window.GUIDE_EN = {
       <li>At the airport by 9:45: online check-in the evening before, single terminal, Schengen controls, 45 minutes is enough.</li>
       <li>Centre to airport by car: 35–45 minutes via Attiki Odos; at 9 there's outbound traffic, so leave the hotel at 8:45 (8:30 for a margin). Return the car by 9:30.</li>
       <li>No-driving alternative: metro line 3 (change at Syntagma), €9, 50 minutes from Koukaki; but the car would have to go back on Thursday evening.</li>
-      <li>Hotel with garage and breakfast from 7:30: ask when booking.</li></ul></div>`
+      <li>Car in the Syngrou-Fix car park (300 m from the flat): collect it at 8:30, pay at the metro counter with the QR ticket.</li></ul></div>`
   },
   ui_food: { n_title: "My notes", n_sub: "Stored only on this phone (browser local storage): no account, no cloud. \"Copy all\" takes them wherever you want.", n_general: "General notes", n_copy: "Copy all", n_copied: "copied", n_fields: [["rental","Car rental: reference, company, plate"],["hotels","Hotel confirmations"],["flight","Flight booking code"],["other","Other (insurance, contacts…)"]], nav_bag: "Mine", f_menu: "The menu, in pictures", f_menu_sub: "To recognise what you see in the trays and the shop window. Photos from Wikipedia.", g_phr: "Phrasebook", nav_food: "Food", f_title: "Where the locals eat", f_intro: "No fancy restaurants: tavernas, mageirio (the lunchtime places with trays behind the counter), souvlaki and pastry shops. Price band: € under 12 a head, €€ 15–25. Ticks mark where you've been.", f_all: "All", f_sweet: "Sweets", f_eat: "Eating", f_map: "Food on the map", f_price: "price", f_visited: "visited" },
   food_places: [
@@ -186,7 +186,7 @@ window.GUIDE_EN = {
   ],
   signs: [["ΕΙΣΟΔΟΣ", "ísodos", "entrance"], ["ΕΞΟΔΟΣ", "éxodos", "exit"], ["ΑΝΟΙΚΤΟ / ΚΛΕΙΣΤΟ", "anichtó / klistó", "open / closed"], ["ΚΕΝΤΡΟ", "kéndro", "centre"], ["ΠΑΡΑΛΙΑ", "paralía", "beach"], ["ΛΙΜΑΝΙ", "limáni", "harbour"], ["ΑΕΡΟΔΡΟΜΙΟ", "aerodrómio", "airport"], ["ΔΙΟΔΙΑ", "diódia", "toll"], ["ΒΕΝΖΙΝΑΔΙΚΟ", "venzinádiko", "petrol station"], ["ΑΜΟΛΥΒΔΗ", "amólivdi", "unleaded"], ["ΠΑΡΚΙΝΓΚ", "párking", "parking"], ["ΑΠΑΓΟΡΕΥΕΤΑΙ", "apagorévete", "forbidden"], ["ΠΡΟΣΟΧΗ", "prosochí", "caution"], ["ΦΑΡΜΑΚΕΙΟ", "farmakío", "pharmacy"], ["ΝΟΣΟΚΟΜΕΙΟ", "nosokomío", "hospital"], ["ΑΣΤΥΝΟΜΙΑ", "astinomía", "police"], ["ΤΟΥΑΛΕΤΕΣ", "tualétes", "toilets"], ["ΑΝΔΡΩΝ / ΓΥΝΑΙΚΩΝ", "andrón / yinekón", "men / women"], ["ΑΡΧΑΙΟΛΟΓΙΚΟΣ ΧΩΡΟΣ", "archeologikós chóros", "archaeological site"], ["ΜΟΥΣΕΙΟ", "musío", "museum"], ["ΤΑΒΕΡΝΑ / ΨΗΣΤΑΡΙΑ", "tavérna / psistariá", "taverna / grill house"], ["ΖΑΧΑΡΟΠΛΑΣΤΕΙΟ", "zacharoplastío", "pastry shop"], ["ΦΟΥΡΝΟΣ", "fúrnos", "bakery"], ["ΠΕΡΙΠΤΕΡΟ", "períptero", "kiosk"]],
   alphabet: "Α α a · Β β v · Γ γ gh/y · Δ δ dh · Ε ε e · Ζ ζ z · Η η i · Θ θ th · Ι ι i · Κ κ k · Λ λ l · Μ μ m · Ν ν n · Ξ ξ x · Ο ο o · Π π p · Ρ ρ r · Σ σ/ς s · Τ τ t · Υ υ i · Φ φ f · Χ χ ch · Ψ ψ ps · Ω ω o. Combinations: ΟΥ = u, ΑΙ = e, ΕΙ/ΟΙ = i, ΜΠ = b, ΝΤ = d, ΓΚ = g, ΤΣ = ts.",
-  ui_ess: { expand_all: "Expand all", collapse_all: "Collapse all", nav_short: "Navigate", on_foot: "A day on foot, car in the garage", e_title: "The country in brief", e_signs: "Signs you'll see", e_alpha: "The alphabet, to read the signs", e_fuel: "Fuel calculator", e_km: "km", e_cons: "l/100 km", e_price: "€/l", e_res: "estimated cost" },
+  ui_ess: { parking: "Parking", expand_all: "Expand all", collapse_all: "Collapse all", nav_short: "Navigate", on_foot: "A day on foot, car in the garage", e_title: "The country in brief", e_signs: "Signs you'll see", e_alpha: "The alphabet, to read the signs", e_fuel: "Fuel calculator", e_km: "km", e_cons: "l/100 km", e_price: "€/l", e_res: "estimated cost" },
   trip: { start: "2026-10-07", end: "2026-10-16", ferieStart: "2026-10-12", title: "Greece 2026 — Classic Peloponnese", short: "Greece 2026", basePlace: "itea", endPlace: "atene", returnDate: "2026-10-16", defaultDay: "d1", heroBefore: "Nafplio", heroAfter: "Acropolis of Athens", heroReturn: "Ancient Agora of Athens", returnLinks: [["AIA flight status", "https://www.aia.gr/traveler/flight-info/"], ["Lufthansa", "https://www.lufthansa.com/"]], fullRouteUrl: "https://www.google.com/maps/dir/?api=1&origin=Itea,Greece&destination=Athens+International+Airport&waypoints=Nafpaktos,Greece%7CArchaeological+Site+of+Olympia%7CNafplio,Greece%7CCorinth+Canal&travelmode=driving", routeWaypoints: [[38.4336, 22.4247], [38.3919, 21.8296], [37.6384, 21.6300], [37.6839, 22.0339], [37.5676, 22.8016], [37.7308, 22.7564], [37.5960, 23.0793], [37.6376, 23.1573], [37.5676, 22.8016], [37.9349, 22.9843], [37.9715, 23.7257], [37.9364, 23.9445]] },
   flights: [
     { d: "2026-10-07", t: "09:35 → 13:25", from: "FRA", to: "ATH", n: "Lufthansa, 2 h 50 · at Delphi by 16:30" },
@@ -231,7 +231,7 @@ window.GUIDE_EN = {
     intro: "Off we go. The gulf coast road, the Rio bridge and an afternoon in the sanctuary where the Games were born.",
     legs: [["Itea", "Nafpaktos", 80, "1 h 10"], ["Nafpaktos", "Olympia", 130, "1 h 50"]],
     routeNote: "Leave at 9. Coast road to Nafpaktos, Rio bridge (€15.90), then the A5/Olympia Odos motorway towards Pyrgos. In Olympia for lunch.",
-    origin: "Itea,Greece", dest: "Archaeological Site of Olympia", way: ["Nafpaktos old port"],
+    origin: "Itea,Greece", dest: "Hotel Pelops Olympia", way: ["Nafpaktos old port"],
     stops: [
       { name: "Nafpaktos", time: "10:15", dur: "45 min", lat: 38.3919, lng: 21.8296, wiki: "Nafpaktos", wit: "Naupatto", nav: "Nafpaktos old port",
         desc: "The smallest and prettiest Venetian harbour in Greece, closed by two towers. Coffee under the walls and a walk round in ten minutes.",
@@ -254,14 +254,14 @@ window.GUIDE_EN = {
         eat: "Dinner at Bacchus in Ancient Pissa, 3 km above the village, terrace over the Alpheios valley; in the village Aegean or Garden Taverna.",
         links: [["Official site", "http://odysseus.culture.gr/h/3/eh351.jsp?obj_id=2358"], ["Museum", "http://odysseus.culture.gr/h/1/eh151.jsp?obj_id=7124"], ["Tickets online", "https://tickets.hh.gr/en"], ["Wikivoyage", "https://en.wikivoyage.org/wiki/Olympia"]] }
     ],
-    sleep: { city: "Olympia Greece", ci: "2026-10-12", co: "2026-10-13", txt: "The modern village is one street of shops: you sleep here to be close to the site. Hotel Europa on the hill with pool and view, Hotel Pelops or Kronio in the centre, simple and honest; Bacchus in Ancient Pissa also has rooms in the countryside." },
+    sleep: { booked: true, name: "Hotel Pelops", address: "Varela 2 (corner of Spiliopoulou), Archea Olympia 27065", lat: 37.6465, lng: 21.6251, city: "Olimpia", ci: "2026-10-12", co: "2026-10-13", txt: "Booked. The Spiliopoulos family hotel two steps from the main street, simple clean rooms; the breakfast with yogurt, honey and home-made pastries is what it's famous for: fill up before Arcadia. Parking in front or on the street, ask on arrival." },
     alt: "Rain plan: Olympia museum first (three hours fit easily), then the site with an umbrella between showers. Spare time: Katakolo and the Kotsanas museum of ancient Greek technology, 30 minutes towards the sea." },
 
   { id: "d2", date: "2026-10-13", chip: ["Tue 13", "→ Nafplio"], title: "Olympia → Nafplio, across Arcadia", place: "nafplio", night: "Nafplio", hero: "Nafplio",
     intro: "Three hours of bends and stone villages through the heart of the Peloponnese, then the most elegant town in Greece: a swim, the fortress at sunset, dinner in the old town.",
     legs: [["Olympia", "Langadia", 75, "1 h 20"], ["Langadia", "Nafplio", 125, "1 h 40"]],
     routeNote: "Fill up in Olympia. Inland road via Tripotamia and Langadia, then Vytina and Tripoli, A7 motorway and the Argos/Nafplio exit. No tolls until Tripoli, ~€3 after. Leave at 9, arrive by 14:30.",
-    origin: "Archaeological Site of Olympia", dest: "Nafplio,Greece", way: ["Langadia,Greece"],
+    origin: "Hotel Pelops Olympia", dest: "Artemis Hotel Argous 25 Nafplio", way: ["Langadia,Greece"],
     stops: [
       { name: "Langadia", time: "11:00", dur: "20 min", lat: 37.6839, lng: 22.0339, wiki: "Langadia", wit: "Langadia", nav: "Langadia Arcadia",
         desc: "A stonemasons' village clinging to a vertical slope above the Lousios gorge: the houses seem stacked on top of each other. Greek coffee in the square and photos from the road.",
@@ -283,13 +283,13 @@ window.GUIDE_EN = {
         eat: "Dinner at Ta Fanaria (home cooking on a stepped lane) or Kakanarakis 1986 for Argolid dishes. Aperitif with a view below Palamidi, Arvanitia side.",
         links: [["Official site", "http://odysseus.culture.gr/h/3/eh351.jsp?obj_id=2394"]] }
     ],
-    sleep: { city: "Nafplio", ci: "2026-10-13", co: "2026-10-14", txt: "One night in the old town, walking distance from everything. Amfitriti Palazzo and Pension Marianna (the breakfast terrace is famous) under Acronauplia; 3Sixty and Ippoliti more elegant; Aetoma on a quiet little square. Book now: on autumn weekends the town is full." },
+    sleep: { booked: true, name: "Artemis", address: "Argous 25, Nafplio 21100", lat: 37.5687, lng: 22.8067, city: "Nafplio", ci: "2026-10-13", co: "2026-10-14", txt: "Booked. Small family-run hotel on the avenue into town, a 10-minute walk from Syntagma square and 5 from the harbour car park. View of Palamidi from the rear rooms. Car: in front of the hotel if there's space, otherwise the big free harbour car park." },
     alt: "Rain plan: motorway via Pyrgos–Tripoli (2 h 30) and an afternoon between the archaeological museum and the Peloponnesian Folklore Foundation museum, one of the best ethnographic museums in Europe. Palamidi works in the rain too: the view is the same." },
   { id: "d3", date: "2026-10-14", chip: ["Wed 14", "Argolid → Athens"], title: "Mycenae, Epidaurus, lunch by the sea, then Athens", place: "atene", night: "Athens", hero: "Mycenae",
     intro: "Two UNESCO sites half an hour apart, fish on the water at Palaia Epidavros, the Corinth Canal, and by 17:30 you're in Athens for the sunset from Philopappos.",
     legs: [["Nafplio", "Mycenae", 25, "30 min"], ["Mycenae", "Epidaurus", 50, "50 min"], ["Epidaurus", "Palaia Epidavros", 15, "15 min"], ["Palaia Epidavros", "Corinth Canal", 65, "1 h"], ["Corinth Canal", "Athens, Koukaki", 85, "1 h 15"]],
-    routeNote: "Coffee on Syntagma square at 8, while Nafplio is still empty. Leave at 8:30, Mycenae at opening. After lunch the coast road to Isthmia, stop at the canal, then A8 and Attiki Odos (tolls ~€8). Hotel in Koukaki by 17:30: car in the garage, you don't touch it again until Friday.",
-    origin: "Nafplio,Greece", dest: "Acropolis Museum", way: ["Archaeological Site of Mycenae", "Ancient Theatre of Epidaurus", "Palaia Epidavros", "Corinth Canal"],
+    routeNote: "Coffee on Syntagma square at 8, while Nafplio is still empty. Leave at 8:30, Mycenae at opening. After lunch the coast road to Isthmia, stop at the canal, then A8 and Attiki Odos (tolls ~€8). Syngrou-Fix car park by 17:30 (entrance on Syngrou towards the centre), 300 m on foot to the flat at Argenti 9: you don't touch the car again until Friday.",
+    origin: "Artemis Hotel Argous 25 Nafplio", dest: "Syngrou-Fix Metro Underground Parking Athens", way: ["Archaeological Site of Mycenae", "Ancient Theatre of Epidaurus", "Palaia Epidavros", "Corinth Canal"],
     stops: [
       { name: "Mycenae", time: "9:00", dur: "2 hours", lat: 37.7308, lng: 22.7564, wiki: "Mycenae", wit: "Micene", nav: "Archaeological Site of Mycenae",
         desc: "Agamemnon's citadel. Cyclopean walls, the Lion Gate and the domed tombs Schliemann dug in 1876 convinced he was finding Homer's heroes.",
@@ -314,16 +314,16 @@ window.GUIDE_EN = {
         hist: "Nero started it in 67 AD with a golden hoe and 6,000 prisoners; the Hungarians finished it 1,800 years later. Modern ships are too wide: today it takes yachts and bungee jumpers.",
         tip: "Coffee on the Peloponnese side, then the motorway: from here Koukaki is an hour and a quarter outside rush hour." },
       { name: "Athens, first impression", time: "17:30", dur: "the evening", lat: 37.9680, lng: 23.7210, wiki: "Philopappos Monument", wit: "Collina di Filopappo", nav: "Filopappou Hill",
-        desc: "Car in the garage, shower, and on foot up Philopappos hill, 15 minutes from the hotel: sunset over the Acropolis at 18:45, no ticket and no crowd. Then dinner in Koukaki.",
+        desc: "Car in the Syngrou-Fix car park, bag at Argenti 9, shower, and on foot up Philopappos hill, 10 minutes from the flat: sunset over the Acropolis at 18:45, no ticket and no crowd. Then dinner in Koukaki.",
         hist: "From this hill Morosini shelled the Parthenon in 1687. Today it's where Athenians come in the evening with a beer.",
         eat: "To Kati Allo for the trays of the day if you want an early, simple dinner; Mani Mani for reinvented Peloponnesian cooking; Fabrika tou Efrosinou for a modern taverna." }
     ],
-    sleep: { city: "Athens", ci: "2026-10-14", co: "2026-10-16", txt: "Two nights in Koukaki or Makrygianni, below the Acropolis Museum: filter for 'parking', in Athens it's essential. Herodion and Acropolis Hill are the classic choices, Coco-Mat Athens BC has the rooftop facing the Parthenon. Ask whether the car can stay in the garage until Friday morning." },
+    sleep: { booked: true, name: "Apartment, Argenti 9", address: "Argenti 9, Koukaki, Athens 11743", lat: 37.9622, lng: 23.7275, parking: ["Syngrou-Fix", 37.9638, 23.7260], city: "Athens", ci: "2026-10-14", co: "2026-10-16", txt: "Booked: apartment for two nights. Koukaki, Syngrou side: Syngrou-Fix metro 3 minutes away, Acropolis Museum 10, Philopappos 10, Overoll and Takis for breakfast at 400 m. Car in the Syngrou-Fix metro underground car park, 300 m from the flat: entrance on Syngrou, open 24 hours, pay at the station counter with the QR ticket, about €5–8 a night. Don't look for street parking." },
     alt: "Rain plan: Mycenae and Epidaurus work under an umbrella; skip the swim and reach Athens earlier, with the Acropolis Museum at 17 (open until 20) instead of Philopappos. Spare time: Tiryns, 5 minutes from Nafplio on the Mycenae road, cyclopean walls and nobody around." },
   { id: "d4", date: "2026-10-15", chip: ["Thu 15", "Athens"], title: "Athens, lived in", place: "atene", night: "Athens", hero: "Acropolis of Athens",
     intro: "Only two stones, the Agora in the morning and the Acropolis in the afternoon, and in between the real city: market, cafés, lunch in a cellar, a break. Zero kilometres by car.",
     legs: [],
-    routeNote: "Everything on foot from Koukaki, at most a taxi. The only booking of the day is the Acropolis at 16:00 on tickets.hh.gr. Fill up tonight or tomorrow morning at Koropi, on the airport road.",
+    routeNote: "Everything on foot from Argenti 9, at most a taxi or the metro from Syngrou-Fix (3 minutes). The only booking of the day is the Acropolis at 16:00 on tickets.hh.gr. Fill up tonight or tomorrow morning at Koropi, on the airport road.",
     origin: "Acropolis Museum", dest: "Acropolis of Athens", way: [],
     stops: [
       { name: "Ancient Agora and Anafiotika", time: "8:00", dur: "1 h 30", lat: 37.9748, lng: 23.7222, wiki: "Ancient Agora of Athens", wit: "Agorà di Atene", nav: "Ancient Agora of Athens",
@@ -341,7 +341,7 @@ window.GUIDE_EN = {
         desc: "An unmarked cellar since 1887, down a staircase at Sokratous 9. No menu: they bring beans, sardines, pork with celery, salad, wine from the barrel; the bill is worked out by eye. The most authentic place in Athens, and the lunch you'll remember.",
         tip: "Cash only, tables are shared. If it's full or closed, the Oinomageireio Epirus inside the market is the alternative, since 1898." },
       { name: "Break", time: "14:30", dur: "1 h 30", lat: 37.9660, lng: 23.7280, wiki: "Koukaki", wit: "Koukaki", nav: "Koukaki Athens",
-        desc: "Hotel, shower, an hour of nothing. At three in the afternoon Athens is still warm and the Acropolis at 16 wants fresh legs.",
+        desc: "Flat, shower, an hour of nothing. At three in the afternoon Athens is still warm and the Acropolis at 16 wants fresh legs.",
         tip: "If you don't feel like stopping: Takis bakery or Overoll in Koukaki for a coffee, or the terrace of Little Tree Books & Coffee." },
       { name: "Acropolis", time: "16:00", dur: "2 hours", lat: 37.9715, lng: 23.7257, wiki: "Acropolis of Athens", wit: "Acropoli di Atene", nav: "Acropolis of Athens",
         desc: "Walk up along Dionysiou Areopagitou. At 16 the light is side-on and the morning crowd has gone. At 18 exit on the theatre of Dionysus side and climb the Areopagus for the 18:45 sunset.",
@@ -354,19 +354,19 @@ window.GUIDE_EN = {
         info: [["Ticket", "€20"], ["Restaurant", "second-floor terrace, view of the Parthenon, good if you don't want to move"]],
         links: [["Official site", "https://www.theacropolismuseum.gr/en"]] },
       { name: "Evening in Psyrri", time: "20:30", dur: "as long as you like", lat: 37.9787, lng: 23.7250, wiki: "Psyri", wit: "Psyrri", nav: "Psyrri Athens",
-        desc: "Metro or a 20-minute walk. Dinner in a taverna, loukoumades at Krinos or Lukumades, and a last stroll through Monastiraki with the floodlit Acropolis above the roofs.",
+        desc: "Metro from Akropoli to Monastiraki, or a 25-minute walk. Dinner in a taverna, loukoumades at Krinos or Lukumades, and a last stroll through Monastiraki with the floodlit Acropolis above the roofs.",
         eat: "Atlantikos for fried fish at market prices, Feyrouz for Anatolian street food, Klimataria on Theatrou square if you want live rebetiko. Sweet: Krinos (Aiolou 87) until 21:00, then Lukumades (Aiolou 21)." }
     ],
-    sleep: { city: "Athens", ci: "2026-10-14", co: "2026-10-16", txt: "Same room as yesterday. Online check-in for tomorrow's flight, bag packed, alarm at 7:30." },
+    sleep: { booked: true, name: "Apartment, Argenti 9", address: "Argenti 9, Koukaki, Athens 11743", lat: 37.9622, lng: 23.7275, parking: ["Syngrou-Fix", 37.9638, 23.7260], city: "Athens", ci: "2026-10-14", co: "2026-10-16", txt: "Same apartment. Online check-in for tomorrow's flight, bag packed, alarm at 7:30." },
     alt: "Rain plan: instead of the Agora, the National Archaeological Museum 8–10 (10-minute taxi, €12): the Mycenae mask closes yesterday's circle. The Acropolis in the rain is wet marble: if it's pouring at 16, go in at 17 (last entry 18) or give it up and stay in the museum from 16. Spare time: the Lycabettus funicular after dinner, open late." },
   { id: "d5", date: "2026-10-16", chip: ["Fri 16", "flight 11:45"], title: "Breakfast and airport", place: "atene", night: "—", hero: "Athens International Airport",
     intro: "No programme: a coffee, a koulouri, and at 8:45 you leave. At the airport by 9:45, flight at 11:45.",
     legs: [["Athens, Koukaki", "Airport", 35, "40 min"]],
-    routeNote: "Leave the hotel at 8:45: Syngrou or Vouliagmenis to Attiki Odos, toll €2.80, airport exit. Fill up at Koropi on the way. Return following 'Car rental return' by 9:30, Lufthansa desk at 9:45. If 9 o'clock traffic worries you, leave at 8:30.",
-    origin: "Acropolis Museum", dest: "Athens International Airport", way: [],
+    routeNote: "At 8:30 walk to the Syngrou-Fix car park (300 m), pay at the station counter, and at 8:45 you're on Syngrou heading seaward: Vouliagmenis or Poseidonos to Attiki Odos, toll €2.80, airport exit. Fill up at Koropi on the way. Return following 'Car rental return' by 9:30, Lufthansa desk at 9:45. If 9 o'clock traffic worries you, leave at 8:30.",
+    origin: "Syngrou-Fix Metro Underground Parking Athens", dest: "Athens International Airport", way: [],
     stops: [
       { name: "Breakfast in Koukaki", time: "7:45", dur: "30 min", lat: 37.9640, lng: 23.7285, wiki: "Koukaki", wit: "Koukaki", nav: "Overoll croissanterie Athens",
-        desc: "Overoll for a croissant or Takis for a tiropita, a freddo espresso, and the bag in the car.",
+        desc: "Overoll (Veikou) for a croissant or Takis (Misaraliotou) for a tiropita, a freddo espresso, then the bag and 300 metres on foot to the Syngrou-Fix car park.",
         tip: "Photograph the room before leaving: the fastest way to notice the forgotten charger." },
       { name: "Airport", time: "9:30", dur: "car return and flight", lat: 37.9364, lng: 23.9445, wiki: "Athens International Airport", wit: "Aeroporto di Atene-Eleftherios Venizelos", nav: "Athens International Airport car rental return",
         desc: "Return, 5 minutes' walk from the terminal, Schengen controls. With time to spare, the small archaeological museum on the departures level is free and worth ten minutes.",
@@ -381,7 +381,7 @@ window.GUIDE_EN = {
     ["Epidaurus, theatre + sanctuary + museum", "€12–20", "sources differ, check"], ["Palamidi", "€8", "road to the top"], ["Acropolis", "€30", "timed entry, book"],
     ["Acropolis Museum", "€20", "separate ticket"], ["Ancient Agora", "€10", "combined ticket abolished"], ["National Archaeological Museum", "€12", ""]
   ],
-  budget: [["Fuel, ~700 km × 7 l/100 × €2.15", "≈ €105"], ["Tolls (bridge €15.90 + motorways)", "≈ €35"], ["Site and museum tickets", "≈ €150"], ["Hotels, 4 nights (Olympia, Nafplio, Athens ×2)", "€360–520"], ["Meals and coffee", "≈ €40/day"]],
+  budget: [["Fuel, ~700 km × 7 l/100 × €2.15", "≈ €105"], ["Tolls (bridge €15.90 + motorways) and Syngrou-Fix parking 2 nights", "≈ €50"], ["Site and museum tickets", "≈ €150"], ["Hotels, 4 nights, already booked (Pelops, Artemis, Argenti 9 ×2)", "—"], ["Meals and coffee", "≈ €40/day"]],
 
   hub: [
     ["tickets.hh.gr", "Official Ministry tickets for the Acropolis and archaeological sites, no fees", "https://tickets.hh.gr/en"],
@@ -408,9 +408,7 @@ window.GUIDE_EN = {
 
   todo: [
     ["Acropolis ticket for Thursday 15, 16:00 slot", "tickets.hh.gr", "https://tickets.hh.gr/en/venues/acropolis-of-athens-tickets"],
-    ["Hotel Nafplio, 13 October (one night)", "before all the others", "https://www.booking.com/searchresults.html?ss=Nafplio&checkin=2026-10-13&checkout=2026-10-14&group_adults=1&no_rooms=1"],
-    ["Hotel Olympia, 12 October", "", "https://www.booking.com/searchresults.html?ss=Olympia+Greece&checkin=2026-10-12&checkout=2026-10-13&group_adults=1&no_rooms=1"],
-    ["Hotel Athens with parking, 14–16 October (two nights)", "Koukaki / Makrygianni", "https://www.booking.com/searchresults.html?ss=Koukaki+Athens&checkin=2026-10-14&checkout=2026-10-16&group_adults=1&no_rooms=1"],
+    ["Hotels booked: Pelops (Olympia), Artemis (Nafplio), apartment Argenti 9 (Athens). Save the confirmations in Notes", "Mine section", ""],
     ["Check car return on 16/10 at 9:30 at the airport and unlimited km", "rental contract", ""],
     ["Offline maps: Peloponnese and Attica", "Google Maps → profile → Offline maps", "https://support.google.com/maps/answer/6291838"],
     ["Online check-in for the flight on the 16th", "evening of the 15th", "https://www.lufthansa.com/"]

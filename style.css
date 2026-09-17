@@ -285,3 +285,6 @@ details.fgrp>summary h3,details.mgrp>summary h4{margin:0}
 .tools{display:flex;justify-content:flex-end;margin:0 0 10px}
 .btn.ghost{border-color:var(--line);color:var(--ink-2);background:var(--paper)}
 .mgrid{margin-top:8px}
+
+.sleep.booked{background:var(--olive-2)}
+.sleep .addr{font-weight:600;margin-bottom:6px}
