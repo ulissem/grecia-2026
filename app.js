@@ -106,13 +106,13 @@
   function dayHTML(D) {
     const color = G.colors[D.id];
     const km = D.legs.reduce((a, l) => a + l[2], 0);
-    const legs = D.legs.map((l, i) => `${i === 0 ? l[0] : ''}<span class="a">→</span>${l[1]} <span class="m">(${l[2]} km · ${l[3]})</span>`).join('');
+    const legs = D.legs.length === 0 ? `<span class="m">${U.on_foot || ''}</span>` : D.legs.map((l, i) => `${i === 0 ? l[0] : ''}<span class="a">→</span>${l[1]} <span class="m">(${l[2]} km · ${l[3]})</span>`).join('');
     return `
       <div class="hero" data-wiki="${esc(D.hero)}"><img alt=""><div class="shade"></div><div class="cap"></div>
         <div class="txt"><div class="k">${itLong(D.date)}${D.id === 'd0' ? U.d0_suffix : ''}</div><h2>${D.title}</h2><p>${D.intro}</p></div></div>
       <div class="route">
         <div class="legs">${legs}</div>
-        <div class="sum">${km} km in tutto · ${D.routeNote}</div>
+        <div class="sum">${km ? `<b>${km} km</b> · ` : ''}${D.routeNote}</div>
         <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="${gdir(D.origin, D.dest, D.way)}">${U.nav_day}</a><a class="btn" target="_blank" rel="noopener" href="${adir(D.origin, D.dest)}">${U.apple}</a><span class="tag">${U.night} ${D.night}</span></div>
       </div>
       <div class="card"><h3>${U.weather_in} ${G.places[D.place].name}</h3><div class="wxbox" data-place="${D.place}" data-date="${D.date}"><p class="muted">${U.loading}</p></div></div>
@@ -168,7 +168,7 @@
       const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
       const toMin = s => { const m = /^(\d{1,2}):(\d{2})/.exec(s.time); return m ? (+m[1]) * 60 + (+m[2]) : 9999; };
       const timed = day.stops.filter(s => toMin(s) < 9999);
-      const next = timed.find(s => toMin(s) > nowMin - 60) || timed[timed.length - 1];
+      const next = timed.find(s => toMin(s) > nowMin - 60) || timed[timed.length - 1] || day.stops[0];
       hero.innerHTML = `<div class="hero" data-wiki="${esc(day.hero)}"><img alt=""><div class="shade"></div><div class="cap"></div><div class="txt"><div class="k">${itLong(t)} · ${U.night.toLowerCase()} ${day.night}</div><h2>${day.title}</h2><p>${day.intro}</p></div></div>`;
       body.innerHTML = `
         <div class="today-grid">
