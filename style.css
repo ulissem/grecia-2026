@@ -258,3 +258,30 @@ input:focus,textarea:focus{outline:2px solid var(--sun);border-color:transparent
 .stop .time{font-variant-numeric:tabular-nums}
 .kv dd b{font-weight:600}
 @media (min-width:820px){.wrap{padding:0 24px}.view{padding-top:26px}}
+
+/* collapsible */
+details.box>summary,details.acc>summary,details.fgrp>summary,details.mgrp>summary,details.wxcard>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px}
+details>summary::-webkit-details-marker{display:none}
+details.acc>summary::after,details.fgrp>summary::after,details.mgrp>summary::after,details.wxcard>summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);margin-left:auto;margin-right:4px;transition:transform .15s;flex:0 0 auto}
+details[open].acc>summary::after,details[open].fgrp>summary::after,details[open].mgrp>summary::after,details[open].wxcard>summary::after{transform:rotate(-135deg)}
+.card.acc{padding:0}
+.card.acc>summary{padding:16px 18px}
+.card.acc>summary h3{margin:0;padding:0;border:0;font-size:19px}
+.card.acc>*:not(summary){margin-left:18px;margin-right:18px}
+.card.acc>*:last-child{margin-bottom:18px}
+.card.acc[open]>summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+.card.wxcard{padding:0}.card.wxcard>summary{padding:14px 18px}.card.wxcard>summary h3{margin:0;padding:0;border:0;font-size:17px}.card.wxcard .wxbox{padding:0 18px 14px}
+.stop details.box>summary{padding:12px 14px;gap:8px}
+.stop .sname{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:19px;letter-spacing:-.01em}
+.stop .sdur{font-size:13px;color:var(--ink-2);flex:1;min-width:0}
+.stop summary .nav{flex:0 0 auto}
+.stop details.box>summary::after{content:none}
+.stop details.box[open]>summary{border-bottom:1px solid var(--line)}
+.stop .seeblk{margin:10px 0 4px}.stop .seeblk>b{display:block;margin-bottom:4px}
+details.fgrp{margin-bottom:12px}
+details.fgrp>summary,details.mgrp>summary{padding:10px 6px}
+details.fgrp>summary h3,details.mgrp>summary h4{margin:0}
+.cnt{font-size:12px;color:var(--ink-2);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.tools{display:flex;justify-content:flex-end;margin:0 0 10px}
+.btn.ghost{border-color:var(--line);color:var(--ink-2);background:var(--paper)}
+.mgrid{margin-top:8px}

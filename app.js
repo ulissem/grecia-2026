@@ -79,9 +79,9 @@
   }
 
   /* ---------- Rendering tappe ---------- */
-  function stopHTML(s, color) {
+  function stopHTML(s, color, open) {
     const info = s.info ? `<dl class="info">${s.info.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : '';
-    const see = s.see ? `<details><summary>${U.see}</summary><ul class="see">${s.see.map(([a, b]) => `<li><b>${a}</b> — ${b}</li>`).join('')}</ul></details>` : '';
+    const see = s.see ? `<div class="seeblk"><b>${U.see}</b><ul class="see">${s.see.map(([a, b]) => `<li><b>${a}</b> — ${b}</li>`).join('')}</ul></div>` : '';
     const links = [
       [U.wiki_it, `https://it.wikipedia.org/wiki/${encodeURIComponent(s.wit || s.wiki)}`],
       [U.wiki_en, `https://en.wikipedia.org/wiki/${encodeURIComponent(s.wiki)}`],
@@ -89,10 +89,10 @@
     ].map(([t, u]) => `<a target="_blank" rel="noopener" href="${u}">${t}</a>`).join('');
     return `<article class="stop">
       <div class="time">${s.time}</div><div class="dot" style="background:${color}"></div>
-      <div class="box">
+      <details class="box"${open ? ' open' : ''}>
+        <summary><span class="sname">${s.name}</span><span class="sdur">${s.dur}</span><a class="btn fill sm nav" target="_blank" rel="noopener" href="${gnav(s.lat, s.lng)}" onclick="event.stopPropagation()">${U.nav_short || 'Naviga'}</a></summary>
         <div class="ph" data-wiki="${esc(s.wiki)}"><img alt="" loading="lazy"><div class="cap"></div></div>
         <div class="body">
-          <div class="head"><h3>${s.name}</h3><span class="dur">${s.dur}</span></div>
           <p class="desc">${s.desc}</p>
           ${s.hist ? `<div class="hist"><b>${U.hist}</b> ${s.hist}</div>` : ''}
           ${info}${see}
@@ -101,8 +101,16 @@
           <div class="btns"><a class="btn fill sm" target="_blank" rel="noopener" href="${gnav(s.lat, s.lng)}">${U.nav}</a><a class="btn sm" target="_blank" rel="noopener" href="${anav(s.lat, s.lng, s.nav)}">${U.apple}</a><a class="btn sm" target="_blank" rel="noopener" href="${gm(s.nav)}">${U.sheet}</a></div>
           <div class="links">${links}</div>
         </div>
-      </div></article>`;
+      </details></article>`;
   }
+  function openIdx(D) {
+    if (D.date !== todayISO()) return -1;
+    const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
+    const toMin = s => { const m = /^(\d{1,2}):(\d{2})/.exec(s.time); return m ? (+m[1]) * 60 + (+m[2]) : 9999; };
+    const i = D.stops.findIndex(s => toMin(s) > nowMin - 60 && toMin(s) < 9999);
+    return i < 0 ? D.stops.length - 1 : i;
+  }
+  function toggleAllBtn(scopeSel) { return `<div class="tools"><button class="btn sm ghost" data-toggle-all="${scopeSel}">${U.expand_all}</button></div>`; }
   function dayHTML(D) {
     const color = G.colors[D.id];
     const km = D.legs.reduce((a, l) => a + l[2], 0);
@@ -115,8 +123,9 @@
         <div class="sum">${km ? `<b>${km} km</b> · ` : ''}${D.routeNote}</div>
         <div class="btns"><a class="btn fill" target="_blank" rel="noopener" href="${gdir(D.origin, D.dest, D.way)}">${U.nav_day}</a><a class="btn" target="_blank" rel="noopener" href="${adir(D.origin, D.dest)}">${U.apple}</a><span class="tag">${U.night} ${D.night}</span></div>
       </div>
-      <div class="card"><h3>${U.weather_in} ${G.places[D.place].name}</h3><div class="wxbox" data-place="${D.place}" data-date="${D.date}"><p class="muted">${U.loading}</p></div></div>
-      <div class="tl">${D.stops.map(s => stopHTML(s, color)).join('')}</div>
+      <details class="card wxcard"><summary><h3>${U.weather_in} ${G.places[D.place].name}</h3></summary><div class="wxbox" data-place="${D.place}" data-date="${D.date}"><p class="muted">${U.loading}</p></div></details>
+      ${toggleAllBtn('#dayBody .tl')}
+      <div class="tl">${D.stops.map((s, i) => stopHTML(s, color, i === openIdx(D))).join('')}</div>
       ${D.sleep ? `<div class="sleep"><h3>${U.sleep} · ${D.sleep.city}</h3><p>${D.sleep.txt}</p><div class="btns"><a class="btn olive" target="_blank" rel="noopener" href="${bk(D.sleep.city, D.sleep.ci, D.sleep.co)}">${U.booking} (${D.sleep.ci.slice(5).replace('-', '/')} → ${D.sleep.co.slice(5).replace('-', '/')})</a><a class="btn olive" target="_blank" rel="noopener" href="${gm('hotels ' + D.sleep.city)}">${U.hotels_maps}</a></div></div>` : ''}
       ${D.alt ? `<div class="alt"><b>${U.alt}</b> ${D.alt}</div>` : ''}`;
   }
@@ -245,6 +254,15 @@
   $('#foodRules').innerHTML = G.text.foodRules.map(x => `<li>${x}</li>`).join('');
   $('#guideBlocks').innerHTML = G.text.blocks1; $('#guideBlocks2').innerHTML = G.text.blocks2;
   $$('[data-ui]').forEach(el => { const v = U[el.dataset.ui]; if (typeof v === 'string') el.textContent = v; });
+  // Guida: ogni card diventa collassabile, la prima aperta
+  $$('#v-guide .card').forEach((card, i) => {
+    const h = card.querySelector(':scope > h3'); if (!h) return;
+    const d = document.createElement('details'); d.className = 'card acc'; if (i === 0) d.open = true;
+    const sum = document.createElement('summary'); sum.appendChild(h); d.appendChild(sum);
+    while (card.firstChild) d.appendChild(card.firstChild);
+    card.replaceWith(d);
+  });
+  $('#v-guide').insertAdjacentHTML('afterbegin', toggleAllBtn('#v-guide'));
   const lb = $('#langBtn'); lb.textContent = G.lang === 'en' ? 'IT' : 'EN'; lb.addEventListener('click', () => {
     const nl = G.lang === 'en' ? 'it' : 'en';
     try { localStorage.setItem('lang', nl); } catch (e) {}
@@ -299,18 +317,21 @@
     $('#foodBody').innerHTML = G.food_places.map(grp => {
       const items = grp.items.filter(it => foodFilter === 'all' || it.cat === foodFilter);
       if (!items.length) return '';
-      return `<div class="fgrp"><h3>${grp.area}</h3>${items.map(it => { const id = it.name + '|' + it.city; return `
+      const here = (G.places[G.dayPlace[todayISO()]] || {}).name || '';
+      const isOpen = here && grp.area.toLowerCase().includes(here.toLowerCase().split(' ')[0]);
+      return `<details class="fgrp"${isOpen ? ' open' : ''}><summary><h3>${grp.area}</h3><span class="cnt">${items.length}</span></summary>${items.map(it => { const id = it.name + '|' + it.city; return `
         <div class="fp${visited[id] ? ' done' : ''}">
           <div class="ic ${it.cat}">${FOOD_ICON[it.cat]}</div>
           <div class="t"><div class="n">${it.name}<small>${it.city}</small><span class="pr">${it.price}</span></div><div class="w">${it.what}</div>
             <div class="b"><a class="btn fill sm" target="_blank" rel="noopener" href="${gm(it.name + ' ' + it.city)}">Google Maps</a><a class="btn sm" target="_blank" rel="noopener" href="${anav(it.lat, it.lng, it.name)}">${U.apple}</a></div></div>
           <input type="checkbox" title="${U.f_visited}" data-fid="${esc(id)}" ${visited[id] ? 'checked' : ''}>
-        </div>`; }).join('')}</div>`;
+        </div>`; }).join('')}</details>`;
     }).join('');
+    $('#foodBody').insertAdjacentHTML('afterbegin', toggleAllBtn('#foodBody'));
     $$('#foodBody input').forEach(b => b.addEventListener('change', () => { const v = store.get('food-visited', {}); v[b.dataset.fid] = b.checked; store.set('food-visited', v); b.closest('.fp').classList.toggle('done', b.checked); }));
   }
   renderFood();
-  $('#menuBody').innerHTML = G.menu.map(g => `<div class="mgrp"><h4>${g.group}</h4><div class="mgrid">${g.items.map(it => `<div class="mi"><div class="ph" data-wiki="${esc(it.wiki)}"><img alt="${esc(it.name)}" loading="lazy"><div class="cap"></div></div><div class="tx"><b>${it.name}</b><span>${it.desc}</span></div></div>`).join('')}</div></div>`).join('');
+  $('#menuBody').innerHTML = G.menu.map(g => `<details class="mgrp"><summary><h4>${g.group}</h4><span class="cnt">${g.items.length}</span></summary><div class="mgrid">${g.items.map(it => `<div class="mi"><div class="ph" data-wiki="${esc(it.wiki)}"><img alt="${esc(it.name)}" loading="lazy"><div class="cap"></div></div><div class="tx"><b>${it.name}</b><span>${it.desc}</span></div></div>`).join('')}</div></details>`).join('');
   fillPhotos($('#menuBody'));
 
 
@@ -342,6 +363,16 @@
       try { await navigator.clipboard.writeText(txt); $('#copyMsg').textContent = U.n_copied; setTimeout(() => $('#copyMsg').textContent = '', 1500); } catch (e) { prompt('', txt); }
     });
   })();
+
+  /* ---------- Apri / chiudi tutto ---------- */
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-toggle-all]'); if (!b) return;
+    const scope = document.querySelector(b.dataset.toggleAll); if (!scope) return;
+    const ds = [...scope.querySelectorAll('details')];
+    const anyClosed = ds.some(d => !d.open);
+    ds.forEach(d => d.open = anyClosed);
+    b.textContent = anyClosed ? U.collapse_all : U.expand_all;
+  });
 
   /* ---------- Viste ---------- */
   function showView(v) {
